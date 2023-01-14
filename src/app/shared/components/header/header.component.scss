@@ -1,0 +1,30 @@
+mat-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  span {
+    margin-left: 10px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  .account-manage {
+    cursor: pointer;
+
+    a {
+      user-select: none;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+
+      .mat-icon {
+        font-size: 15px;
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+}

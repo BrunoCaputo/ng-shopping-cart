@@ -1,0 +1,20 @@
+footer {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  bottom: 0;
+  height: 32px;
+  width: 100%;
+  background-color: #212121;
+  color: white;
+
+  span {
+    font-size: 13px;
+  }
+  span.made-by {
+    font-size: 10px !important;
+  }
+}
