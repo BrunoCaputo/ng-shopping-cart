@@ -1,0 +1,132 @@
+::ng-deep .cart-container {
+  background-color: white;
+  position: relative;
+  padding: 20px 30px 25px;
+  height: calc(100vh - 64px - 32px - 45px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  .products-container {
+    padding: 16px !important;
+    min-height: 40vh;
+    max-height: 50vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .title {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      h2 {
+        font-weight: bold;
+        margin: 0;
+      }
+      a {
+        cursor: pointer;
+        color: rgb(0, 57, 131);
+      }
+    }
+    .empty-cart {
+      width: 100%;
+      text-align: center;
+      margin-top: 70px;
+
+      span {
+        font-size: 32px;
+      }
+      p {
+        margin-top: 10px;
+        font-size: 16px;
+
+        a {
+          color: rgb(0, 57, 131);
+        }
+      }
+    }
+  }
+  .coupon-container {
+    width: 100%;
+    margin: 15px 0 !important;
+    height: 10vh;
+  }
+  .checkout-container {
+    background-color: inherit;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .zip-code {
+      width: 45%;
+
+      .mat-mdc-form-field {
+        width: 100%;
+        height: 5rem;
+
+        .mdc-text-field:not(.mdc-text-field--disabled):not(
+            .mdc-text-field--focused
+          )
+          .mdc-floating-label {
+          color: black;
+        }
+
+        .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+          background-color: rgb(235, 235, 235);
+
+          input,
+          input::placeholder {
+            color: black;
+          }
+        }
+      }
+    }
+    .payment {
+      width: 50%;
+      text-align: center;
+
+      .payment-data {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 5px;
+
+        span {
+          font-size: 1rem;
+        }
+        .estimated-total {
+          height: 50px;
+          display: flex;
+          align-items: center;
+          gap: 40px;
+
+          span {
+            font-size: 1.5rem;
+            font-weight: 500;
+          }
+          #value {
+            font-weight: bolder;
+          }
+        }
+      }
+      button.mdc-button {
+        margin-top: 10px;
+        width: 200px;
+      }
+    }
+  }
+}
+
+.zip-code,
+.payment,
+.products-container,
+.coupon-container {
+  background-color: rgb(190, 190, 190);
+  border-radius: 10px;
+  padding: 10px 20px;
+}

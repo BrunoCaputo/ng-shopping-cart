@@ -1,16 +1,16 @@
 <mat-toolbar class="mat-elevation-z8">
-  <div class="logo">
+  <div class="logo" (click)="goToMainPage()">
     <img src="assets/images/shopping-cart-logo.png" width="60" height="60" />
-    <span>Lojinha</span>
+    <span>BC Store</span>
   </div>
 
   <div class="account-manage">
+    <button *ngIf="!isAtCart" mat-icon-button (click)="goToCart()">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+
     <a (click)="toggleLogin()">
-      <mat-icon
-        aria-hidden="false"
-        aria-label="Example home icon"
-        [fontIcon]="isLogged ? 'logout' : 'login'"
-      ></mat-icon>
+      <mat-icon [fontIcon]="isLogged ? 'logout' : 'login'"></mat-icon>
       <span> {{ isLogged ? "Logout" : "Login" }} </span>
     </a>
   </div>

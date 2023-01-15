@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ProductsService } from 'src/app/core/services/products/products.service';
-import { IProduct } from 'src/app/shared/models/product.model';
+import { Router } from '@angular/router';
+import { ProductsService, CartService } from 'src/app/core/services';
+import { IProduct } from 'src/app/shared/models';
 
 @Component({
   templateUrl: './catalog.component.html',
@@ -10,9 +11,14 @@ export class CatalogComponent {
   categories: string[] = [];
   productsByCategory: { [key: string]: IProduct[] } = {};
 
-  constructor(private productsService: ProductsService) {}
+  constructor(
+    private productsService: ProductsService,
+    private cartService: CartService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    this.cartService.setAtCart(this.router.url);
     this.getProducts();
   }
 
@@ -23,7 +29,5 @@ export class CatalogComponent {
       const products = this.productsService.getProductByCategory(category);
       this.productsByCategory[category] = products;
     });
-
-    console.log(this.productsByCategory);
   }
 }

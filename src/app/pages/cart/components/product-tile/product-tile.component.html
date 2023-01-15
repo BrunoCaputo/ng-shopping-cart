@@ -1,0 +1,19 @@
+<div class="product-card mat-elevation-z3">
+  <div class="left">
+    <span class="product-position">{{ position }}</span>
+    <img [src]="product.image" />
+    <span class="product-name">
+      {{ product.title }}
+    </span>
+  </div>
+  <div class="right">
+    <span class="price"> ${{ (product.price * quantity).toFixed(2) }} </span>
+    <quantity-changer
+      [maxQuantity]="product.quantity"
+      (onQuantityChange)="changeQuantity($event)"
+    ></quantity-changer>
+    <button class="delete" mat-icon-button (click)="removeProduct()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

@@ -8,7 +8,7 @@
   </div>
   <mat-card-content>
     <div class="content">
-      <span class="price">R${{ product.price }}</span>
+      <span class="price">${{ product.price.toFixed(2) }}</span>
       <span class="quantity"> Left: {{ product.quantity }} </span>
     </div>
   </mat-card-content>
