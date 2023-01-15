@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { UtilsService } from 'src/app/core/services/utils/utils.service';
-import { IProduct } from 'src/app/shared/models/product.model';
+import { UtilsService } from 'src/app/core/services';
+import { IProduct } from 'src/app/shared/models';
 
 @Component({
   selector: 'category-container',

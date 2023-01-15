@@ -1,4 +1,4 @@
-import { IProduct } from '../models/product.model';
+import { IProduct } from '../models';
 
 export const CATEGORIES: string[] = [
   'electronics',

@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  CATEGORIES,
-  PRODUCTS,
-} from 'src/app/shared/constants/products.constant';
-import { IProduct } from 'src/app/shared/models/product.model';
+import { CATEGORIES, PRODUCTS } from 'src/app/shared/constants';
+import { IProduct } from 'src/app/shared/models';
 
 @Injectable({
   providedIn: 'root',
