@@ -9,11 +9,18 @@
   <mat-card-content>
     <div class="content">
       <span class="price">${{ product.price.toFixed(2) }}</span>
-      <span class="quantity"> Left: {{ product.quantity }} </span>
+      <span class="quantity" [class.sold-out]="this.isSoldOut()">
+        {{ getRemain() }}
+      </span>
     </div>
   </mat-card-content>
   <mat-card-actions align="end">
-    <button mat-raised-button (click)="addToCart()" color="primary">
+    <button
+      mat-raised-button
+      (click)="addToCart()"
+      color="primary"
+      *ngIf="!isSoldOut()"
+    >
       Add to Cart
     </button>
   </mat-card-actions>

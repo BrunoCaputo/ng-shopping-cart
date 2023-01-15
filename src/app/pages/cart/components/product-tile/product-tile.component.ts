@@ -22,7 +22,8 @@ export class ProductTileComponent {
 
   ngOnInit() {
     this.maxQuantity =
-      PRODUCTS.find((prod) => prod.id === this.product.id)?.quantity ?? 0;
+      (PRODUCTS.find((prod) => prod.id === this.product.id)?.quantity ?? 0) +
+      this.quantity;
   }
 
   getPrice(): string {

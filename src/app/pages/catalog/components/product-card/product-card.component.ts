@@ -17,4 +17,16 @@ export class ProductCardComponent {
   addToCart() {
     this.cartService.addProductToCart(this.product);
   }
+
+  isSoldOut(): boolean {
+    return this.product.quantity === 0;
+  }
+
+  getRemain(): string {
+    if (this.product.quantity === 0) {
+      return 'SOLD OUT';
+    }
+
+    return `Left: ${this.product.quantity}`;
+  }
 }
