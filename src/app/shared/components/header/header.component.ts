@@ -11,7 +11,7 @@ export class HeaderComponent {
   isLogged = false;
   isAtCart = false;
 
-  constructor(private router: Router, private cartService: CartService) {}
+  constructor(private router: Router, public cartService: CartService) {}
 
   ngOnInit(): void {
     this.cartService.isAtCart().subscribe((atCart) => {

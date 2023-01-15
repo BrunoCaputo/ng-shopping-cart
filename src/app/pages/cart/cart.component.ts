@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/core/services';
-import { PRODUCTS } from 'src/app/shared/constants';
 import { IProduct } from 'src/app/shared/models';
 
 @Component({
@@ -11,6 +10,7 @@ import { IProduct } from 'src/app/shared/models';
 export class CartComponent {
   cartProducts: IProduct[] = [];
   discount: number = 0;
+  discountPercentage: number = 0;
   shippingCost: number = 0;
   total: number = 0;
   estTotal: number = 0;
@@ -23,7 +23,7 @@ export class CartComponent {
   }
 
   private getCartProducts() {
-    this.cartProducts = [...PRODUCTS];
+    this.cartProducts = this.cartService.getCartProducts();
     this.calculateTotal();
   }
 
@@ -31,14 +31,21 @@ export class CartComponent {
     return this.cartProducts.length === 0;
   }
 
-  changeQuantity(quantity: number) {}
+  emptyShoppingCart() {
+    this.cartService.emptyCart('clear');
+  }
+
+  changeQuantity() {
+    this.calculateTotal();
+  }
 
   removeProductFromCart(productId: number) {
-    const productIndex: number = this.cartProducts.findIndex(
-      (product) => product.id === productId
-    );
-    this.cartProducts.splice(productIndex, 1);
     this.calculateTotal();
+  }
+
+  getDiscount(discountPercentage: number) {
+    this.discountPercentage = discountPercentage;
+    this.discount = this.total * (discountPercentage / 100);
   }
 
   calculateTotal() {
@@ -58,8 +65,9 @@ export class CartComponent {
   }
 
   checkout(): void {
-    alert(`Your order: \$${this.estTotal}`);
+    alert(`Your order: \$${this.estTotal.toFixed(2)}`);
 
+    this.cartService.emptyCart('checkout');
     this.cartProducts = [];
   }
 }

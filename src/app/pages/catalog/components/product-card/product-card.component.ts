@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CartService } from 'src/app/core/services';
 import { IProduct } from 'src/app/shared/models';
 
 @Component({
@@ -9,7 +10,11 @@ import { IProduct } from 'src/app/shared/models';
 export class ProductCardComponent {
   @Input() product!: IProduct;
 
+  constructor(private cartService: CartService) {}
+
   ngOnInit() {}
 
-  addToCart() {}
+  addToCart() {
+    this.cartService.addProductToCart(this.product);
+  }
 }

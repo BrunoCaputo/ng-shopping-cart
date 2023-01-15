@@ -6,7 +6,13 @@
 
   <div class="account-manage">
     <button *ngIf="!isAtCart" mat-icon-button (click)="goToCart()">
-      <mat-icon>shopping_cart</mat-icon>
+      <mat-icon
+        [matBadge]="cartService.getCartProducts().length"
+        [matBadgeHidden]="cartService.getCartProducts().length === 0"
+        matBadgePosition="below"
+        matBadgeSize="small"
+        >shopping_cart</mat-icon
+      >
     </button>
 
     <a (click)="toggleLogin()">

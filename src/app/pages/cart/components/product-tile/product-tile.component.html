@@ -7,10 +7,11 @@
     </span>
   </div>
   <div class="right">
-    <span class="price"> ${{ (product.price * quantity).toFixed(2) }} </span>
+    <span class="price"> ${{ getPrice() }} </span>
     <quantity-changer
-      [maxQuantity]="product.quantity"
-      (onQuantityChange)="changeQuantity($event)"
+      [quantity]="product.quantity"
+      [maxQuantity]="maxQuantity"
+      (onQuantityChange)="changeQuantity($event.quantity, $event.action)"
     ></quantity-changer>
     <button class="delete" mat-icon-button (click)="removeProduct()">
       <mat-icon>delete</mat-icon>

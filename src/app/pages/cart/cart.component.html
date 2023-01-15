@@ -2,7 +2,7 @@
   <div class="products-container">
     <div class="title">
       <h2>Cart Products</h2>
-      <a *ngIf="!cartIsEmpty()" (click)="cartProducts = []">
+      <a *ngIf="!cartIsEmpty()" (click)="emptyShoppingCart()">
         Empty your cart
       </a>
     </div>
@@ -11,13 +11,16 @@
         *ngFor="let product of cartProducts; let i = index"
         [position]="i + 1"
         [product]="product"
+        [quantity]="product.quantity"
         (onRemoveProduct)="removeProductFromCart(product.id)"
-        (onChangeQuantity)="changeQuantity($event)"
+        (onChangeQuantity)="changeQuantity()"
       ></product-tile>
     </ng-container>
   </div>
   <div *ngIf="!cartIsEmpty()" class="coupon-container">
-    <discount-field></discount-field>
+    <discount-field
+      (onDiscountPercentage)="getDiscount($event)"
+    ></discount-field>
   </div>
   <div *ngIf="!cartIsEmpty()" class="checkout-container">
     <div class="zip-code">
@@ -38,7 +41,11 @@
           Shipping Cost: <strong>${{ shippingCost.toFixed(2) }}</strong>
         </span>
         <span>
-          Discount: <strong>${{ discount.toFixed(2) }}</strong>
+          Discount:
+          <strong> ${{ discount.toFixed(2) }} </strong>
+          <small>
+            {{ discountPercentage > 0 ? "(" + discountPercentage + "%)" : "" }}
+          </small>
         </span>
         <div class="estimated-total">
           <span>Estimated Total</span>
