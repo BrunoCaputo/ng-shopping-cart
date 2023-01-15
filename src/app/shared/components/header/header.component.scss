@@ -2,6 +2,8 @@ mat-toolbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: fixed;
+  z-index: 2;
 
   span {
     margin-left: 10px;

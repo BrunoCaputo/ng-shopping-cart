@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ product.title }}</mat-card-title>
+    <mat-card-subtitle>{{ product.description }}</mat-card-subtitle>
+  </mat-card-header>
+  <div class="card-image">
+    <img matCardImage [src]="product.image" />
+  </div>
+  <mat-card-content>
+    <div class="content">
+      <span class="price">R${{ product.price }}</span>
+      <span class="quantity"> Left: {{ product.quantity }} </span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-raised-button (click)="addToCart()" color="primary">
+      Add to Cart
+    </button>
+  </mat-card-actions>
+  <mat-card-footer>
+    <div class="rating">
+      <div class="rate">
+        <mat-icon fontIcon="star"></mat-icon>
+        <span>{{ product.rating.rate }}</span>
+      </div>
+      <div class="rate-count">
+        <mat-icon fontIcon="person"></mat-icon>
+        <span>{{ product.rating.count }}</span>
+      </div>
+    </div>
+  </mat-card-footer>
+</mat-card>
