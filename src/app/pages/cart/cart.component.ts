@@ -23,13 +23,15 @@ export class CartComponent {
   }
 
   private getCartProducts() {
-    this.cartProducts = [...[PRODUCTS[0]]];
+    this.cartProducts = [...PRODUCTS];
     this.calculateTotal();
   }
 
   cartIsEmpty(): boolean {
     return this.cartProducts.length === 0;
   }
+
+  changeQuantity(quantity: number) {}
 
   removeProductFromCart(productId: number) {
     const productIndex: number = this.cartProducts.findIndex(

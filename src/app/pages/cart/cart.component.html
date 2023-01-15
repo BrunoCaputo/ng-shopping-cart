@@ -12,10 +12,13 @@
         [position]="i + 1"
         [product]="product"
         (onRemoveProduct)="removeProductFromCart(product.id)"
+        (onChangeQuantity)="changeQuantity($event)"
       ></product-tile>
     </ng-container>
   </div>
-  <div *ngIf="!cartIsEmpty()" class="coupon-container"></div>
+  <div *ngIf="!cartIsEmpty()" class="coupon-container">
+    <discount-field></discount-field>
+  </div>
   <div *ngIf="!cartIsEmpty()" class="checkout-container">
     <div class="zip-code">
       <mat-form-field class="example-full-width">

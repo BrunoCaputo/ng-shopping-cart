@@ -10,6 +10,7 @@ export class ProductTileComponent {
   @Input() product!: IProduct;
   @Input() position: number = 0;
 
+  @Output() onChangeQuantity: EventEmitter<number> = new EventEmitter<number>();
   @Output() onRemoveProduct: EventEmitter<any> = new EventEmitter<any>();
 
   quantity: number = 1;
@@ -25,6 +26,7 @@ export class ProductTileComponent {
     }
 
     this.quantity = newQuantity;
+    this.onChangeQuantity.emit(this.quantity);
   }
 
   removeProduct() {

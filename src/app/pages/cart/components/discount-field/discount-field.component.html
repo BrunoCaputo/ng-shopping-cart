@@ -1,0 +1,54 @@
+<form [formGroup]="discountForm" role="form">
+  <div class="discount-container">
+    <div class="payment-method">
+      <mat-form-field appearance="fill">
+        <mat-label>Payment Method</mat-label>
+        <mat-select formControlName="paymentMethodDiscount">
+          <mat-option
+            *ngFor="let method of paymentMethods; let i = index"
+            [value]="method.discountPercentage"
+          >
+            {{ method.method }}
+            {{
+              method.discountPercentage > 0
+                ? "- " + method.discountPercentage + "%"
+                : ""
+            }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            discountForm.controls['paymentMethodDiscount'].hasError('required')
+          "
+        >
+          Required Field
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="coupon-field">
+      <mat-form-field class="example-full-width">
+        <mat-label>DISCOUNT COUPON</mat-label>
+        <input
+          matInput
+          placeholder="Enter your coupon"
+          formControlName="coupon"
+        />
+        <mat-error
+          *ngIf="discountForm.controls['coupon'].hasError('invalidCoupon')"
+        >
+          Invalid Coupon
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="discountForm.invalid"
+      (click)="applyCoupon()"
+    >
+      APPLY
+    </button>
+  </div>
+</form>
