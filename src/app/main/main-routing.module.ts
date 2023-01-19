@@ -11,14 +11,14 @@ const routes: Routes = [
       {
         path: 'catalog',
         loadChildren: () =>
-          import('src/app/pages/catalog/catalog.module').then(
+          import('src/app/features/catalog/catalog.module').then(
             (m) => m.CatalogModule
           ),
       },
       {
         path: 'cart',
         loadChildren: () =>
-          import('src/app/pages/cart/cart.module').then((m) => m.CartModule),
+          import('src/app/features/cart/cart.module').then((m) => m.CartModule),
       },
     ],
   },
