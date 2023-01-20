@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CATEGORIES, PRODUCTS } from 'src/app/shared/constants';
 import { IProduct } from 'src/app/shared/models';
@@ -6,7 +7,7 @@ import { IProduct } from 'src/app/shared/models';
   providedIn: 'root',
 })
 export class ProductsService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   getCategories(): string[] {
     return CATEGORIES;

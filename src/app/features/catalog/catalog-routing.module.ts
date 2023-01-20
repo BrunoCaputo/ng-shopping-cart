@@ -3,20 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { CatalogComponent } from './catalog.component';
 
 const routes: Routes = [
+  { path: 'details', pathMatch: 'full', redirectTo: '' },
   {
     path: '',
     component: CatalogComponent,
-    children: [
-      { path: '', pathMatch: 'full', redirectTo: 'details/:prod' },
-      { path: 'details', pathMatch: 'full', redirectTo: 'details/:prod' },
-      {
-        path: 'details/:prod',
-        loadChildren: () =>
-          import('./pages/product-details/product-details.module').then(
-            (m) => m.ProductDetailsModule
-          ),
-      },
-    ],
+  },
+  {
+    path: 'details/:prod',
+    loadChildren: () =>
+      import('./pages/product-details/product-details.module').then(
+        (m) => m.ProductDetailsModule
+      ),
   },
 ];
 

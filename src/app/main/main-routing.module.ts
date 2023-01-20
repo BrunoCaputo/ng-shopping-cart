@@ -7,9 +7,9 @@ const routes: Routes = [
     path: '',
     component: MainComponent,
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'catalog' },
+      { path: '', pathMatch: 'full', redirectTo: 'products' },
       {
-        path: 'catalog',
+        path: 'products',
         loadChildren: () =>
           import('src/app/features/catalog/catalog.module').then(
             (m) => m.CatalogModule
@@ -19,6 +19,13 @@ const routes: Routes = [
         path: 'cart',
         loadChildren: () =>
           import('src/app/features/cart/cart.module').then((m) => m.CartModule),
+      },
+      {
+        path: '**',
+        loadChildren: () =>
+          import(
+            'src/app/core/errors/pages/not-found-page/not-found-page.module'
+          ).then((m) => m.NotFoundPageModule),
       },
     ],
   },

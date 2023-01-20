@@ -20,3 +20,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+.zip-code,
+.payment,
+.products-container,
+.coupon-container {
+  background-color: rgb(190, 190, 190);
+  border-radius: 10px;
+  padding: 10px 20px;
+}

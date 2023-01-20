@@ -1,1 +1,25 @@
-<p>resume works!</p>
+<div class="products-container">
+  <div class="title">
+    <h2>Cart Products</h2>
+    <a *ngIf="!cartIsEmpty()" (click)="emptyShoppingCart()">
+      Empty your cart
+    </a>
+  </div>
+  <ng-container *ngIf="!cartIsEmpty(); else emptyCart">
+    <product-tile
+      *ngFor="let product of cartProducts; let i = index"
+      [position]="i + 1"
+      [product]="product"
+      [quantity]="product.quantity"
+      (onRemoveProduct)="removeProductFromCart(product.id)"
+      (onChangeQuantity)="changeQuantity()"
+    ></product-tile>
+  </ng-container>
+</div>
+
+<ng-template #emptyCart>
+  <div class="empty-cart">
+    <span> There are no products in your shopping cart </span>
+    <p>Add products by clicking <a [routerLink]="['/']">HERE</a></p>
+  </div>
+</ng-template>

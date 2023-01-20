@@ -1,1 +1,38 @@
-<p>checkout works!</p>
+<div class="coupon-container">
+  <discount-field (onDiscountPercentage)="getDiscount($event)"></discount-field>
+</div>
+<div class="checkout-container">
+  <div class="zip-code">
+    <mat-form-field class="example-full-width">
+      <mat-label>ZIP Code</mat-label>
+      <input matInput placeholder="Enter the ZIP Code" maxlength="9" />
+      <button matSuffix mat-icon-button aria-label="Search">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="payment">
+    <div class="payment-data">
+      <span>
+        Total: <strong>${{ total.toFixed(2) }}</strong>
+      </span>
+      <span>
+        Shipping Cost: <strong>${{ shippingCost.toFixed(2) }}</strong>
+      </span>
+      <span>
+        Discount:
+        <strong> ${{ discount.toFixed(2) }} </strong>
+        <small>
+          {{ discountPercentage > 0 ? "(" + discountPercentage + "%)" : "" }}
+        </small>
+      </span>
+      <div class="estimated-total">
+        <span>Estimated Total</span>
+        <span id="value">${{ calculateEstimatedTotal() }}</span>
+      </div>
+    </div>
+    <button mat-raised-button color="primary" (click)="checkout()">
+      CHECKOUT
+    </button>
+  </div>
+</div>
