@@ -12,6 +12,7 @@ const routes: Routes = [
         path: 'resume',
         loadChildren: () =>
           import('./pages/resume/resume.module').then((m) => m.ResumeModule),
+        title: 'Cart Resume | BC Store',
       },
       {
         path: 'checkout',
@@ -19,6 +20,7 @@ const routes: Routes = [
           import('./pages/checkout/checkout.module').then(
             (m) => m.CheckoutModule
           ),
+        title: 'Cart Checkout | BC Store',
       },
       {
         path: 'confirmation',
@@ -26,6 +28,7 @@ const routes: Routes = [
           import('./pages/confirmation/confirmation.module').then(
             (m) => m.ConfirmationModule
           ),
+        title: 'Order Confirmation | BC Store',
       },
     ],
   },

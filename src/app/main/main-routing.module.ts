@@ -14,11 +14,13 @@ const routes: Routes = [
           import('src/app/features/catalog/catalog.module').then(
             (m) => m.CatalogModule
           ),
+        title: 'Home | BC Store',
       },
       {
         path: 'cart',
         loadChildren: () =>
           import('src/app/features/cart/cart.module').then((m) => m.CartModule),
+        title: 'Cart | BC Store',
       },
       {
         path: '**',
@@ -26,6 +28,7 @@ const routes: Routes = [
           import(
             'src/app/core/errors/pages/not-found-page/not-found-page.module'
           ).then((m) => m.NotFoundPageModule),
+        title: 'Not Found | BC Store',
       },
     ],
   },
