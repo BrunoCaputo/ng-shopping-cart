@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { PRODUCTS } from 'src/app/shared/constants';
-import { IProduct } from 'src/app/shared/models';
+import { ICartProduct, IProduct } from 'src/app/shared/models';
+import { ProductsService } from '../products/products.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   private isAtCart$: Subject<boolean> = new Subject<boolean>();
-  private cartProducts: IProduct[] = [];
+  private cartProducts: ICartProduct[] = [];
 
-  constructor() {}
+  constructor(private productService: ProductsService) {}
 
   isAtCart(): Subject<boolean> {
     return this.isAtCart$;
@@ -20,17 +20,18 @@ export class CartService {
     this.isAtCart$.next(routeName === '/cart');
   }
 
-  getCartProducts(): IProduct[] {
+  getCartProducts(): ICartProduct[] {
     return this.cartProducts;
   }
 
-  private getProductFromList(productId: number): IProduct | undefined {
+  private getProductFromList(productId: number): ICartProduct | undefined {
     return this.cartProducts.find((prod) => prod.id === productId);
   }
 
   removeProductFromCart(productId: number, quantity: number = 1): void {
     // Check if product exists in cart
-    const arrayProd: IProduct | undefined = this.getProductFromList(productId);
+    const arrayProd: ICartProduct | undefined =
+      this.getProductFromList(productId);
     if (arrayProd !== undefined) {
       arrayProd.quantity -= quantity;
       if (arrayProd.quantity === 0) {
@@ -44,9 +45,11 @@ export class CartService {
     this.changeMainList(productId, 'remove', quantity);
   }
 
-  addProductToCart(product: IProduct): void {
+  addProductToCart(product: ICartProduct): void {
     // Check if product exists in cart
-    const arrayProd: IProduct | undefined = this.getProductFromList(product.id);
+    const arrayProd: ICartProduct | undefined = this.getProductFromList(
+      product.id
+    );
     if (arrayProd !== undefined) {
       arrayProd.quantity++;
     } else {
@@ -57,11 +60,11 @@ export class CartService {
   }
 
   changeMainList(productId: number, action: string, quantity: number = 1) {
-    const product: IProduct = PRODUCTS.find((prod) => prod.id === productId)!;
-    product.quantity =
-      action === 'add'
-        ? product.quantity - quantity
-        : product.quantity + quantity;
+    const product: IProduct = this.productService
+      .getUsedProducts()
+      .find((prod) => prod.id === productId)!;
+    product.stock =
+      action === 'add' ? product.stock - quantity : product.stock + quantity;
   }
 
   emptyCart(scope: string) {

@@ -23,11 +23,13 @@ export class CatalogComponent {
   }
 
   async getProducts() {
-    this.categories = this.productsService.getCategories();
+    this.categories = await this.productsService.getCategories();
 
-    this.categories.forEach((category) => {
-      const products = this.productsService.getProductByCategory(category);
+    for (const category of this.categories) {
+      const { products } = await this.productsService.getProductByCategory(
+        category
+      );
       this.productsByCategory[category] = products;
-    });
+    }
   }
 }

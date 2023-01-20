@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/core/services';
-import { IProduct } from 'src/app/shared/models';
+import { ICartProduct } from 'src/app/shared/models';
 
 @Component({
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.scss'],
 })
 export class ResumeComponent {
-  cartProducts: IProduct[] = [];
+  cartProducts: ICartProduct[] = [];
   total: number = 0;
 
   constructor(private cartService: CartService, private router: Router) {}

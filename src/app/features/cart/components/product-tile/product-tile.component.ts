@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CartService } from 'src/app/core/services';
-import { PRODUCTS } from 'src/app/shared/constants';
-import { IProduct } from 'src/app/shared/models';
+import { CartService, ProductsService } from 'src/app/core/services';
+import { ICartProduct, IProduct } from 'src/app/shared/models';
 
 @Component({
   selector: 'product-tile',
@@ -9,7 +8,7 @@ import { IProduct } from 'src/app/shared/models';
   styleUrls: ['./product-tile.component.scss'],
 })
 export class ProductTileComponent {
-  @Input() product!: IProduct;
+  @Input() product!: ICartProduct;
   @Input() position: number = 0;
   @Input() quantity: number = 0;
 
@@ -18,11 +17,16 @@ export class ProductTileComponent {
 
   maxQuantity: number = 0;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private productService: ProductsService
+  ) {}
 
   ngOnInit() {
     this.maxQuantity =
-      (PRODUCTS.find((prod) => prod.id === this.product.id)?.quantity ?? 0) +
+      (this.productService
+        .getUsedProducts()
+        .find((prod) => prod.id === this.product.id)?.stock ?? 0) +
       this.quantity;
   }
 
