@@ -1,9 +1,9 @@
 mat-card {
-  height: 420px;
+  height: 380px;
   background-color: white;
 
   mat-card-header {
-    height: 116px;
+    height: 56px;
     margin-bottom: 10px;
 
     .mat-mdc-card-title {
@@ -12,14 +12,6 @@ mat-card {
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: 20px !important;
-    }
-    .mat-mdc-card-subtitle {
-      max-height: 40px;
-      font-size: 12px;
-      line-height: 14px;
-      color: rgb(68, 68, 68);
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
   }
 
@@ -55,8 +47,10 @@ mat-card {
     position: relative;
 
     img {
-      padding: 20px;
-      width: 120px;
+      padding: 10px;
+      height: 200px;
+      width: 100%;
+      object-fit: contain;
     }
   }
 

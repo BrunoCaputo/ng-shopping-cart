@@ -1,14 +1,15 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>{{ product.title }}</mat-card-title>
-    <mat-card-subtitle>{{ product.description }}</mat-card-subtitle>
   </mat-card-header>
   <div class="card-image">
     <img matCardImage [src]="product.thumbnail" />
   </div>
   <mat-card-content>
     <div class="content">
-      <span class="price">${{ product.price.toFixed(2) }}</span>
+      <span class="price">
+        {{ product.price | currency : "USD" : "symbol" }}
+      </span>
       <span class="quantity" [class.sold-out]="this.isSoldOut()">
         {{ getRemain() }}
       </span>

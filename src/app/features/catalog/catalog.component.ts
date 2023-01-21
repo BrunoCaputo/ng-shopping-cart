@@ -29,7 +29,13 @@ export class CatalogComponent {
   }
 
   async getCategories() {
-    this.categories = await this.productsService.getCategories();
+    if (sessionStorage.getItem('categories') === null) {
+      this.categories = await this.productsService.getCategories();
+      sessionStorage.setItem('categories', JSON.stringify(this.categories));
+      return;
+    }
+
+    this.categories = JSON.parse(sessionStorage.getItem('categories')!);
   }
 
   private async fillArray() {
