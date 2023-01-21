@@ -1,7 +1,7 @@
 <div class="product-card mat-elevation-z3">
   <div class="left">
     <span class="product-position">{{ position }}</span>
-    <img [src]="product.image" />
+    <img [src]="product.image" loading="lazy" />
     <span class="product-name">
       {{ product.title }}
     </span>

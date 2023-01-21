@@ -3,7 +3,7 @@
     <mat-card-title>{{ product.title }}</mat-card-title>
   </mat-card-header>
   <div class="card-image">
-    <img matCardImage [src]="product.thumbnail" />
+    <img matCardImage loading="lazy" [src]="product.thumbnail" />
   </div>
   <mat-card-content>
     <div class="content">

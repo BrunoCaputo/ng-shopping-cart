@@ -33,10 +33,10 @@ Para toda a navegação pode apresentar um `header` e um `footer`, e estes tamb�
 - [x] Ícone para a conta do usuário (cliente)
 - [x] Ícone para ir para o carrinho
 
-#### Footer
+#### Footer :heavy_check_mark:
 
-- [ ] Os links para diferentes partes do site e/ou links externos.
-- [ ] Powered by Angular e a sua autoria no site.
+- [x] Os links para diferentes partes do site e/ou links externos.
+- [x] Powered by Angular e a sua autoria no site.
 
 ### My Account
 
@@ -51,9 +51,9 @@ Para toda a navegação pode apresentar um `header` e um `footer`, e estes tamb�
 - [ ] A tela de login deverá ter os campos de login e senha mas a lógica de login não precisa ser concluída. Bastar ter apenas a lógica para mudar o status de logado e não logado.
 - [ ] redirecionar para a página principal
 
-### Services
+### Services :heavy_check_mark:
 
-[x] Pelo menos 1 serviço implementado.
+- [x] Pelo menos 1 serviço implementado.
 
 ### Tests
 
