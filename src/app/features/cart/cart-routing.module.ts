@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CartGuard } from 'src/app/core/guards/cart/cart.guard';
 import { CartComponent } from './cart.component';
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
             (m) => m.CheckoutModule
           ),
         title: 'Cart Checkout | BC Store',
+        canActivate: [CartGuard],
       },
       {
         path: 'confirmation',

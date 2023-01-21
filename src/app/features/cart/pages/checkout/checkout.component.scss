@@ -1,6 +1,6 @@
-::ng-deep .coupon-container {
-  width: 100%;
-  margin: 15px 0 !important;
+::ng-deep .go-back {
+  display: flex;
+  align-items: center;
 }
 ::ng-deep .checkout-container {
   background-color: inherit;
@@ -34,33 +34,6 @@
     }
   }
   .payment {
-    width: 50%;
-    text-align: center;
-
-    .payment-data {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 5px;
-
-      span {
-        font-size: 1rem;
-      }
-      .estimated-total {
-        height: 50px;
-        display: flex;
-        align-items: center;
-        gap: 40px;
-
-        span {
-          font-size: 1.5rem;
-          font-weight: 500;
-        }
-        #value {
-          font-weight: bolder;
-        }
-      }
-    }
     button.mdc-button {
       margin-top: 10px;
       width: 200px;

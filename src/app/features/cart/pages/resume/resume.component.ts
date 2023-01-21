@@ -9,18 +9,23 @@ import { ICartProduct } from 'src/app/shared/models';
 })
 export class ResumeComponent {
   cartProducts: ICartProduct[] = [];
+  discountPercentage: number = 0;
+  discount: number = 0;
   total: number = 0;
+  subTotal: number = 0;
 
   constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit() {
-    this.cartService.setAtCart(this.router.url);
     this.getCartProducts();
+    const url: string = this.router.url;
+    const currentStep = url.substring(url.indexOf('/', 2) + 1, url.length);
+    this.cartService.changeStepData(currentStep);
   }
 
   private getCartProducts() {
     this.cartProducts = this.cartService.getCartProducts();
-    this.calculateTotal();
+    this.calculateSubTotal();
   }
 
   cartIsEmpty(): boolean {
@@ -32,21 +37,36 @@ export class ResumeComponent {
   }
 
   changeQuantity() {
-    this.calculateTotal();
+    this.calculateSubTotal();
   }
 
   removeProductFromCart(productId: number) {
-    this.calculateTotal();
+    this.calculateSubTotal();
   }
 
-  calculateTotal() {
+  getDiscount(discountPercentage: number) {
+    this.discountPercentage = discountPercentage;
+    this.discount = this.total * (discountPercentage / 100);
+  }
+
+  calculateEstimatedTotal(): number {
+    this.total = this.subTotal - this.discount;
+    return this.total;
+  }
+
+  calculateSubTotal() {
     const priceArray: { price: number; quantity: number }[] =
       this.cartProducts.map((product) => {
         return { price: product.price, quantity: product.quantity };
       });
 
-    this.total = priceArray.reduce((pv, cv) => {
+    this.subTotal = priceArray.reduce((pv, cv) => {
       return pv + cv.price * cv.quantity;
     }, 0);
+  }
+
+  goToCheckout() {
+    this.cartService.setTotal(this.total);
+    this.router.navigate(['/cart/checkout']);
   }
 }

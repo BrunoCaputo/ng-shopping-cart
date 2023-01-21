@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { STEPS } from 'src/app/features/cart/constants';
+import { IOrderStep } from 'src/app/features/cart/models';
 import { ICartProduct, IProduct } from 'src/app/shared/models';
 import { ProductsService } from '../products/products.service';
 
@@ -9,15 +11,40 @@ import { ProductsService } from '../products/products.service';
 export class CartService {
   private isAtCart$: Subject<boolean> = new Subject<boolean>();
   private cartProducts: ICartProduct[] = [];
+  private steps: IOrderStep[] = [...STEPS];
+  private total: number = 0;
 
   constructor(private productService: ProductsService) {}
+
+  getSteps(): IOrderStep[] {
+    return this.steps;
+  }
+
+  changeStepData(currentStep: string) {
+    const step = this.steps.find(
+      (stp) => stp.title.toLowerCase() === currentStep
+    );
+    if (step) {
+      step.current = true;
+      const curStepPosition = step.step;
+      for (let i in Array(curStepPosition - 1).fill('')) {
+        const index = Number(i);
+        this.steps[index].current = false;
+        this.steps[index].completed = true;
+      }
+    }
+  }
+
+  resetStepsData() {
+    this.steps = [...STEPS];
+  }
 
   isAtCart(): Subject<boolean> {
     return this.isAtCart$;
   }
 
   setAtCart(routeName: string): void {
-    this.isAtCart$.next(routeName === '/cart');
+    this.isAtCart$.next(routeName.includes('/cart'));
   }
 
   getCartProducts(): ICartProduct[] {
@@ -76,5 +103,13 @@ export class CartService {
     [...this.cartProducts].forEach((product) => {
       this.removeProductFromCart(product.id, product.quantity);
     });
+  }
+
+  getTotal(): number {
+    return this.total;
+  }
+
+  setTotal(total: number) {
+    this.total = total;
   }
 }

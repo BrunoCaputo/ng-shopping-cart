@@ -1,5 +1,8 @@
-<div class="coupon-container">
-  <discount-field (onDiscountPercentage)="getDiscount($event)"></discount-field>
+<div class="go-back">
+  <button mat-icon-button routerLink="/cart/resume">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>Back to Resume</span>
 </div>
 <div class="checkout-container">
   <div class="zip-code">
@@ -12,27 +15,9 @@
     </mat-form-field>
   </div>
   <div class="payment">
-    <div class="payment-data">
-      <span>
-        Total: <strong>${{ total.toFixed(2) }}</strong>
-      </span>
-      <span>
-        Shipping Cost: <strong>${{ shippingCost.toFixed(2) }}</strong>
-      </span>
-      <span>
-        Discount:
-        <strong> ${{ discount.toFixed(2) }} </strong>
-        <small>
-          {{ discountPercentage > 0 ? "(" + discountPercentage + "%)" : "" }}
-        </small>
-      </span>
-      <div class="estimated-total">
-        <span>Estimated Total</span>
-        <span id="value">${{ calculateEstimatedTotal() }}</span>
-      </div>
-    </div>
+    <div class="payment-data"></div>
     <button mat-raised-button color="primary" (click)="checkout()">
-      CHECKOUT
+      CONFIRM
     </button>
   </div>
 </div>
