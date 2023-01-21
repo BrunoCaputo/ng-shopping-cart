@@ -11,7 +11,7 @@
   - [x] O carrinho será uma lista de produtos onde terá imagem, o nome, preço e quantidade de cada produto
   - [x] Também precisa mostrar o **Total** dos valores dos produtos
   - [x] Poderá ter o **Desconto** adicionando através de um cupom (Este cupom é uma string que representa o valor/porcentagem de um desconto. ex: DESCONTO10, DESCONTO50)
-  - [ ] Enviar esses cupons no README.
+  - [x] Enviar esses cupons no README.
   - [x] Se seu carrinho tem _desconto_ então precisa ter **Subtotal** (Total sem desconto)
   - [x] Precisa ter como excluir o produto do carrinho.
   - [x] Precisam ter uma rota para o resumo do pedido (`/cart`), que a lista de produtos adicionados. Nele haverá o botão para ir para a tela de pagamento.
