@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CartGuard } from 'src/app/core/guards/cart/cart.guard';
+import { CartGuard } from 'src/app/core/guards';
 import { CartComponent } from './cart.component';
 
 const routes: Routes = [
   {
     path: '',
     component: CartComponent,
+    canDeactivate: [CartGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'resume' },
       {
@@ -31,6 +32,7 @@ const routes: Routes = [
             (m) => m.ConfirmationModule
           ),
         title: 'Order Confirmation | BC Store',
+        canActivate: [CartGuard],
       },
     ],
   },

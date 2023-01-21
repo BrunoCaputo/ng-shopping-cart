@@ -13,6 +13,7 @@ export class CartService {
   private cartProducts: ICartProduct[] = [];
   private steps: IOrderStep[] = [...STEPS];
   private total: number = 0;
+  private checkedOut: boolean = false;
 
   constructor(private productService: ProductsService) {}
 
@@ -103,6 +104,7 @@ export class CartService {
     [...this.cartProducts].forEach((product) => {
       this.removeProductFromCart(product.id, product.quantity);
     });
+    this.cartProducts = [];
   }
 
   getTotal(): number {
@@ -111,5 +113,13 @@ export class CartService {
 
   setTotal(total: number) {
     this.total = total;
+  }
+
+  hasCheckedOut(): boolean {
+    return this.checkedOut;
+  }
+
+  checkOut(): void {
+    this.checkedOut = true;
   }
 }

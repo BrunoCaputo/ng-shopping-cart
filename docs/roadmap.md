@@ -20,7 +20,7 @@
   - [ ] Precisam ter uma rota para a confirmação do pedido(`/confirmation`), onde o usuário será avisado que o seu pedido foi realizado com sucesso e logo abaixo terá os detalhes do mesmo:
     - [ ] Lista de itens comprados, com imagem, nome, quantidade e preço em cada
     - [ ] Subtotal, Desconto aplicado e Total.
-- [ ] Um guarda de rota precisa avisar que o usuário está abandonando a tela do carrinho.
+- [x] Um guarda de rota precisa avisar que o usuário está abandonando a tela do carrinho.
 
 ### Header/Footer
 
