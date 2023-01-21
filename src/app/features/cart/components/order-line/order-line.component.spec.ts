@@ -2,19 +2,19 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-import { ConfirmationComponent } from './confirmation.component';
+import { OrderLineComponent } from './order-line.component';
 
-describe('ConfirmationComponent', () => {
-  let component: ConfirmationComponent;
-  let fixture: ComponentFixture<ConfirmationComponent>;
+describe('OrderLineComponent', () => {
+  let component: OrderLineComponent;
+  let fixture: ComponentFixture<OrderLineComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ConfirmationComponent],
+      declarations: [OrderLineComponent],
       imports: [SharedModule, HttpClientTestingModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ConfirmationComponent);
+    fixture = TestBed.createComponent(OrderLineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

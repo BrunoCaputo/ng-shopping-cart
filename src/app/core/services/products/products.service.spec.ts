@@ -1,25 +1,39 @@
-import { HttpClientModule } from '@angular/common/http';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { environment } from 'src/environments/environment';
 
 import { ProductsService } from './products.service';
 
 describe('ProductsService', () => {
   let service: ProductsService;
+  let httpController: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientTestingModule],
     });
     service = TestBed.inject(ProductsService);
+    httpController = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get all categories', async () => {
-    const categories = await service.getCategories();
+  it('products/categories API should contain GET method', async () => {
+    service.getCategories().then((res) => console.log(res));
 
-    expect(categories.length).toBeGreaterThan(0);
+    const http = httpController.expectOne(
+      `${environment.apiBaseUrl}/products/categories`,
+      'Get all categories from API'
+    );
+    expect(http.request.method).toBe('GET');
+  });
+
+  afterEach(() => {
+    httpController.verify();
   });
 });

@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { OrderLineComponent } from '../cart/components/order-line/order-line.component';
@@ -17,7 +17,7 @@ describe('CatalogComponent', () => {
         CategoryContainerComponent,
         OrderLineComponent,
       ],
-      imports: [SharedModule, HttpClientModule],
+      imports: [SharedModule, HttpClientTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CatalogComponent);

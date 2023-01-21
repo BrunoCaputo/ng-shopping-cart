@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -12,7 +12,7 @@ describe('CheckoutComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CheckoutComponent],
-      imports: [SharedModule, HttpClientModule, BrowserAnimationsModule],
+      imports: [SharedModule, HttpClientTestingModule, BrowserAnimationsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CheckoutComponent);

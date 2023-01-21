@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
@@ -16,7 +16,7 @@ describe('ResumeComponent', () => {
       declarations: [ResumeComponent, DiscountFieldComponent],
       imports: [
         SharedModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         AppRoutingModule,
         BrowserAnimationsModule,
       ],
