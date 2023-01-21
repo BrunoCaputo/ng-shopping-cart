@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { ConfirmationComponent } from './confirmation.component';
 
@@ -9,6 +11,7 @@ describe('ConfirmationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ConfirmationComponent],
+      imports: [SharedModule, HttpClientModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ConfirmationComponent);

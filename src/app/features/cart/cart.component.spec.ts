@@ -1,6 +1,10 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CartComponent } from './cart.component';
+import { OrderLineComponent } from './components/order-line/order-line.component';
 
 describe('CartComponent', () => {
   let component: CartComponent;
@@ -8,7 +12,8 @@ describe('CartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CartComponent],
+      declarations: [CartComponent, OrderLineComponent],
+      imports: [SharedModule, HttpClientModule, RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CartComponent);

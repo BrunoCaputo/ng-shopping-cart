@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { QuantityChangerComponent } from './quantity-changer.component';
 
@@ -8,9 +9,9 @@ describe('QuantityChangerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuantityChangerComponent ]
-    })
-    .compileComponents();
+      declarations: [QuantityChangerComponent],
+      imports: [SharedModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(QuantityChangerComponent);
     component = fixture.componentInstance;

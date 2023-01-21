@@ -1,4 +1,9 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { DiscountFieldComponent } from '../../components/discount-field/discount-field.component';
 
 import { ResumeComponent } from './resume.component';
 
@@ -8,7 +13,13 @@ describe('ResumeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ResumeComponent],
+      declarations: [ResumeComponent, DiscountFieldComponent],
+      imports: [
+        SharedModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ResumeComponent);
