@@ -25,8 +25,8 @@ const routes: Routes = [
       {
         path: 'login',
         loadChildren: () =>
-          import('src/app/features/account/account.module').then(
-            (m) => m.AccountModule
+          import('src/app/features/login/login.module').then(
+            (m) => m.LoginModule
           ),
         title: 'Login | BC Store',
       },
