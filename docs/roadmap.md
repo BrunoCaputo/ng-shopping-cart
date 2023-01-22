@@ -1,11 +1,13 @@
-### Home page :heavy_check_mark:
+# PROJECT ROADMAP
+
+## Home page :heavy_check_mark:
 
 - [x] Deve Apresentar um banner principal onde pode ser uma única imagem ou um carrossel de imagens.
 - [x] Uma lista de no mínimo 8 produtos. Podem ser apresentados em uma lista na tela ou em um carrossel de produtos.
 - [x] Cada produto será um card onde terá a imagem do produto, nome, preço e o botão de "adicionar no carrinho". Pode alterar a quantidade de produtos ao ser enviada no carrinho através dele, mas não é obrigatório.
 - [x] Fique a vontade para deixar o site mais próximo do segmento que você escolheu, e pode apresentar mais de uma lista de produtos (novidades, mais vendidos, etc.). Flexivel a no minumo 4 produtos por seção.
 
-### Cart
+## Cart
 
 - Os mesmos critérios anteriores:
   - [x] O carrinho será uma lista de produtos onde terá imagem, o nome, preço e quantidade de cada produto
@@ -22,40 +24,40 @@
     - [ ] Subtotal, Desconto aplicado e Total.
 - [x] Um guarda de rota precisa avisar que o usuário está abandonando a tela do carrinho.
 
-### Header/Footer
+## Header/Footer :white_check_mark:
 
 Para toda a navegação pode apresentar um `header` e um `footer`, e estes também devem condizer com o segmento escolhido para o seu site.
 
-#### Header
+### Header :heavy_check_mark:
 
 - [x] Logo
-- [ ] Menu categorias do site (no mínimo de 3 sessões)
+- [x] Menu categorias do site (no mínimo de 3 sessões)
 - [x] Ícone para a conta do usuário (cliente)
 - [x] Ícone para ir para o carrinho
 
-#### Footer :heavy_check_mark:
+### Footer :heavy_check_mark:
 
 - [x] Os links para diferentes partes do site e/ou links externos.
 - [x] Powered by Angular e a sua autoria no site.
 
-### My Account
+## My Account
 
 - [ ] Deverá ser protegida e somente acessar quando estiver logado.
 - [ ] Caso o usuário não esteja logado, deverá ser avisado que os dados de login não estão corretos.
 - [ ] No header o ícone/botão para a conta deverá mudar para o nome do usuário logado.
 - [ ] Não precisa ter conteúdo em tela por agora.
 
-### Login
+## Login
 
 - [ ] Apenas um fluxo explicito ao clicar um botão para logar ou deslogar.
 - [ ] A tela de login deverá ter os campos de login e senha mas a lógica de login não precisa ser concluída. Bastar ter apenas a lógica para mudar o status de logado e não logado.
 - [ ] redirecionar para a página principal
 
-### Services :heavy_check_mark:
+## Services :heavy_check_mark:
 
 - [x] Pelo menos 1 serviço implementado.
 
-### Tests
+## Tests
 
 Escreva testes em sua aplicação, 2 por cada componente abaixo:
 

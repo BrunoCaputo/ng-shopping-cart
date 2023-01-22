@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from 'src/app/core/services';
+import {
+  CartService,
+  ProductsService,
+  UtilsService,
+} from 'src/app/core/services';
 
 @Component({
   selector: 'app-header',
@@ -8,14 +12,27 @@ import { CartService } from 'src/app/core/services';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  @ViewChild('searchInput') searchInput!: ElementRef;
   isLogged = false;
   isAtCart = false;
+  categories: string[] = [];
 
-  constructor(private router: Router, public cartService: CartService) {}
+  constructor(
+    private router: Router,
+    public cartService: CartService,
+    private productsService: ProductsService,
+    private utils: UtilsService
+  ) {}
 
   ngOnInit(): void {
     this.cartService.isAtCart().subscribe((atCart) => {
       this.isAtCart = atCart;
+    });
+
+    this.productsService.getCategories().then((cats) => {
+      this.categories = cats
+        .map((cat) => this.utils.captalizeFirstLetter(cat))
+        .slice(0, 3);
     });
   }
 
@@ -29,5 +46,9 @@ export class HeaderComponent {
 
   goToMainPage() {
     this.router.navigate(['/']);
+  }
+
+  onCancel(): void {
+    this.searchInput.nativeElement.value = '';
   }
 }

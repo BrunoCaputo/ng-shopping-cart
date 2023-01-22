@@ -14,6 +14,6 @@ export class CategoryContainerComponent {
   constructor(private utils: UtilsService) {}
 
   ngOnInit() {
-    this.name = this.utils.captalizeFirstLetter(this.name);
+    this.name = this.utils.captalizeFirstLetter(this.name.replace('-', ' '));
   }
 }

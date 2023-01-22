@@ -9,6 +9,37 @@
     <span>BC Store</span>
   </div>
 
+  <div class="categories-menu">
+    <button mat-button [matMenuTriggerFor]="categoryMenu">Categories</button>
+    <mat-menu #categoryMenu="matMenu" yPosition="below">
+      <span mat-menu-item *ngFor="let category of categories">
+        {{ category }}
+      </span>
+      <span mat-menu-item>And more...</span>
+    </mat-menu>
+
+    <mat-form-field appearance="outline">
+      <mat-icon matPrefix>search&nbsp;</mat-icon>
+      <input
+        type="text"
+        matInput
+        id="search"
+        #searchInput
+        placeholder="Search"
+        autocomplete="off"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        aria-label="Cancel search"
+        *ngIf="searchInput.value"
+        (click)="onCancel()"
+      >
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
   <div class="account-manage">
     <button *ngIf="!isAtCart" mat-icon-button (click)="goToCart()">
       <mat-icon
@@ -16,8 +47,9 @@
         [matBadgeHidden]="cartService.getCartProducts().length === 0"
         matBadgePosition="below"
         matBadgeSize="small"
-        >shopping_cart</mat-icon
       >
+        shopping_cart
+      </mat-icon>
     </button>
 
     <a (click)="toggleLogin()">

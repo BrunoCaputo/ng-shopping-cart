@@ -21,10 +21,18 @@ export class ProductsService {
     return this.usedProducts;
   }
 
-  getCategories(): Promise<string[]> {
-    return lastValueFrom(
-      this.http.get<string[]>(`${this.url}/categories`).pipe(first())
-    );
+  async getCategories(): Promise<string[]> {
+    let categories: string[] = [];
+
+    if (sessionStorage.getItem('categories') === null) {
+      categories = await lastValueFrom(
+        this.http.get<string[]>(`${this.url}/categories`).pipe(first())
+      );
+      sessionStorage.setItem('categories', JSON.stringify(categories));
+      return categories;
+    }
+
+    return JSON.parse(sessionStorage.getItem('categories')!);
   }
 
   getProducts(limit: number = 40): Promise<IProductsData> {
