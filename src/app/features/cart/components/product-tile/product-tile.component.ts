@@ -11,6 +11,7 @@ export class ProductTileComponent {
   @Input() product!: ICartProduct;
   @Input() position: number = 0;
   @Input() quantity: number = 0;
+  @Input() hasActions: boolean = true;
 
   @Output() onChangeQuantity: EventEmitter<any> = new EventEmitter<any>();
   @Output() onRemoveProduct: EventEmitter<any> = new EventEmitter<any>();
@@ -30,8 +31,8 @@ export class ProductTileComponent {
       this.quantity;
   }
 
-  getPrice(): string {
-    return (this.product.price * this.quantity).toFixed(2);
+  getPrice(): number {
+    return this.product.price * this.quantity;
   }
 
   changeQuantity(newQuantity: number, action: string) {

@@ -34,7 +34,7 @@ export class CheckoutComponent {
       method: ['', [Validators.required]],
     });
 
-    this.total = this.cartService.getTotal();
+    this.total = this.cartService.getPaymentData()['total'];
   }
 
   confirmOrder() {

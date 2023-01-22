@@ -21,4 +21,16 @@ export class UtilsService {
 
     return result;
   }
+
+  generateRandomCode(): string {
+    const length = 8;
+    const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let code = '';
+
+    for (let i = 0; i < length; i++) {
+      code += Math.floor(Math.random() * numbers.length);
+    }
+
+    return code;
+  }
 }

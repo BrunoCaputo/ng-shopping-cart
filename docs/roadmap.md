@@ -7,7 +7,7 @@
 - [x] Cada produto será um card onde terá a imagem do produto, nome, preço e o botão de "adicionar no carrinho". Pode alterar a quantidade de produtos ao ser enviada no carrinho através dele, mas não é obrigatório.
 - [x] Fique a vontade para deixar o site mais próximo do segmento que você escolheu, e pode apresentar mais de uma lista de produtos (novidades, mais vendidos, etc.). Flexivel a no minumo 4 produtos por seção.
 
-## Cart
+## Cart :white_check_mark:
 
 - [x] O carrinho será uma lista de produtos onde terá imagem, o nome, preço e quantidade de cada produto
 - [x] Também precisa mostrar o **Total** dos valores dos produtos
@@ -18,9 +18,9 @@
 - [x] Precisam ter uma rota para o resumo do pedido (`/cart`), que a lista de produtos adicionados. Nele haverá o botão para ir para a tela de pagamento.
 - [x] Nesta tela será aplicado o cupom de desconto. Então a partir de agora é necessário termos um input para o nome do cupom e o demonstrativo de subtotal, desconto aplicado(valor e/ou porcentagem) e total (total = subtotal - desconto).
 - [x] Precisam ter uma rota para o pagamento do pedido (`/checkout`), onde deve só passar para a próxima após escolher a forma de pagamento. Ou seja, sem ter uma pagamento escohido o botão de _Finalizar Compra_ deverá ficar desabilitado.
-- [ ] Precisam ter uma rota para a confirmação do pedido(`/confirmation`), onde o usuário será avisado que o seu pedido foi realizado com sucesso e logo abaixo terá os detalhes do mesmo:
-  - [ ] Lista de itens comprados, com imagem, nome, quantidade e preço em cada
-  - [ ] Subtotal, Desconto aplicado e Total.
+- [x] Precisam ter uma rota para a confirmação do pedido(`/confirmation`), onde o usuário será avisado que o seu pedido foi realizado com sucesso e logo abaixo terá os detalhes do mesmo:
+  - [x] Lista de itens comprados, com imagem, nome, quantidade e preço em cada
+  - [x] Subtotal, Desconto aplicado e Total.
 - [x] Um guarda de rota precisa avisar que o usuário está abandonando a tela do carrinho.
 
 ## Header/Footer :white_check_mark:

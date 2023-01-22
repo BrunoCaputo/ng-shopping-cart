@@ -66,7 +66,12 @@ export class ResumeComponent {
   }
 
   goToCheckout() {
-    this.cartService.setTotal(this.total);
+    this.cartService.setPaymentData({
+      total: this.total,
+      subTotal: this.subTotal,
+      discount: this.discount,
+      discountPercentage: this.discountPercentage,
+    });
     this.router.navigate(['/cart/checkout']);
   }
 }

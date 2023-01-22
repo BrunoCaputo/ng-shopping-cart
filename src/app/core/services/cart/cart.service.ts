@@ -12,7 +12,7 @@ export class CartService {
   private isAtCart$: Subject<boolean> = new Subject<boolean>();
   private cartProducts: ICartProduct[] = [];
   private steps: IOrderStep[] = [...STEPS];
-  private total: number = 0;
+  private paymentData: any;
   private checkedOut: boolean = false;
   private paymentMethod!: IPaymentMethod;
 
@@ -108,12 +108,12 @@ export class CartService {
     this.cartProducts = [];
   }
 
-  getTotal(): number {
-    return this.total;
+  getPaymentData(): any {
+    return this.paymentData;
   }
 
-  setTotal(total: number) {
-    this.total = total;
+  setPaymentData(data: any) {
+    this.paymentData = data;
   }
 
   hasCheckedOut(): boolean {

@@ -6,7 +6,7 @@
       {{ product.title }}
     </span>
   </div>
-  <div class="right">
+  <div *ngIf="hasActions" class="right">
     <span class="price"> ${{ getPrice() }} </span>
     <quantity-changer
       [quantity]="product.quantity"
@@ -16,5 +16,9 @@
     <button class="delete" mat-icon-button (click)="removeProduct()">
       <mat-icon>delete</mat-icon>
     </button>
+  </div>
+  <div *ngIf="!hasActions" class="right">
+    <span class="price"> {{ getPrice() | currency : "USD" : "symbol" }} </span>
+    <span class="quantity">Quantity: {{ product.quantity }}</span>
   </div>
 </div>
