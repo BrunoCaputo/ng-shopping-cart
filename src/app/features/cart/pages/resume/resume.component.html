@@ -1,0 +1,62 @@
+<div class="resume-container">
+  <div class="products-container">
+    <div class="title">
+      <h2>Cart Products</h2>
+      <a *ngIf="!cartIsEmpty()" (click)="emptyShoppingCart()">
+        Empty your cart
+      </a>
+    </div>
+    <ng-container *ngIf="!cartIsEmpty(); else emptyCart">
+      <product-tile
+        *ngFor="let product of cartProducts; let i = index"
+        [position]="i + 1"
+        [product]="product"
+        [quantity]="product.quantity"
+        (onRemoveProduct)="removeProductFromCart(product.id)"
+        (onChangeQuantity)="changeQuantity()"
+      ></product-tile>
+    </ng-container>
+  </div>
+  <div class="goto-checkout">
+    <div class="coupon-container">
+      <discount-field
+        (onDiscountPercentage)="getDiscount($event)"
+      ></discount-field>
+    </div>
+
+    <div class="order-informations">
+      <span>
+        Subtotal: <strong>{{ subTotal | currency : "USD" : "symbol" }}</strong>
+      </span>
+      <span>
+        Discount:
+        <strong> {{ discount | currency : "USD" : "symbol" }} </strong>
+        <small>
+          {{ discountPercentage > 0 ? "(" + discountPercentage + "%)" : "" }}
+        </small>
+      </span>
+      <div class="estimated-total">
+        <span>Total</span>
+        <span id="value">
+          {{ calculateEstimatedTotal() | currency : "USD" : "symbol" }}
+        </span>
+      </div>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="cartIsEmpty()"
+      (click)="goToCheckout()"
+    >
+      CHECKOUT
+    </button>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <div class="empty-cart">
+    <span> There are no products in your shopping cart </span>
+    <p>Add products by clicking <a [routerLink]="['/']">HERE</a></p>
+  </div>
+</ng-template>

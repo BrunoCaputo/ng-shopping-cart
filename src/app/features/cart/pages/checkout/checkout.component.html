@@ -1,0 +1,41 @@
+<div class="go-back">
+  <button mat-icon-button routerLink="/cart/resume">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>Back to Resume</span>
+</div>
+<form [formGroup]="paymentMethodForm" role="form">
+  <div class="checkout-container">
+    <div class="payment-method">
+      <mat-form-field appearance="fill">
+        <mat-label>Payment Method</mat-label>
+        <mat-select formControlName="method">
+          <mat-option
+            *ngFor="let method of paymentMethods; let i = index"
+            [value]="i"
+          >
+            {{ method.method }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="paymentMethodForm.controls['method'].hasError('required')"
+        >
+          Required Field
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="confirm">
+      <span class="confirm-data">
+        Total: {{ total | currency : "USD" : "symbol" }}
+      </span>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="paymentMethodForm.invalid"
+        (click)="confirmOrder()"
+      >
+        CONFIRM
+      </button>
+    </div>
+  </div>
+</form>

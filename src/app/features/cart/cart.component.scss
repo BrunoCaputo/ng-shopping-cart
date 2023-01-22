@@ -1,0 +1,9 @@
+.cart-container {
+  background-color: white;
+  position: relative;
+  padding: 20px 30px 25px;
+  height: calc(100vh - 64px - 32px - 90px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}

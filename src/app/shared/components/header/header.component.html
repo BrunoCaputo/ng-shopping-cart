@@ -1,7 +1,43 @@
 <mat-toolbar class="mat-elevation-z8">
   <div class="logo" (click)="goToMainPage()">
-    <img src="assets/images/shopping-cart-logo.png" width="60" height="60" />
+    <img
+      loading="lazy"
+      src="assets/images/shopping-cart-logo.png"
+      width="60"
+      height="60"
+    />
     <span>BC Store</span>
+  </div>
+
+  <div class="categories-menu">
+    <button mat-button [matMenuTriggerFor]="categoryMenu">Categories</button>
+    <mat-menu #categoryMenu="matMenu" yPosition="below">
+      <span mat-menu-item *ngFor="let category of categories">
+        {{ category }}
+      </span>
+      <span mat-menu-item>And more...</span>
+    </mat-menu>
+
+    <mat-form-field appearance="outline">
+      <mat-icon matPrefix>search&nbsp;</mat-icon>
+      <input
+        type="text"
+        matInput
+        id="search"
+        #searchInput
+        placeholder="Search"
+        autocomplete="off"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        aria-label="Cancel search"
+        *ngIf="searchInput.value"
+        (click)="onCancel()"
+      >
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-form-field>
   </div>
 
   <div class="account-manage">
@@ -11,11 +47,19 @@
         [matBadgeHidden]="cartService.getCartProducts().length === 0"
         matBadgePosition="below"
         matBadgeSize="small"
-        >shopping_cart</mat-icon
       >
+        shopping_cart
+      </mat-icon>
     </button>
 
-    <a (click)="toggleLogin()">
+    <a
+      *ngIf="isLogged && loggedUser !== null"
+      (click)="goToAccountManagement(loggedUser.role === 'admin')"
+    >
+      <span> Olá, {{ loggedUser.name }} </span>
+    </a>
+
+    <a *ngIf="!isAtCart" (click)="loginOrLogout()">
       <mat-icon [fontIcon]="isLogged ? 'logout' : 'login'"></mat-icon>
       <span> {{ isLogged ? "Logout" : "Login" }} </span>
     </a>

@@ -1,0 +1,57 @@
+::ng-deep .go-back {
+  display: flex;
+  align-items: center;
+}
+::ng-deep .checkout-container {
+  background-color: inherit;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  .payment-method {
+    width: 60%;
+
+    .mat-mdc-form-field {
+      width: 100%;
+      height: 5rem;
+
+      .mdc-text-field:not(.mdc-text-field--disabled):not(
+          .mdc-text-field--focused
+        )
+        .mdc-floating-label {
+        color: black;
+      }
+
+      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+        background-color: rgb(235, 235, 235);
+
+        .mat-mdc-select-value,
+        .mat-mdc-select-arrow,
+        input,
+        input::placeholder {
+          color: black;
+        }
+      }
+    }
+  }
+  .confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+
+    span.confirm-data {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    button.mdc-button {
+      width: 200px;
+
+      &:disabled {
+        background-color: rgb(173, 173, 173);
+        color: rgb(95, 95, 95);
+      }
+    }
+  }
+}

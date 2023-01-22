@@ -15,3 +15,22 @@ Rode `ng serve` para executar o projeto em desenvolvimento. Use a url `http://lo
 Foi utilizado dados baseados na [Fake Store API](https://fakestoreapi.com/) para geração de produtos aleatórios.
 
 Os dados foram acessados pelo [Insomnia](https://insomnia.rest/).
+
+### CUPONS
+
+Esses são os cupons válidos na aplicação. Todos os cupons foram inseridos neste [arquivo](src/app/shared/constants/coupon.constant.ts).
+
+| Cupom     | Desconto (%) |
+| :-------- | -----------: |
+| GET50OFF  |           50 |
+| BRUNO5    |            5 |
+| PROSPER15 |           15 |
+
+### Usuários de Teste
+
+Esses são alguns usuários criados para teste dentro da plataforma. Todos os usuários foram inseridos neste [arquivo](src/app/shared/constants/users.constant.ts).
+
+| E-mail            | Senha  | Role  |
+| :---------------- | :----- | :---: |
+| bruno@gmail.com   | 123456 | Admin |
+| rodrigo@gmail.com | 123456 | User  |

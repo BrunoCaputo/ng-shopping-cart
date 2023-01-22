@@ -1,0 +1,24 @@
+<div class="product-card mat-elevation-z3">
+  <div class="left">
+    <span class="product-position">{{ position }}</span>
+    <img [src]="product.image" loading="lazy" />
+    <span class="product-name">
+      {{ product.title }}
+    </span>
+  </div>
+  <div *ngIf="hasActions" class="right">
+    <span class="price"> ${{ getPrice() }} </span>
+    <quantity-changer
+      [quantity]="product.quantity"
+      [maxQuantity]="maxQuantity"
+      (onQuantityChange)="changeQuantity($event.quantity, $event.action)"
+    ></quantity-changer>
+    <button class="delete" mat-icon-button (click)="removeProduct()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="!hasActions" class="right">
+    <span class="price"> {{ getPrice() | currency : "USD" : "symbol" }} </span>
+    <span class="quantity">Quantity: {{ product.quantity }}</span>
+  </div>
+</div>

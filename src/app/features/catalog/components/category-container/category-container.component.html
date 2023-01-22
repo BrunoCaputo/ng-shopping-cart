@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ name }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="catalog-products-container">
+      <product-card
+        *ngFor="let product of products"
+        [product]="product"
+      ></product-card>
+    </div>
+  </mat-card-content>
+</mat-card>

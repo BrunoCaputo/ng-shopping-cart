@@ -14,6 +14,13 @@ mat-toolbar {
     align-items: center;
     cursor: pointer;
   }
+  .categories-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+  }
   .account-manage {
     display: flex;
     gap: 20px;
@@ -39,4 +46,29 @@ mat-toolbar {
       }
     }
   }
+}
+:host ::ng-deep .mat-mdc-form-field.mat-mdc-form-field-type-mat-input {
+  width: 55%;
+}
+:host ::ng-deep .mat-form-field-wrapper {
+  margin: 0;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px solid #cccccc;
+}
+:host ::ng-deep .mat-form-field-outline {
+  opacity: 0 !important;
+}
+:host ::ng-deep .mat-form-field-prefix,
+:host ::ng-deep .mat-form-field-suffix {
+  margin: auto 0;
+  color: rgba(0, 0, 0, 0.3) !important;
+}
+:host ::ng-deep .mat-input-element::placeholder {
+  color: rgb(102, 102, 102) !important;
+}
+:host
+  ::ng-deep
+  .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
+  display: none;
 }

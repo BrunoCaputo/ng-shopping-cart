@@ -1,0 +1,57 @@
+<div class="confirmation-container">
+  <div class="successful-buy">
+    <span> Successful!! Your order code is {{ orderCode }} </span>
+  </div>
+
+  <div class="order-data">
+    <div class="products-container">
+      <div class="title">
+        <h2>Order products</h2>
+      </div>
+      <ng-container>
+        <product-tile
+          *ngFor="let product of cartProducts; let i = index"
+          [position]="i + 1"
+          [product]="product"
+          [quantity]="product.quantity"
+          [hasActions]="false"
+        ></product-tile>
+      </ng-container>
+    </div>
+
+    <div class="payment-data">
+      <span>
+        Payment method: <strong>{{ paymentMehod?.method }}</strong>
+      </span>
+      <span>
+        Subtotal:
+        <strong>
+          {{ paymentData?.subTotal | currency : "USD" : "symbol" }}
+        </strong>
+      </span>
+      <span>
+        Discount:
+        <strong>
+          {{ paymentData?.discount | currency : "USD" : "symbol" }}
+        </strong>
+        <small>
+          {{
+            paymentData?.discountPercentage > 0
+              ? "(" + paymentData?.discountPercentage + "%)"
+              : ""
+          }}
+        </small>
+      </span>
+      <div class="estimated-total">
+        <span>Total</span>
+        <span id="value">
+          {{ paymentData?.total | currency : "USD" : "symbol" }}
+        </span>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="confirm()">
+        Continue Shopping
+      </button>
+    </div>
+  </div>
+</div>

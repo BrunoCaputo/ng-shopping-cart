@@ -1,0 +1,14 @@
+<div class="order-line">
+  <ng-container *ngFor="let step of steps">
+    <div class="step-column">
+      <div
+        class="step"
+        [class.completed]="step.completed"
+        [class.current]="step.current"
+      >
+        <span>{{ step.step.toString() }}</span>
+      </div>
+      <span> {{ step.title }} </span>
+    </div>
+  </ng-container>
+</div>

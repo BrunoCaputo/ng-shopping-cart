@@ -1,0 +1,27 @@
+<form [formGroup]="discountForm" role="form">
+  <div class="discount-container">
+    <div class="coupon-field">
+      <mat-form-field>
+        <mat-label>DISCOUNT COUPON</mat-label>
+        <input
+          matInput
+          placeholder="Enter your coupon"
+          formControlName="coupon"
+        />
+        <button
+          *ngIf="discountForm.valid && discountForm.get('coupon')?.value !== ''"
+          matSuffix
+          mat-icon-button
+          (click)="applyCoupon()"
+        >
+          <mat-icon>check</mat-icon>
+        </button>
+        <mat-error
+          *ngIf="discountForm.controls['coupon'].hasError('invalidCoupon')"
+        >
+          Invalid Coupon
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
