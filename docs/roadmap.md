@@ -1,6 +1,6 @@
 # PROJECT ROADMAP
 
-## Home page :heavy_check_mark:
+## Home page :white_check_mark:
 
 - [x] Deve Apresentar um banner principal onde pode ser uma única imagem ou um carrossel de imagens.
 - [x] Uma lista de no mínimo 8 produtos. Podem ser apresentados em uma lista na tela ou em um carrossel de produtos.
@@ -47,13 +47,13 @@ Para toda a navegação pode apresentar um `header` e um `footer`, e estes tamb�
 - [ ] No header o ícone/botão para a conta deverá mudar para o nome do usuário logado.
 - [ ] Não precisa ter conteúdo em tela por agora.
 
-## Login
+## Login :white_check_mark:
 
-- [ ] Apenas um fluxo explicito ao clicar um botão para logar ou deslogar.
-- [ ] A tela de login deverá ter os campos de login e senha mas a lógica de login não precisa ser concluída. Bastar ter apenas a lógica para mudar o status de logado e não logado.
-- [ ] redirecionar para a página principal
+- [x] Apenas um fluxo explicito ao clicar um botão para logar ou deslogar.
+- [x] A tela de login deverá ter os campos de login e senha mas a lógica de login não precisa ser concluída. Bastar ter apenas a lógica para mudar o status de logado e não logado.
+- [x] redirecionar para a página principal
 
-## Services :heavy_check_mark:
+## Services :white_check_mark:
 
 - [x] Pelo menos 1 serviço implementado.
 

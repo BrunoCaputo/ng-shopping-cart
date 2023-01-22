@@ -3,6 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'login',
+    loadChildren: () =>
+      import('src/app/features/login/login.module').then((m) => m.LoginModule),
+    title: 'Login | BC Store',
+  },
+  {
     path: '',
     loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
   },

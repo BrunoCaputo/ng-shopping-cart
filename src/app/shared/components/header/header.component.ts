@@ -1,9 +1,15 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import {
   CartService,
   ProductsService,
   UtilsService,
+  AuthService,
 } from 'src/app/core/services';
 
 @Component({
@@ -21,7 +27,9 @@ export class HeaderComponent {
     private router: Router,
     public cartService: CartService,
     private productsService: ProductsService,
-    private utils: UtilsService
+    private utils: UtilsService,
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +42,8 @@ export class HeaderComponent {
         .map((cat) => this.utils.captalizeFirstLetter(cat))
         .slice(0, 3);
     });
-  }
 
-  toggleLogin() {
-    this.isLogged = !this.isLogged;
+    this.isLogged = this.authService.isLoggedIn();
   }
 
   goToCart() {
@@ -50,5 +56,14 @@ export class HeaderComponent {
 
   onCancel(): void {
     this.searchInput.nativeElement.value = '';
+  }
+
+  loginOrLogout() {
+    if (!this.isLogged) {
+      this.router.navigate(['/login']);
+    } else {
+      this.authService.logout();
+      this.isLogged = false;
+    }
   }
 }

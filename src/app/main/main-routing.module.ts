@@ -23,12 +23,12 @@ const routes: Routes = [
         title: 'Cart | BC Store',
       },
       {
-        path: 'login',
+        path: 'account',
         loadChildren: () =>
-          import('src/app/features/login/login.module').then(
-            (m) => m.LoginModule
+          import('src/app/features/account/account.module').then(
+            (m) => m.AccountModule
           ),
-        title: 'Login | BC Store',
+        title: 'Account | BC Store',
       },
       {
         path: 'not-found',

@@ -52,7 +52,7 @@
       </mat-icon>
     </button>
 
-    <a (click)="toggleLogin()">
+    <a (click)="loginOrLogout()">
       <mat-icon [fontIcon]="isLogged ? 'logout' : 'login'"></mat-icon>
       <span> {{ isLogged ? "Logout" : "Login" }} </span>
     </a>
