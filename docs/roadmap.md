@@ -60,7 +60,7 @@ Para toda a navegação pode apresentar um `header` e um `footer`, e estes tamb�
 
 Escreva testes em sua aplicação, 2 por cada componente abaixo:
 
-- [ ] home
+- [x] home
 - [ ] carrinho
 - [ ] header
 - [ ] footer
