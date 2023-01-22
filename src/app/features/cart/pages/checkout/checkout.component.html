@@ -4,20 +4,38 @@
   </button>
   <span>Back to Resume</span>
 </div>
-<div class="checkout-container">
-  <div class="zip-code">
-    <mat-form-field class="example-full-width">
-      <mat-label>ZIP Code</mat-label>
-      <input matInput placeholder="Enter the ZIP Code" maxlength="9" />
-      <button matSuffix mat-icon-button aria-label="Search">
-        <mat-icon>search</mat-icon>
+<form [formGroup]="paymentMethodForm" role="form">
+  <div class="checkout-container">
+    <div class="payment-method">
+      <mat-form-field appearance="fill">
+        <mat-label>Payment Method</mat-label>
+        <mat-select formControlName="method">
+          <mat-option
+            *ngFor="let method of paymentMethods; let i = index"
+            [value]="i"
+          >
+            {{ method.method }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="paymentMethodForm.controls['method'].hasError('required')"
+        >
+          Required Field
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="confirm">
+      <span class="confirm-data">
+        Total: {{ total | currency : "USD" : "symbol" }}
+      </span>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="paymentMethodForm.invalid"
+        (click)="confirmOrder()"
+      >
+        CONFIRM
       </button>
-    </mat-form-field>
+    </div>
   </div>
-  <div class="payment">
-    <div class="payment-data"></div>
-    <button mat-raised-button color="primary" (click)="checkout()">
-      CONFIRM
-    </button>
-  </div>
-</div>
+</form>

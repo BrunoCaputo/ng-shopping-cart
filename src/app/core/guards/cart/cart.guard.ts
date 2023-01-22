@@ -38,7 +38,12 @@ export class CartGuard implements CanActivate, CanDeactivate<CartComponent> {
 
   private checkLogin(fromUrl: string): boolean {
     if (this.authService.isLoggedIn()) {
-      return this.cartService.getCartProducts().length > 0;
+      const hasProducts = this.cartService.getCartProducts().length > 0;
+      if (!hasProducts) {
+        alert("You don't have products in your cart");
+        this.router.navigate(['/']);
+      }
+      return hasProducts;
     }
 
     this.router.navigate(['/login'], { queryParams: { from: fromUrl } });

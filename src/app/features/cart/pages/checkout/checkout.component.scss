@@ -7,10 +7,10 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 
-  .zip-code {
-    width: 45%;
+  .payment-method {
+    width: 60%;
 
     .mat-mdc-form-field {
       width: 100%;
@@ -26,6 +26,8 @@
       .mdc-text-field--filled:not(.mdc-text-field--disabled) {
         background-color: rgb(235, 235, 235);
 
+        .mat-mdc-select-value,
+        .mat-mdc-select-arrow,
         input,
         input::placeholder {
           color: black;
@@ -33,10 +35,23 @@
       }
     }
   }
-  .payment {
+  .confirm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+
+    span.confirm-data {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
     button.mdc-button {
-      margin-top: 10px;
       width: 200px;
+
+      &:disabled {
+        background-color: rgb(173, 173, 173);
+        color: rgb(95, 95, 95);
+      }
     }
   }
 }

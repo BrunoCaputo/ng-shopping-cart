@@ -14,4 +14,8 @@ export class ConfirmationComponent {
     const currentStep = url.substring(url.indexOf('/', 2) + 1, url.length);
     this.cartService.changeStepData(currentStep);
   }
+
+  confirm(): void {
+    this.cartService.emptyCart('confirm');
+  }
 }

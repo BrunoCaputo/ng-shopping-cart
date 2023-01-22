@@ -9,19 +9,18 @@
 
 ## Cart
 
-- Os mesmos critérios anteriores:
-  - [x] O carrinho será uma lista de produtos onde terá imagem, o nome, preço e quantidade de cada produto
-  - [x] Também precisa mostrar o **Total** dos valores dos produtos
-  - [x] Poderá ter o **Desconto** adicionando através de um cupom (Este cupom é uma string que representa o valor/porcentagem de um desconto. ex: DESCONTO10, DESCONTO50)
-  - [x] Enviar esses cupons no README.
-  - [x] Se seu carrinho tem _desconto_ então precisa ter **Subtotal** (Total sem desconto)
-  - [x] Precisa ter como excluir o produto do carrinho.
-  - [x] Precisam ter uma rota para o resumo do pedido (`/cart`), que a lista de produtos adicionados. Nele haverá o botão para ir para a tela de pagamento.
-  - [x] Nesta tela será aplicado o cupom de desconto. Então a partir de agora é necessário termos um input para o nome do cupom e o demonstrativo de subtotal, desconto aplicado(valor e/ou porcentagem) e total (total = subtotal - desconto).
-- [ ] Precisam ter uma rota para o pagamento do pedido (`/checkout`), onde deve só passar para a próxima após escolher a forma de pagamento. Ou seja, sem ter uma pagamento escohido o botão de _Finalizar Compra_ deverá ficar desabilitado.
-  - [ ] Precisam ter uma rota para a confirmação do pedido(`/confirmation`), onde o usuário será avisado que o seu pedido foi realizado com sucesso e logo abaixo terá os detalhes do mesmo:
-    - [ ] Lista de itens comprados, com imagem, nome, quantidade e preço em cada
-    - [ ] Subtotal, Desconto aplicado e Total.
+- [x] O carrinho será uma lista de produtos onde terá imagem, o nome, preço e quantidade de cada produto
+- [x] Também precisa mostrar o **Total** dos valores dos produtos
+- [x] Poderá ter o **Desconto** adicionando através de um cupom (Este cupom é uma string que representa o valor/porcentagem de um desconto. ex: DESCONTO10, DESCONTO50)
+- [x] Enviar esses cupons no README.
+- [x] Se seu carrinho tem _desconto_ então precisa ter **Subtotal** (Total sem desconto)
+- [x] Precisa ter como excluir o produto do carrinho.
+- [x] Precisam ter uma rota para o resumo do pedido (`/cart`), que a lista de produtos adicionados. Nele haverá o botão para ir para a tela de pagamento.
+- [x] Nesta tela será aplicado o cupom de desconto. Então a partir de agora é necessário termos um input para o nome do cupom e o demonstrativo de subtotal, desconto aplicado(valor e/ou porcentagem) e total (total = subtotal - desconto).
+- [x] Precisam ter uma rota para o pagamento do pedido (`/checkout`), onde deve só passar para a próxima após escolher a forma de pagamento. Ou seja, sem ter uma pagamento escohido o botão de _Finalizar Compra_ deverá ficar desabilitado.
+- [ ] Precisam ter uma rota para a confirmação do pedido(`/confirmation`), onde o usuário será avisado que o seu pedido foi realizado com sucesso e logo abaixo terá os detalhes do mesmo:
+  - [ ] Lista de itens comprados, com imagem, nome, quantidade e preço em cada
+  - [ ] Subtotal, Desconto aplicado e Total.
 - [x] Um guarda de rota precisa avisar que o usuário está abandonando a tela do carrinho.
 
 ## Header/Footer :white_check_mark:

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { STEPS } from 'src/app/features/cart/constants';
-import { IOrderStep } from 'src/app/features/cart/models';
+import { IOrderStep, IPaymentMethod } from 'src/app/features/cart/models';
 import { ICartProduct, IProduct } from 'src/app/shared/models';
 import { ProductsService } from '../products/products.service';
 
@@ -14,6 +14,7 @@ export class CartService {
   private steps: IOrderStep[] = [...STEPS];
   private total: number = 0;
   private checkedOut: boolean = false;
+  private paymentMethod!: IPaymentMethod;
 
   constructor(private productService: ProductsService) {}
 
@@ -96,7 +97,7 @@ export class CartService {
   }
 
   emptyCart(scope: string) {
-    if (scope === 'checkout') {
+    if (scope === 'confirm') {
       this.cartProducts = [];
       return;
     }
@@ -121,5 +122,13 @@ export class CartService {
 
   checkOut(): void {
     this.checkedOut = true;
+  }
+
+  getPaymentMethod(): IPaymentMethod {
+    return this.paymentMethod;
+  }
+
+  setPaymentMethod(method: IPaymentMethod): void {
+    this.paymentMethod = method;
   }
 }
