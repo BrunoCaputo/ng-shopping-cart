@@ -1,4 +1,4 @@
-# PROJECT ROADMAP
+# PROJECT ROADMAP - WEEK 2
 
 ## Home page :white_check_mark:
 
@@ -40,12 +40,12 @@ Para toda a navegação pode apresentar um `header` e um `footer`, e estes tamb�
 - [x] Os links para diferentes partes do site e/ou links externos.
 - [x] Powered by Angular e a sua autoria no site.
 
-## My Account
+## My Account :white_check_mark:
 
-- [ ] Deverá ser protegida e somente acessar quando estiver logado.
-- [ ] Caso o usuário não esteja logado, deverá ser avisado que os dados de login não estão corretos.
-- [ ] No header o ícone/botão para a conta deverá mudar para o nome do usuário logado.
-- [ ] Não precisa ter conteúdo em tela por agora.
+- [x] Deverá ser protegida e somente acessar quando estiver logado.
+- [x] Caso o usuário não esteja logado, deverá ser avisado que os dados de login não estão corretos.
+- [x] No header o ícone/botão para a conta deverá mudar para o nome do usuário logado.
+- [x] Não precisa ter conteúdo em tela por agora.
 
 ## Login :white_check_mark:
 

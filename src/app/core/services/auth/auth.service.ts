@@ -27,4 +27,8 @@ export class AuthService {
     this.loggedIn = false;
     this.loggedUser = null;
   }
+
+  isAdmin(): boolean {
+    return this.loggedUser?.role === 'admin';
+  }
 }

@@ -11,6 +11,7 @@ import {
   UtilsService,
   AuthService,
 } from 'src/app/core/services';
+import { User } from '../../models';
 
 @Component({
   selector: 'app-header',
@@ -22,14 +23,14 @@ export class HeaderComponent {
   isLogged = false;
   isAtCart = false;
   categories: string[] = [];
+  loggedUser: User | null = null;
 
   constructor(
     private router: Router,
     public cartService: CartService,
     private productsService: ProductsService,
     private utils: UtilsService,
-    private authService: AuthService,
-    private cdr: ChangeDetectorRef
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -44,6 +45,7 @@ export class HeaderComponent {
     });
 
     this.isLogged = this.authService.isLoggedIn();
+    this.loggedUser = this.authService.getUser();
   }
 
   goToCart() {
@@ -58,12 +60,25 @@ export class HeaderComponent {
     this.searchInput.nativeElement.value = '';
   }
 
+  goToAccountManagement(isAdmin: boolean) {
+    let route: string = '/account';
+    if (isAdmin) {
+      route += '/admin';
+    }
+
+    this.router.navigate([route]);
+  }
+
   loginOrLogout() {
     if (!this.isLogged) {
       this.router.navigate(['/login']);
     } else {
       this.authService.logout();
       this.isLogged = false;
+      this.loggedUser = null;
+      if (this.router.url.includes('account')) {
+        this.router.navigate(['/']);
+      }
     }
   }
 }

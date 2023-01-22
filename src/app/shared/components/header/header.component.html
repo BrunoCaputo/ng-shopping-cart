@@ -52,7 +52,14 @@
       </mat-icon>
     </button>
 
-    <a (click)="loginOrLogout()">
+    <a
+      *ngIf="isLogged && loggedUser !== null"
+      (click)="goToAccountManagement(loggedUser.role === 'admin')"
+    >
+      <span> Olá, {{ loggedUser.name }} </span>
+    </a>
+
+    <a *ngIf="!isAtCart" (click)="loginOrLogout()">
       <mat-icon [fontIcon]="isLogged ? 'logout' : 'login'"></mat-icon>
       <span> {{ isLogged ? "Logout" : "Login" }} </span>
     </a>

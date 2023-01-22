@@ -50,9 +50,9 @@ export class LoginComponent {
     let navigationRoute = fromRoute ?? '/';
     if (fromRoute?.includes('admin') && user.role !== 'admin') {
       navigationRoute = '/';
+      alert('You are not an administrator!');
     }
 
     this.router.navigate([navigationRoute]);
-    alert('You are not an administrator!');
   }
 }

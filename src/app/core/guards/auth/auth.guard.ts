@@ -2,19 +2,36 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  Router,
   RouterStateSnapshot,
-  UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { AuthService } from '../../services';
+import { RouteGuard } from '../../types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  private checkLogin(fromUrl: string): boolean {
+    if (this.authService.isLoggedIn()) {
+      return true;
+    }
+
+    alert('You are not logged in!');
+    this.router.navigate(['/login'], { queryParams: { from: fromUrl } });
+    return false;
+  }
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+  ): RouteGuard {
+    if (!state.url.includes('admin')) {
+      return this.checkLogin(state.url);
+    }
+
+    return this.checkLogin(state.url) && this.authService.isAdmin();
   }
 }
