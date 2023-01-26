@@ -1,1 +1,14 @@
-<p>product-details works!</p>
+<div class="product-title">
+  <span>{{ product?.title ?? "" }}</span>
+</div>
+<div class="product-details">
+  <div class="product-images">
+    <images-carousel></images-carousel>
+  </div>
+  <div class="product-data">
+    {{ product?.brand ?? "" }}
+    {{ product?.price ?? "" }}
+    {{ product?.category ?? "" }}
+    {{ product?.stock ?? "" }}
+  </div>
+</div>

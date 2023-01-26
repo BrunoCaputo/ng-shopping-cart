@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/core/services';
 import { ICartProduct, IProduct } from 'src/app/shared/models';
 
@@ -12,11 +13,12 @@ export class ProductCardComponent {
 
   cartProduct!: ICartProduct;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit() {}
 
-  addToCart() {
+  addToCart(event: MouseEvent) {
+    event.stopPropagation();
     this.cartProduct = {
       id: this.product.id,
       title: this.product.title,
@@ -40,5 +42,9 @@ export class ProductCardComponent {
     }
 
     return `Left: ${this.product.stock}`;
+  }
+
+  openDetails(id: string) {
+    this.router.navigate([`/products/details/${id}`]);
   }
 }

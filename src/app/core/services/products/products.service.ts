@@ -56,9 +56,9 @@ export class ProductsService {
     );
   }
 
-  getProductById(id: number): Promise<IProduct> {
+  getProductById(id: string): Promise<IProduct> {
     return lastValueFrom(
-      this.http.get<IProduct>(`${this.url}/${id.toString()}`).pipe(first())
+      this.http.get<IProduct>(`${this.url}/${id}`).pipe(first())
     );
   }
 }

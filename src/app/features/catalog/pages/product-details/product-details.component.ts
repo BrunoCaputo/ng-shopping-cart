@@ -1,23 +1,31 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProductsService } from 'src/app/core/services';
+import { IProduct } from 'src/app/shared/models';
 
 @Component({
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent {
-  id: string | null = '';
+  product?: IProduct;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
-    private title: Title
+    private title: Title,
+    private productsService: ProductsService
   ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('prod');
-    this.title.setTitle('Details | BC Store');
-    console.log(this.router.url);
+    const id: string = this.route.snapshot.paramMap.get('prod')!;
+    console.log(id);
+    this.getProductData(id);
+  }
+
+  async getProductData(id: string) {
+    this.product = await this.productsService.getProductById(id);
+    console.log(this.product);
+    this.title.setTitle(`${this.product.title} | BC Store`);
   }
 }

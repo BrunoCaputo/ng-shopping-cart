@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card (click)="openDetails(product.id.toString())">
   <mat-card-header>
     <mat-card-title>{{ product.title }}</mat-card-title>
   </mat-card-header>
@@ -18,7 +18,7 @@
   <mat-card-actions align="end">
     <button
       mat-raised-button
-      (click)="addToCart()"
+      (click)="addToCart($event)"
       color="primary"
       *ngIf="!isSoldOut()"
     >

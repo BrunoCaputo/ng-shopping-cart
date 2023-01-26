@@ -74,15 +74,15 @@ export class CartService {
     this.changeMainList(productId, 'remove', quantity);
   }
 
-  addProductToCart(product: ICartProduct): void {
+  addProductToCart(product: ICartProduct, quantity: number = 1): void {
     // Check if product exists in cart
     const arrayProd: ICartProduct | undefined = this.getProductFromList(
       product.id
     );
     if (arrayProd !== undefined) {
-      arrayProd.quantity++;
+      arrayProd.quantity += quantity;
     } else {
-      this.cartProducts.push({ ...product, quantity: 1 });
+      this.cartProducts.push({ ...product, quantity: quantity });
     }
 
     this.changeMainList(product.id, 'add');
