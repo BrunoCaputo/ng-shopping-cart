@@ -56,7 +56,7 @@
       *ngIf="isLogged && loggedUser !== null"
       (click)="goToAccountManagement(loggedUser.role === 'admin')"
     >
-      <span> Olá, {{ loggedUser.name }} </span>
+      <span> Hello, {{ loggedUser.name }} </span>
     </a>
 
     <a *ngIf="!isAtCart" (click)="loginOrLogout()">
