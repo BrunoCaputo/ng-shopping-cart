@@ -3,7 +3,7 @@
 </div>
 <div class="product-details">
   <div class="product-images">
-    <images-carousel></images-carousel>
+    <images-carousel [images]="product?.images ?? []"></images-carousel>
   </div>
   <div class="product-data">
     {{ product?.brand ?? "" }}
