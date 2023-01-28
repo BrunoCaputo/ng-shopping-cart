@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService, AuthService } from 'src/app/core/services';
+import { LoadingSpinnerService } from 'src/app/core/services/spinner/loading-spinner.service';
 import { USERS } from 'src/app/shared/constants';
 
 @Component({
@@ -17,7 +18,8 @@ export class LoginComponent {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private alert: AlertService
+    private alert: AlertService,
+    private spinner: LoadingSpinnerService
   ) {}
 
   ngOnInit() {
@@ -28,6 +30,7 @@ export class LoginComponent {
   }
 
   async login() {
+    this.spinner.show();
     const formValues = this.loginForm.getRawValue();
     const email = formValues['email'];
     const password = formValues['password'];
@@ -44,6 +47,7 @@ export class LoginComponent {
         'Account does not exist',
         'Check your email'
       );
+      this.spinner.hide();
       return;
     }
 
@@ -51,6 +55,7 @@ export class LoginComponent {
       this.loginForm.get('password')!.setErrors({
         incorrectPassword: true,
       });
+      this.spinner.hide();
       return;
     }
 
@@ -69,6 +74,8 @@ export class LoginComponent {
       this.router.navigate([navigationRoute]);
     } catch (error) {
       this.alert.createErrorDialog('Something went wrong', '');
+    } finally {
+      this.spinner.hide();
     }
   }
 }

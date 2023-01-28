@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './core/interceptors';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { httpInterceptorProviders } from './core/interceptors';
     HttpClientModule,
     CoreModule,
     HttpClientModule,
+    NgxSpinnerModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

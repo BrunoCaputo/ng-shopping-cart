@@ -26,7 +26,8 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ngx-spinner/animations/line-spin-clockwise-fade.css"
             ],
             "scripts": ["node_modules/sweetalert/dist/sweetalert.min.js"]
           },
