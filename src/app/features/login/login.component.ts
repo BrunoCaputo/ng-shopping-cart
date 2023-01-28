@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services';
+import { AlertService, AuthService } from 'src/app/core/services';
 import { USERS } from 'src/app/shared/constants';
 
 @Component({
@@ -16,7 +16,8 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alert: AlertService
   ) {}
 
   ngOnInit() {
@@ -39,7 +40,10 @@ export class LoginComponent {
     console.log(user);
 
     if (!user) {
-      alert('Account does not exist');
+      this.alert.createErrorDialog(
+        'Account does not exist',
+        'Check your email'
+      );
       return;
     }
 
@@ -56,12 +60,15 @@ export class LoginComponent {
       let navigationRoute = fromRoute ?? '/';
       if (fromRoute?.includes('admin') && user.role !== 'admin') {
         navigationRoute = '/';
-        alert('You are not an administrator!');
+        this.alert.createWarningDialog(
+          'You are not an administrator',
+          'You cannot access this page!'
+        );
       }
 
       this.router.navigate([navigationRoute]);
     } catch (error) {
-      alert('Something went wrong!');
+      this.alert.createErrorDialog('Something went wrong', '');
     }
   }
 }
