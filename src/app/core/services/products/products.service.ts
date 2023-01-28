@@ -3,15 +3,15 @@ import { Injectable } from '@angular/core';
 import { first, lastValueFrom } from 'rxjs';
 import { IProduct, IProductsData } from 'src/app/shared/models';
 import { environment } from 'src/environments/environment';
+import { ProductsHttpService } from './products-http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductsService {
-  private url: string = `${environment.apiBaseUrl}/products`;
   private products: IProduct[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private productsHttp: ProductsHttpService) {}
 
   setProducts(products: IProduct[]): void {
     this.products = products;
@@ -21,9 +21,7 @@ export class ProductsService {
     let categories: string[] = [];
 
     if (sessionStorage.getItem('categories') === null) {
-      categories = await lastValueFrom(
-        this.http.get<string[]>(`${this.url}/categories`).pipe(first())
-      );
+      categories = await lastValueFrom(this.productsHttp.getCategories());
       sessionStorage.setItem('categories', JSON.stringify(categories));
       return categories;
     }
@@ -36,9 +34,7 @@ export class ProductsService {
       return this.products;
     }
     const { products } = await lastValueFrom(
-      this.http
-        .get<IProductsData>(`${this.url}?limit=${limit.toString()}`)
-        .pipe(first())
+      this.productsHttp.getProducts(limit)
     );
 
     this.products = products;
@@ -50,11 +46,7 @@ export class ProductsService {
     limit: number = 20
   ): Promise<IProductsData> {
     return lastValueFrom(
-      this.http
-        .get<IProductsData>(
-          `${this.url}/category/${category}?limit=${limit.toString()}`
-        )
-        .pipe(first())
+      this.productsHttp.getProductByCategory(category, limit)
     );
   }
 
@@ -65,8 +57,6 @@ export class ProductsService {
         this.products[Number(id) - 1]
       );
     }
-    return lastValueFrom(
-      this.http.get<IProduct>(`${this.url}/${id}`).pipe(first())
-    );
+    return lastValueFrom(this.productsHttp.getProductById(id));
   }
 }

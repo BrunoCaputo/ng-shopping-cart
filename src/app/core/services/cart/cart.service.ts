@@ -4,6 +4,7 @@ import { STEPS } from 'src/app/features/cart/constants';
 import { IOrderStep, IPaymentMethod } from 'src/app/features/cart/models';
 import { ICartProduct, IProduct } from 'src/app/shared/models';
 import { ProductsService } from '../products/products.service';
+import { CartHttpService } from './cart-http.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,10 @@ export class CartService {
   private checkedOut: boolean = false;
   private paymentMethod!: IPaymentMethod;
 
-  constructor(private productService: ProductsService) {}
+  constructor(
+    private productService: ProductsService,
+    private cartHttp: CartHttpService
+  ) {}
 
   getSteps(): IOrderStep[] {
     return this.steps;

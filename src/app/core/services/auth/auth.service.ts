@@ -1,18 +1,16 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, first, lastValueFrom } from 'rxjs';
+import { lastValueFrom } from 'rxjs';
 import { IUser, User } from 'src/app/shared/models';
-import { environment } from 'src/environments/environment';
+import { AuthHttpService } from './auth-http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private authUrl: string = `${environment.apiBaseUrl}/auth/login`;
   private loggedIn: boolean = false;
   private loggedUser: User | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private authHttp: AuthHttpService) {}
 
   getUser(): User | null {
     return this.loggedUser;
@@ -24,12 +22,7 @@ export class AuthService {
 
   async login(user: IUser): Promise<void> {
     const postBody = {};
-    const { token } = await lastValueFrom(
-      this.http.post<any>(this.authUrl, postBody).pipe(
-        first(),
-        catchError((err) => err.message)
-      )
-    );
+    const { token } = await lastValueFrom(this.authHttp.login(postBody));
     sessionStorage.setItem('userToken', token);
     this.loggedIn = true;
     this.loggedUser = new User(user);
