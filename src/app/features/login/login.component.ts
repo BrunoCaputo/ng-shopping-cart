@@ -26,12 +26,17 @@ export class LoginComponent {
     });
   }
 
-  login() {
+  async login() {
     const formValues = this.loginForm.getRawValue();
     const email = formValues['email'];
     const password = formValues['password'];
 
+    console.log('EMAIL:', email);
+    console.log('PASSWORD:', password);
+
     const user = USERS.find((u) => u.email === email);
+
+    console.log(user);
 
     if (!user) {
       alert('Account does not exist');
@@ -45,14 +50,18 @@ export class LoginComponent {
       return;
     }
 
-    const fromRoute = this.route.snapshot.queryParamMap.get('from');
-    this.authService.login(user);
-    let navigationRoute = fromRoute ?? '/';
-    if (fromRoute?.includes('admin') && user.role !== 'admin') {
-      navigationRoute = '/';
-      alert('You are not an administrator!');
-    }
+    try {
+      const fromRoute = this.route.snapshot.queryParamMap.get('from');
+      await this.authService.login(user);
+      let navigationRoute = fromRoute ?? '/';
+      if (fromRoute?.includes('admin') && user.role !== 'admin') {
+        navigationRoute = '/';
+        alert('You are not an administrator!');
+      }
 
-    this.router.navigate([navigationRoute]);
+      this.router.navigate([navigationRoute]);
+    } catch (error) {
+      alert('Something went wrong!');
+    }
   }
 }

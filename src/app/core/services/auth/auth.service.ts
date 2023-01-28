@@ -21,14 +21,18 @@ export class AuthService {
   }
 
   async login(user: IUser): Promise<void> {
-    const postBody = {};
+    const postBody = {
+      username: user.username,
+      password: user.password,
+    };
     const { token } = await lastValueFrom(this.authHttp.login(postBody));
-    sessionStorage.setItem('userToken', token);
+    localStorage.setItem('userToken', token);
     this.loggedIn = true;
     this.loggedUser = new User(user);
   }
 
   logout(): void {
+    localStorage.removeItem('userToken');
     this.loggedIn = false;
     this.loggedUser = null;
   }

@@ -86,11 +86,11 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
 - [x] Ao clicar nessa categoria no menu, deverá ser redirecionado para PLP que irá carregar somente os produtos dessa categoria.
 - [x] Precisa também permitir que na home exista um input para pesquisar produtos, onde poderá usar os poderes do rxjs para fazer essas buscas, conforme ensinado esta semana.
 
-## Login
+## Login :white_check_mark:
 
 - [x] A tela de login deverá ter os campos de login e senha.
-- [ ] Agora é necessário existir uma lógica e será mais fácil usando um serviço http para o site [DummyJson](https://dummyjson.com/docs/auth) ou alguma _API fake_ que faça algo similar.
-- [ ] Criar um interceptor para enviar o token nas próximas requests.
+- [x] Agora é necessário existir uma lógica e será mais fácil usando um serviço http para o site [DummyJson](https://dummyjson.com/docs/auth) ou alguma _API fake_ que faça algo similar.
+- [x] Criar um interceptor para enviar o token nas próximas requests.
 - [x] Após o login, redirecionar para a página principal
 
 ## Serviço :white_check_mark:
