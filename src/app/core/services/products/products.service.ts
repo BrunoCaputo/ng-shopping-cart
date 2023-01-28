@@ -29,7 +29,7 @@ export class ProductsService {
     return JSON.parse(sessionStorage.getItem('categories')!);
   }
 
-  async getProducts(limit: number = 40): Promise<IProduct[]> {
+  async getProducts(limit: number = 100): Promise<IProduct[]> {
     if (this.products.length > 0) {
       return this.products;
     }

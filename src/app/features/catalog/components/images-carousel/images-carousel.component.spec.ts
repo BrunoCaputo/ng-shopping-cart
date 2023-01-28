@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { ImagesCarouselComponent } from './images-carousel.component';
 
@@ -8,9 +10,9 @@ describe('ImagesCarouselComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImagesCarouselComponent ]
-    })
-    .compileComponents();
+      declarations: [ImagesCarouselComponent],
+      imports: [BrowserAnimationsModule, SharedModule],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ImagesCarouselComponent);
     component = fixture.componentInstance;
