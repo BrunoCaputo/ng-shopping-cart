@@ -80,11 +80,11 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
   - [x] Quantidade a ser lançada no carrinho.
   - [x] Botão para adicionar este produto ao carrinho.
 
-## PLP (Product List Page) e Busca de Produtos
+## PLP (Product List Page) e Busca de Produtos :white_check_mark:
 
-- [ ] Para se ter uma página de lista de produtos, antes precisamos ter as 3 opções no menu, como solicitado anteriormente e que cada uma seja para uma categoria de produtos. Logo os seus produtos deverão ter uma categoria associada a eles.
-- [ ] Ao clicar nessa categoria no menu, deverá ser redirecionado para PLP que irá carregar somente os produtos dessa categoria.
-- [ ] Precisa também permitir que na home exista um input para pesquisar produtos, onde poderá usar os poderes do rxjs para fazer essas buscas, conforme ensinado esta semana.
+- [x] Para se ter uma página de lista de produtos, antes precisamos ter as 3 opções no menu, como solicitado anteriormente e que cada uma seja para uma categoria de produtos. Logo os seus produtos deverão ter uma categoria associada a eles.
+- [x] Ao clicar nessa categoria no menu, deverá ser redirecionado para PLP que irá carregar somente os produtos dessa categoria.
+- [x] Precisa também permitir que na home exista um input para pesquisar produtos, onde poderá usar os poderes do rxjs para fazer essas buscas, conforme ensinado esta semana.
 
 ## Login
 

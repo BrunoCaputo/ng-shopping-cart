@@ -44,7 +44,7 @@ export class CatalogComponent {
   async getProducts() {
     const allProducts: IProduct[] = [];
     for (const category of this.categories) {
-      const { products } = await this.productsService.getProductByCategory(
+      const products = await this.productsService.getProductByCategory(
         category
       );
       this.productsByCategory[category] = products;

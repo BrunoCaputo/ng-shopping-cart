@@ -33,18 +33,14 @@ export class ProductsService {
     if (this.products.length > 0) {
       return this.products;
     }
-    const { products } = await lastValueFrom(
-      this.productsHttp.getProducts(limit)
-    );
-
-    this.products = products;
+    this.products = await lastValueFrom(this.productsHttp.getProducts(limit));
     return this.products;
   }
 
   getProductByCategory(
     category: string,
     limit: number = 20
-  ): Promise<IProductsData> {
+  ): Promise<IProduct[]> {
     return lastValueFrom(
       this.productsHttp.getProductByCategory(category, limit)
     );
@@ -58,5 +54,9 @@ export class ProductsService {
       );
     }
     return lastValueFrom(this.productsHttp.getProductById(id));
+  }
+
+  searchProducts(searchFilter: string) {
+    return lastValueFrom(this.productsHttp.search(searchFilter));
   }
 }

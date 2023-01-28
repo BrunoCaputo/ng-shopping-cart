@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, Observable } from 'rxjs';
+import { first, map, Observable } from 'rxjs';
 import { IProduct, IProductsData } from 'src/app/shared/models';
 import { environment } from 'src/environments/environment';
 
@@ -16,28 +16,43 @@ export class ProductsHttpService {
     return this.http.get<string[]>(`${this.url}/categories`).pipe(first());
   }
 
-  getProducts(limit?: number): Observable<IProductsData> {
+  getProducts(limit?: number): Observable<IProduct[]> {
     return this.http
       .get<IProductsData>(
         `${this.url}${limit ? `?limit=${limit.toString()}` : ''}`
       )
-      .pipe(first());
+      .pipe(
+        first(),
+        map((data: IProductsData) => data.products)
+      );
   }
 
   getProductByCategory(
     category: string,
     limit?: number
-  ): Observable<IProductsData> {
+  ): Observable<IProduct[]> {
     return this.http
       .get<IProductsData>(
         `${this.url}/category/${category}${
           limit ? `?limit=${limit.toString()}` : ''
         }`
       )
-      .pipe(first());
+      .pipe(
+        first(),
+        map((data: IProductsData) => data.products)
+      );
   }
 
   getProductById(id: string): Observable<IProduct> {
     return this.http.get<IProduct>(`${this.url}/${id}`).pipe(first());
+  }
+
+  search(filter: string): Observable<IProduct[]> {
+    return this.http
+      .get<IProductsData>(`${this.url}/search?q=${filter}&limit=100`)
+      .pipe(
+        first(),
+        map((data: IProductsData) => data.products)
+      );
   }
 }

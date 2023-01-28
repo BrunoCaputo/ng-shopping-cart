@@ -15,6 +15,13 @@ const routes: Routes = [
         (m) => m.ProductDetailsModule
       ),
   },
+  {
+    path: 'search',
+    loadChildren: () =>
+      import('./pages/product-listing/product-listing.module').then(
+        (m) => m.ProductListingModule
+      ),
+  },
 ];
 
 @NgModule({
