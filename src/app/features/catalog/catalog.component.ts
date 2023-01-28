@@ -19,8 +19,8 @@ export class CatalogComponent {
 
   ngOnInit() {
     this.cartService.setAtCart(this.router.url);
-    this.getCategories().then((_) => {
-      if (this.productsService.getUsedProducts().length === 0) {
+    this.getCategories().then(async (_) => {
+      if ((await this.productsService.getProducts()).length === 0) {
         this.getProducts();
       } else {
         this.fillArray();
@@ -34,9 +34,9 @@ export class CatalogComponent {
 
   private async fillArray() {
     for (const category of this.categories) {
-      const products = this.productsService
-        .getUsedProducts()
-        .filter((product) => product.category === category);
+      const products = (await this.productsService.getProducts()).filter(
+        (product) => product.category === category
+      );
       this.productsByCategory[category] = products;
     }
   }
@@ -50,6 +50,6 @@ export class CatalogComponent {
       this.productsByCategory[category] = products;
       allProducts.push(...products);
     }
-    this.productsService.setUsedProducts(allProducts);
+    this.productsService.setProducts(allProducts);
   }
 }

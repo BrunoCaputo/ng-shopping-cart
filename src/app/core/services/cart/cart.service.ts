@@ -88,10 +88,14 @@ export class CartService {
     this.changeMainList(product.id, 'add');
   }
 
-  changeMainList(productId: number, action: string, quantity: number = 1) {
-    const product: IProduct = this.productService
-      .getUsedProducts()
-      .find((prod) => prod.id === productId)!;
+  async changeMainList(
+    productId: number,
+    action: string,
+    quantity: number = 1
+  ) {
+    const product: IProduct = (await this.productService.getProducts()).find(
+      (prod) => prod.id === productId
+    )!;
     product.stock =
       action === 'add' ? product.stock - quantity : product.stock + quantity;
   }

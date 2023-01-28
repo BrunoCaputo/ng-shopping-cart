@@ -5,10 +5,75 @@
   <div class="product-images">
     <images-carousel [images]="product?.images ?? []"></images-carousel>
   </div>
-  <div class="product-data">
-    {{ product?.brand ?? "" }}
-    {{ product?.price ?? "" }}
-    {{ product?.category ?? "" }}
-    {{ product?.stock ?? "" }}
+  <div class="product-data-container">
+    <div class="header">
+      <div class="rate">
+        <mat-icon fontIcon="grade"></mat-icon>
+        <span>{{ product?.rating ?? "" }}</span>
+      </div>
+
+      <div class="actions">
+        <button mat-icon-button>
+          <mat-icon>share</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          [color]="favorited ? 'warn' : 'default'"
+          (click)="favorited = !favorited"
+        >
+          <mat-icon>
+            {{ favorited ? "favorite" : "favorite_border" }}
+          </mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <div class="product-data">
+      <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <input
+          type="number"
+          min="1"
+          [max]="product?.stock ?? 1"
+          matInput
+          placeholder="Enter the quantity"
+          (ngModelChange)="changeStockQtt($event)"
+          [(ngModel)]="quantity"
+        />
+      </mat-form-field>
+      <span class="price">
+        {{ product?.price ?? "" | currency : "USD" : "symbol" }}
+      </span>
+      <span class="stock">
+        Products remaining: {{ product?.stock ?? "" }}
+      </span>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="addToCart()">
+      Add to Cart
+    </button>
+  </div>
+</div>
+<div class="product-description">
+  <span class="title"> Description </span>
+  <mat-divider></mat-divider>
+  <span class="description">
+    {{ product?.description ?? "" }}
+  </span>
+  <span class="title"> Tech Info </span>
+  <mat-divider></mat-divider>
+  <div class="tech-info-container">
+    <div class="info">
+      <span class="info-name"> Brand </span>
+      <span class="info-value">
+        {{ product?.brand ?? "" }}
+      </span>
+    </div>
+    <div class="info">
+      <span class="info-name"> Category </span>
+      <span class="info-value">
+        {{ product?.category ?? "" }}
+      </span>
+    </div>
   </div>
 </div>

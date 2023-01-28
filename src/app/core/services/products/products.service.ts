@@ -9,16 +9,12 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductsService {
   private url: string = `${environment.apiBaseUrl}/products`;
-  private usedProducts: IProduct[] = [];
+  private products: IProduct[] = [];
 
   constructor(private http: HttpClient) {}
 
-  setUsedProducts(products: IProduct[]): void {
-    this.usedProducts = products;
-  }
-
-  getUsedProducts(): IProduct[] {
-    return this.usedProducts;
+  setProducts(products: IProduct[]): void {
+    this.products = products;
   }
 
   async getCategories(): Promise<string[]> {
@@ -35,12 +31,18 @@ export class ProductsService {
     return JSON.parse(sessionStorage.getItem('categories')!);
   }
 
-  getProducts(limit: number = 40): Promise<IProductsData> {
-    return lastValueFrom(
+  async getProducts(limit: number = 40): Promise<IProduct[]> {
+    if (this.products.length > 0) {
+      return this.products;
+    }
+    const { products } = await lastValueFrom(
       this.http
         .get<IProductsData>(`${this.url}?limit=${limit.toString()}`)
         .pipe(first())
     );
+
+    this.products = products;
+    return this.products;
   }
 
   getProductByCategory(
@@ -56,7 +58,13 @@ export class ProductsService {
     );
   }
 
-  getProductById(id: string): Promise<IProduct> {
+  async getProductById(id: string): Promise<IProduct> {
+    if (this.products.length > 0) {
+      return (
+        this.products.find((product) => product.id.toString() === id) ??
+        this.products[Number(id) - 1]
+      );
+    }
     return lastValueFrom(
       this.http.get<IProduct>(`${this.url}/${id}`).pipe(first())
     );

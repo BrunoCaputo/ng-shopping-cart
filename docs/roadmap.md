@@ -66,3 +66,31 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
 - [ ] footer
 - [ ] login
 - [ ] service
+
+# PROJECT ROADMAP - WEEK 3
+
+## PDP (Product Details Page) :white_check_mark:
+
+- [x] Deverá abrir o produto com a imagem mais ampliada.
+- [x] Se puder, ter uma galeria dessas imagens deste produto. (Não obrigatório)
+- [x] Informações Obrigatórias:
+  - [x] Nome do produto.
+  - [x] Imagem
+  - [x] Preço
+  - [x] Quantidade a ser lançada no carrinho.
+  - [x] Botão para adicionar este produto ao carrinho.
+
+## Login
+
+- [x] A tela de login deverá ter os campos de login e senha.
+- [ ] Agora é necessário existir uma lógica e será mais fácil usando um serviço http para o site [DummyJson](https://dummyjson.com/docs/auth) ou alguma _API fake_ que faça algo similar.
+- [ ] Criar um interceptor para enviar o token nas próximas requests.
+- [x] Após o login, redirecionar para a página principal
+
+## Serviço
+
+- [ ] Pelo menos organizar e separar as responsabilidade dos serviços, regras de negócios e serviços externos (HTTP e afins, por exemplo) não devem ficar juntos.
+
+## Testes
+
+- [ ] É necessario que os testes cubram uma margem de 40% de linhas e funcões em seu código. Devem sintetizar com a aplicação e os testes existentes quando os componentes/recursos forem criados serão ignorados.
