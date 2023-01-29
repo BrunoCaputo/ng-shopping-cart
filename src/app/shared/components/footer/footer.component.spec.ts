@@ -19,4 +19,21 @@ describe('FooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have made by span', () => {
+    const madeBy = (fixture.nativeElement as HTMLElement).querySelector(
+      'span.made-by'
+    );
+
+    expect(madeBy).toBeTruthy();
+    expect(madeBy?.textContent?.trim()).toEqual('Made by Bruno Caputo');
+  });
+
+  it('should have links to other pages', () => {
+    const links = (fixture.nativeElement as HTMLElement).querySelectorAll(
+      '.footer-container .links a'
+    );
+
+    expect(links.length).toBeGreaterThan(0);
+  });
 });

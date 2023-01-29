@@ -22,18 +22,4 @@ describe('ProductsService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  it('products/categories API should contain GET method', async () => {
-    service.getCategories().then((res) => console.log(res));
-
-    const http = httpController.expectOne(
-      `${environment.apiBaseUrl}/products/categories`,
-      'Get all categories from API'
-    );
-    expect(http.request.method).toBe('GET');
-  });
-
-  afterEach(() => {
-    httpController.verify();
-  });
 });

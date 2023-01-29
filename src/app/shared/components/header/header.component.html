@@ -71,7 +71,7 @@
       <span> Hello, {{ loggedUser.name }} </span>
     </a>
 
-    <a *ngIf="!isAtCart" (click)="loginOrLogout()">
+    <a id="login-logout-btn" *ngIf="!isAtCart" (click)="loginOrLogout()">
       <mat-icon [fontIcon]="isLogged ? 'logout' : 'login'"></mat-icon>
       <span> {{ isLogged ? "Logout" : "Login" }} </span>
     </a>

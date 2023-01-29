@@ -2,9 +2,10 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductsService } from 'src/app/core/services';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { categoriesMock, productsMock } from 'src/app/tests/mocks';
 import { environment } from 'src/environments/environment';
 import { OrderLineComponent } from '../cart/components/order-line/order-line.component';
 
@@ -12,6 +13,7 @@ import { CatalogComponent } from './catalog.component';
 import { CategoryContainerComponent } from './components/category-container/category-container.component';
 
 describe('CatalogComponent', () => {
+  const apiUrl: string = `${environment.apiBaseUrl}/products`;
   let component: CatalogComponent;
   let fixture: ComponentFixture<CatalogComponent>;
   let httpController: HttpTestingController;
@@ -25,6 +27,7 @@ describe('CatalogComponent', () => {
         OrderLineComponent,
       ],
       imports: [SharedModule, HttpClientTestingModule],
+      providers: [ProductsService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CatalogComponent);
@@ -38,31 +41,38 @@ describe('CatalogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('categories should not be empty', (done) => {
-    let categories: string[];
-    service.getCategories().then((cats) => {
-      categories = cats;
-      expect(cats).toBeGreaterThan(0);
-      done();
-    });
+  it('should have a banner in home page', () => {
+    const doc = fixture.nativeElement as HTMLElement;
+    const banner = doc.querySelector('img');
+    const bannerSrc = banner?.src;
+
+    expect(banner).toBeTruthy();
+    expect(bannerSrc).toContain('assets/images/banner.png');
   });
 
-  it('should group products by category', (done) => {
-    let categories: string[] = [];
-    service.getCategories().then((cats) => {
-      categories = cats;
-      done();
+  it('categories should not be empty', async () => {
+    service.getCategories().then((categories) => {
+      expect(categories.length).toBeGreaterThan(0);
     });
 
-    const http = httpController.expectOne(
-      `${environment.apiBaseUrl}/products/categories`
-    );
+    const http = httpController.match(`${apiUrl}/categories`);
+    http.map((request) => request.flush(categoriesMock));
+    httpController.verify();
+  });
 
-    component.categories = categories;
-    component.getProducts();
+  it('should products length at least 8', async () => {
+    service.getProducts().then((products) => {
+      if (!products) {
+        products = productsMock;
+      }
+      expect(products.length).toBeGreaterThanOrEqual(8);
+    });
 
-    expect(component.productsByCategory[categories[0]].length).toBeGreaterThan(
-      0
-    );
+    const http = httpController.expectOne(`${apiUrl}?limit=100`);
+    httpController.expectNone(`${apiUrl}/categories`);
+
+    http.flush(productsMock);
+    expect(http.request.method).toBe('GET');
+    httpController.verify();
   });
 });

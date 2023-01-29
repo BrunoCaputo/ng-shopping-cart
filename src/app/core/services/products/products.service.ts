@@ -1,8 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, lastValueFrom } from 'rxjs';
-import { IProduct, IProductsData } from 'src/app/shared/models';
-import { environment } from 'src/environments/environment';
+import { lastValueFrom } from 'rxjs';
+import { IProduct } from 'src/app/shared/models';
 import { ProductsHttpService } from './products-http.service';
 
 @Injectable({

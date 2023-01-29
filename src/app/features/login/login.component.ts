@@ -40,8 +40,6 @@ export class LoginComponent {
 
     const user = USERS.find((u) => u.email === email);
 
-    console.log(user);
-
     if (!user) {
       this.alert.createErrorDialog(
         'Account does not exist',

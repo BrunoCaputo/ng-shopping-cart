@@ -61,10 +61,10 @@ Para toda a navegação pode apresentar um `header` e um `footer`, e estes tamb�
 Escreva testes em sua aplicação, 2 por cada componente abaixo:
 
 - [x] home
-- [ ] carrinho
-- [ ] header
-- [ ] footer
-- [ ] login
+- [x] carrinho
+- [x] header
+- [x] footer
+- [x] login
 - [ ] service
 
 # PROJECT ROADMAP - WEEK 3
