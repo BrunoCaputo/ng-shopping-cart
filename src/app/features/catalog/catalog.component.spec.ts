@@ -57,6 +57,8 @@ describe('CatalogComponent', () => {
 
     const http = httpController.match(`${apiUrl}/categories`);
     http.map((request) => request.flush(categoriesMock));
+
+    http.map((req) => expect(req.request.method).toBe('GET'));
     httpController.verify();
   });
 
@@ -69,7 +71,12 @@ describe('CatalogComponent', () => {
     });
 
     const http = httpController.expectOne(`${apiUrl}?limit=100`);
-    httpController.expectNone(`${apiUrl}/categories`);
+
+    if (!!sessionStorage.getItem('categories')) {
+      httpController.expectNone(`${apiUrl}/categories`);
+    } else {
+      httpController.expectOne(`${apiUrl}/categories`);
+    }
 
     http.flush(productsMock);
     expect(http.request.method).toBe('GET');

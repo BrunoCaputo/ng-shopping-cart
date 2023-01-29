@@ -54,7 +54,7 @@ export class ProductsService {
     return lastValueFrom(this.productsHttp.getProductById(id));
   }
 
-  searchProducts(searchFilter: string) {
+  searchProducts(searchFilter: string): Promise<IProduct[]> {
     return lastValueFrom(this.productsHttp.search(searchFilter));
   }
 }

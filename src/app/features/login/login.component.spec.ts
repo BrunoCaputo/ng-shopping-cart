@@ -5,12 +5,16 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { USERS } from 'src/app/shared/constants';
 import { IUser } from 'src/app/shared/models';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { Location } from '@angular/common';
 
 import { LoginComponent } from './login.component';
+
+declare let swal: any;
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
+  let location: Location;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,6 +28,7 @@ describe('LoginComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
+    location = TestBed.inject(Location);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -50,20 +55,16 @@ describe('LoginComponent', () => {
 
   it('should enter with a valid user', () => {
     const validUser: IUser = USERS[0];
-    const invalidUser: IUser = {
-      id: 500,
-      email: 'bruno@gmail.com',
-      firstName: 'Bruno',
-      lastName: 'Caputo',
-      maidenName: 'Pereira',
-      username: 'bruno',
-      password: '123456',
-    };
+    const formControls = component.loginForm.controls;
 
-    // With valid user
-    component.loginForm.controls['email'].setValue(validUser.email);
-    component.loginForm.controls['password'].setValue(validUser.password);
+    formControls['email'].setValue(validUser.email);
+    formControls['password'].setValue(validUser.password);
 
-    component.login().then((_) => {});
+    expect(formControls['email'].value).not.toEqual('');
+    expect(formControls['password'].value).not.toEqual('');
+
+    component.login().then((_) => {
+      expect(location.path()).toBe('/');
+    });
   });
 });

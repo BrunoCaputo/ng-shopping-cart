@@ -56,7 +56,7 @@ Para toda a navegação pode apresentar um `header` e um `footer`, e estes tamb�
 
 - [x] Pelo menos 1 serviço implementado.
 
-## Tests
+## Tests :white_check_mark:
 
 Escreva testes em sua aplicação, 2 por cada componente abaixo:
 
@@ -65,7 +65,7 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
 - [x] header
 - [x] footer
 - [x] login
-- [ ] service
+- [x] service
 
 # PROJECT ROADMAP - WEEK 3
 
@@ -97,6 +97,6 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
 
 - [x] Pelo menos organizar e separar as responsabilidade dos serviços, regras de negócios e serviços externos (HTTP e afins, por exemplo) não devem ficar juntos.
 
-## Testes
+## Testes :white_check_mark:
 
-- [ ] É necessario que os testes cubram uma margem de 40% de linhas e funcões em seu código. Devem sintetizar com a aplicação e os testes existentes quando os componentes/recursos forem criados serão ignorados.
+- [x] É necessario que os testes cubram uma margem de 40% de linhas e funcões em seu código. Devem sintetizar com a aplicação e os testes existentes quando os componentes/recursos forem criados serão ignorados.

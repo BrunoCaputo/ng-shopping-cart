@@ -31,7 +31,10 @@ export class CartGuard implements CanActivate, CanDeactivate<CartComponent> {
       return true;
     }
     if (this.cartService.getCartProducts().length > 0) {
-      return confirm('Are you sure you want to leave your cart?');
+      return this.alert.createBooleanConfirmDialog(
+        'Are you sure you want to leave your cart?',
+        ''
+      );
     }
 
     return true;

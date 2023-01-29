@@ -35,9 +35,6 @@ export class LoginComponent {
     const email = formValues['email'];
     const password = formValues['password'];
 
-    console.log('EMAIL:', email);
-    console.log('PASSWORD:', password);
-
     const user = USERS.find((u) => u.email === email);
 
     if (!user) {

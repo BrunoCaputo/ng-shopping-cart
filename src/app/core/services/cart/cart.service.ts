@@ -57,6 +57,10 @@ export class CartService {
     return this.cartProducts;
   }
 
+  setCartProducts(products: ICartProduct[]): void {
+    this.cartProducts = products;
+  }
+
   private getProductFromList(productId: number): ICartProduct | undefined {
     return this.cartProducts.find((prod) => prod.id === productId);
   }
