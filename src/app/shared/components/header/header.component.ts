@@ -81,4 +81,17 @@ export class HeaderComponent {
       }
     }
   }
+
+  search(search: { filter?: string; category?: string }) {
+    if (search.filter === '' || search.category === '') {
+      return;
+    }
+
+    const params = search.filter
+      ? { filter: search.filter.toLowerCase() }
+      : { category: search.category?.toLocaleLowerCase() };
+    this.router.navigate(['/products/search'], {
+      queryParams: params,
+    });
+  }
 }

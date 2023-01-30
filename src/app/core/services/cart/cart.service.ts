@@ -4,6 +4,7 @@ import { STEPS } from 'src/app/features/cart/constants';
 import { IOrderStep, IPaymentMethod } from 'src/app/features/cart/models';
 import { ICartProduct, IProduct } from 'src/app/shared/models';
 import { ProductsService } from '../products/products.service';
+import { CartHttpService } from './cart-http.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,10 @@ export class CartService {
   private checkedOut: boolean = false;
   private paymentMethod!: IPaymentMethod;
 
-  constructor(private productService: ProductsService) {}
+  constructor(
+    private productService: ProductsService,
+    private cartHttp: CartHttpService
+  ) {}
 
   getSteps(): IOrderStep[] {
     return this.steps;
@@ -53,6 +57,10 @@ export class CartService {
     return this.cartProducts;
   }
 
+  setCartProducts(products: ICartProduct[]): void {
+    this.cartProducts = products;
+  }
+
   private getProductFromList(productId: number): ICartProduct | undefined {
     return this.cartProducts.find((prod) => prod.id === productId);
   }
@@ -74,24 +82,28 @@ export class CartService {
     this.changeMainList(productId, 'remove', quantity);
   }
 
-  addProductToCart(product: ICartProduct): void {
+  addProductToCart(product: ICartProduct, quantity: number = 1): void {
     // Check if product exists in cart
     const arrayProd: ICartProduct | undefined = this.getProductFromList(
       product.id
     );
     if (arrayProd !== undefined) {
-      arrayProd.quantity++;
+      arrayProd.quantity += quantity;
     } else {
-      this.cartProducts.push({ ...product, quantity: 1 });
+      this.cartProducts.push({ ...product, quantity: quantity });
     }
 
     this.changeMainList(product.id, 'add');
   }
 
-  changeMainList(productId: number, action: string, quantity: number = 1) {
-    const product: IProduct = this.productService
-      .getUsedProducts()
-      .find((prod) => prod.id === productId)!;
+  async changeMainList(
+    productId: number,
+    action: string,
+    quantity: number = 1
+  ) {
+    const product: IProduct = (await this.productService.getProducts()).find(
+      (prod) => prod.id === productId
+    )!;
     product.stock =
       action === 'add' ? product.stock - quantity : product.stock + quantity;
   }

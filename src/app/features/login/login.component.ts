@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services';
+import { AlertService, AuthService } from 'src/app/core/services';
+import { LoadingSpinnerService } from 'src/app/core/services/spinner/loading-spinner.service';
 import { USERS } from 'src/app/shared/constants';
 
 @Component({
@@ -16,7 +17,9 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alert: AlertService,
+    private spinner: LoadingSpinnerService
   ) {}
 
   ngOnInit() {
@@ -26,7 +29,8 @@ export class LoginComponent {
     });
   }
 
-  login() {
+  async login() {
+    this.spinner.show();
     const formValues = this.loginForm.getRawValue();
     const email = formValues['email'];
     const password = formValues['password'];
@@ -34,7 +38,11 @@ export class LoginComponent {
     const user = USERS.find((u) => u.email === email);
 
     if (!user) {
-      alert('Account does not exist');
+      this.alert.createErrorDialog(
+        'Account does not exist',
+        'Check your email'
+      );
+      this.spinner.hide();
       return;
     }
 
@@ -42,17 +50,27 @@ export class LoginComponent {
       this.loginForm.get('password')!.setErrors({
         incorrectPassword: true,
       });
+      this.spinner.hide();
       return;
     }
 
-    const fromRoute = this.route.snapshot.queryParamMap.get('from');
-    this.authService.login(user);
-    let navigationRoute = fromRoute ?? '/';
-    if (fromRoute?.includes('admin') && user.role !== 'admin') {
-      navigationRoute = '/';
-      alert('You are not an administrator!');
-    }
+    try {
+      const fromRoute = this.route.snapshot.queryParamMap.get('from');
+      await this.authService.login(user);
+      let navigationRoute = fromRoute ?? '/';
+      if (fromRoute?.includes('admin') && user.role !== 'admin') {
+        navigationRoute = '/';
+        this.alert.createWarningDialog(
+          'You are not an administrator',
+          'You cannot access this page!'
+        );
+      }
 
-    this.router.navigate([navigationRoute]);
+      this.router.navigate([navigationRoute]);
+    } catch (error) {
+      this.alert.createErrorDialog('Something went wrong', '');
+    } finally {
+      this.spinner.hide();
+    }
   }
 }

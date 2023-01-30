@@ -12,14 +12,25 @@
   <div class="categories-menu">
     <button mat-button [matMenuTriggerFor]="categoryMenu">Categories</button>
     <mat-menu #categoryMenu="matMenu" yPosition="below">
-      <span mat-menu-item *ngFor="let category of categories">
+      <span
+        mat-menu-item
+        *ngFor="let category of categories"
+        (click)="search({ category: category })"
+      >
         {{ category }}
       </span>
       <span mat-menu-item>And more...</span>
     </mat-menu>
 
     <mat-form-field appearance="outline">
-      <mat-icon matPrefix>search&nbsp;</mat-icon>
+      <button
+        matPrefix
+        mat-icon-button
+        [disabled]="searchInput.value === ''"
+        (click)="search({ filter: searchInput.value })"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
       <input
         type="text"
         matInput
@@ -27,6 +38,7 @@
         #searchInput
         placeholder="Search"
         autocomplete="off"
+        (keyup.enter)="search({ filter: searchInput.value })"
       />
       <button
         mat-icon-button
@@ -56,10 +68,10 @@
       *ngIf="isLogged && loggedUser !== null"
       (click)="goToAccountManagement(loggedUser.role === 'admin')"
     >
-      <span> Olá, {{ loggedUser.name }} </span>
+      <span> Hello, {{ loggedUser.name }} </span>
     </a>
 
-    <a *ngIf="!isAtCart" (click)="loginOrLogout()">
+    <a id="login-logout-btn" *ngIf="!isAtCart" (click)="loginOrLogout()">
       <mat-icon [fontIcon]="isLogged ? 'logout' : 'login'"></mat-icon>
       <span> {{ isLogged ? "Logout" : "Login" }} </span>
     </a>

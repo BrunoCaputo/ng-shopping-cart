@@ -1,0 +1,15 @@
+<div
+  *ngIf="products.length; else noProducts"
+  class="catalog-products-container"
+>
+  <product-card
+    *ngFor="let product of products"
+    [product]="product"
+  ></product-card>
+</div>
+
+<ng-template #noProducts>
+  <div class="empty-search">
+    <h2>No products found</h2>
+  </div>
+</ng-template>

@@ -1,0 +1,32 @@
+<div class="carousel-container">
+  <div class="images" [@fadeAnimation]="slide">
+    <div
+      class="mini-item"
+      *ngFor="let image of images; let i = index"
+      (click)="currentIndex = i"
+    >
+      <img [src]="image" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="slider" [@slideAnimation]="slide">
+    <div class="item" *ngFor="let image of carouselImages; let i = index">
+      <img
+        [src]="image.url"
+        loading="lazy"
+        *ngIf="isActive(i)"
+        [class.item-active]="isActive(i)"
+      />
+    </div>
+    <div class="slide-left" *ngIf="currentIndex !== 0" (click)="prevImage()">
+      <mat-icon fontIcon="arrow_back_ios"> </mat-icon>
+    </div>
+    <div
+      class="slide-right"
+      *ngIf="currentIndex !== images.length - 1"
+      (click)="nextImage()"
+    >
+      <mat-icon fontIcon="arrow_forward_ios"> </mat-icon>
+    </div>
+  </div>
+</div>

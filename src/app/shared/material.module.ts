@@ -7,6 +7,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 const COMPONENTS: any[] = [
   MatToolbarModule,
@@ -17,6 +18,7 @@ const COMPONENTS: any[] = [
   MatInputModule,
   MatSelectModule,
   MatMenuModule,
+  MatDividerModule,
 ];
 
 @NgModule({

@@ -9,5 +9,6 @@ import * as components from './components';
 @NgModule({
   declarations: [CatalogComponent, ...components.catalogComponents],
   imports: [SharedModule, CatalogRoutingModule],
+  exports: [...components.catalogComponents],
 })
 export class CatalogModule {}

@@ -56,13 +56,47 @@ Para toda a navegação pode apresentar um `header` e um `footer`, e estes tamb�
 
 - [x] Pelo menos 1 serviço implementado.
 
-## Tests
+## Tests :white_check_mark:
 
 Escreva testes em sua aplicação, 2 por cada componente abaixo:
 
 - [x] home
-- [ ] carrinho
-- [ ] header
-- [ ] footer
-- [ ] login
-- [ ] service
+- [x] carrinho
+- [x] header
+- [x] footer
+- [x] login
+- [x] service
+
+# PROJECT ROADMAP - WEEK 3
+
+## PDP (Product Details Page) :white_check_mark:
+
+- [x] Deverá abrir o produto com a imagem mais ampliada.
+- [x] Se puder, ter uma galeria dessas imagens deste produto. (Não obrigatório)
+- [x] Informações Obrigatórias:
+  - [x] Nome do produto.
+  - [x] Imagem
+  - [x] Preço
+  - [x] Quantidade a ser lançada no carrinho.
+  - [x] Botão para adicionar este produto ao carrinho.
+
+## PLP (Product List Page) e Busca de Produtos :white_check_mark:
+
+- [x] Para se ter uma página de lista de produtos, antes precisamos ter as 3 opções no menu, como solicitado anteriormente e que cada uma seja para uma categoria de produtos. Logo os seus produtos deverão ter uma categoria associada a eles.
+- [x] Ao clicar nessa categoria no menu, deverá ser redirecionado para PLP que irá carregar somente os produtos dessa categoria.
+- [x] Precisa também permitir que na home exista um input para pesquisar produtos, onde poderá usar os poderes do rxjs para fazer essas buscas, conforme ensinado esta semana.
+
+## Login :white_check_mark:
+
+- [x] A tela de login deverá ter os campos de login e senha.
+- [x] Agora é necessário existir uma lógica e será mais fácil usando um serviço http para o site [DummyJson](https://dummyjson.com/docs/auth) ou alguma _API fake_ que faça algo similar.
+- [x] Criar um interceptor para enviar o token nas próximas requests.
+- [x] Após o login, redirecionar para a página principal
+
+## Serviço :white_check_mark:
+
+- [x] Pelo menos organizar e separar as responsabilidade dos serviços, regras de negócios e serviços externos (HTTP e afins, por exemplo) não devem ficar juntos.
+
+## Testes :white_check_mark:
+
+- [x] É necessario que os testes cubram uma margem de 40% de linhas e funcões em seu código. Devem sintetizar com a aplicação e os testes existentes quando os componentes/recursos forem criados serão ignorados.

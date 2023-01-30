@@ -1,8 +1,66 @@
+import { AuthService } from 'src/app/core/services';
+
 export interface IUser {
+  id: number;
+  firstName: string;
+  lastName: string;
+  maidenName: string;
   email: string;
+  username: string;
   password: string;
-  name: string;
-  role?: 'admin';
+  age?: number;
+  gender?: 'male' | 'female' | 'other';
+  phone?: string;
+  birthDate?: string;
+  image?: string;
+  bloodGroup?: string;
+  height?: number;
+  weight?: number;
+  eyeColor?: string;
+  hair?: {
+    color: string;
+    type: string;
+  };
+  domain?: string;
+  ip?: string;
+  address?: {
+    address: string;
+    city: string;
+    coordinates?: {
+      lat: number;
+      lng: number;
+    };
+    postalCode: string;
+    state: string;
+  };
+  macAddress?: string;
+  university?: string;
+  bank?: {
+    cardExpire: string;
+    cardNumber: string;
+    cardType: string;
+    currency: string;
+    iban: string;
+  };
+  company?: {
+    address: {
+      address: string;
+      city: string;
+      coordinates?: {
+        lat: number;
+        lng: number;
+      };
+      postalCode: string;
+      state: string;
+    };
+    department: string;
+    name: string;
+    title: string;
+  };
+  ein?: string;
+  ssn?: string;
+  userAgent?: string;
+  role?: 'admin' | undefined;
 }
 
 export class User {
@@ -10,12 +68,14 @@ export class User {
   private _password: string;
   private _name: string;
   private _role?: 'admin' | undefined;
+  private _username: string;
 
   constructor(user: IUser) {
     this._email = user.email;
     this._password = user.password;
-    this._name = user.name;
+    this._name = user.firstName;
     this._role = user.role;
+    this._username = user.username;
   }
 
   // GETTERS AND SETTERS
@@ -26,9 +86,13 @@ export class User {
     this._email = value;
   }
 
-  public get password(): string {
-    return this._password;
+  public get username(): string {
+    return this._username;
   }
+  public set username(value: string) {
+    this._username = value;
+  }
+
   public set password(value: string) {
     this._password = value;
   }

@@ -7,7 +7,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { CartComponent } from 'src/app/features/cart/cart.component';
-import { AuthService, CartService } from '../../services';
+import { AlertService, AuthService, CartService } from '../../services';
 import { RouteGuard } from '../../types';
 
 @Injectable({
@@ -17,7 +17,8 @@ export class CartGuard implements CanActivate, CanDeactivate<CartComponent> {
   constructor(
     private cartService: CartService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private alert: AlertService
   ) {}
 
   canDeactivate(
@@ -30,7 +31,10 @@ export class CartGuard implements CanActivate, CanDeactivate<CartComponent> {
       return true;
     }
     if (this.cartService.getCartProducts().length > 0) {
-      return confirm('Are you sure you want to leave your cart?');
+      return this.alert.createBooleanConfirmDialog(
+        'Are you sure you want to leave your cart?',
+        ''
+      );
     }
 
     return true;
@@ -40,7 +44,10 @@ export class CartGuard implements CanActivate, CanDeactivate<CartComponent> {
     if (this.authService.isLoggedIn()) {
       const hasProducts = this.cartService.getCartProducts().length > 0;
       if (!hasProducts) {
-        alert("You don't have products in your cart");
+        this.alert.createWarningDialog(
+          "You don't have products in your cart",
+          'Add some items first'
+        );
         this.router.navigate(['/']);
       }
       return hasProducts;

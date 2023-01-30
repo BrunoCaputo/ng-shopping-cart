@@ -1,0 +1,22 @@
+.catalog-products-container {
+  padding-top: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 15px;
+}
+.empty-search {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  h2 {
+    font-weight: 800;
+    font-size: 2rem;
+  }
+}
+.catalog-products-container,
+.empty-search {
+  min-height: calc(100vh - 64px - 100px);
+  width: 100%;
+}

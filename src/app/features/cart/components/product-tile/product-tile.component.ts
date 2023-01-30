@@ -24,11 +24,11 @@ export class ProductTileComponent {
   ) {}
 
   ngOnInit() {
-    this.maxQuantity =
-      (this.productService
-        .getUsedProducts()
-        .find((prod) => prod.id === this.product.id)?.stock ?? 0) +
-      this.quantity;
+    this.productService.getProducts().then((products) => {
+      this.maxQuantity =
+        (products.find((prod) => prod.id === this.product.id)?.stock ?? 0) +
+        this.quantity;
+    });
   }
 
   getPrice(): number {

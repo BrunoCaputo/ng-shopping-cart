@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AlertService } from 'src/app/core/services';
 
 interface IOnQttChange {
   quantity: number;
@@ -16,11 +17,14 @@ export class QuantityChangerComponent {
   @Output() onQuantityChange: EventEmitter<IOnQttChange> =
     new EventEmitter<IOnQttChange>();
 
-  constructor() {}
+  constructor(private alert: AlertService) {}
 
   changeQuantity(action: string) {
     if (this.quantity === this.maxQuantity && action === 'add') {
-      alert(`Only ${this.maxQuantity} left! Can't add more.`);
+      this.alert.createWarningDialog(
+        "Can't add more",
+        `Only ${this.maxQuantity} left!`
+      );
       return;
     }
 

@@ -22,4 +22,20 @@ describe('ConfirmationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a successful message', () => {
+    const successMessage = (fixture.nativeElement as HTMLElement).querySelector(
+      '.successful-buy'
+    );
+
+    expect(successMessage?.textContent).toContain('Successful!!');
+  });
+
+  it('should have a button to continue shopping', () => {
+    const continueButton = (fixture.nativeElement as HTMLElement).querySelector(
+      '.payment-data button'
+    );
+
+    expect(continueButton).toBeTruthy();
+  });
 });

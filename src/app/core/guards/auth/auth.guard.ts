@@ -5,21 +5,28 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { AuthService } from '../../services';
+import { AlertService, AuthService } from '../../services';
 import { RouteGuard } from '../../types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alert: AlertService
+  ) {}
 
   private checkLogin(fromUrl: string): boolean {
     if (this.authService.isLoggedIn()) {
       return true;
     }
 
-    alert('You are not logged in!');
+    this.alert.createWarningDialog(
+      'You are not logged in!',
+      'You need to be logged to access this page'
+    );
     this.router.navigate(['/login'], { queryParams: { from: fromUrl } });
     return false;
   }
