@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, first, Observable } from 'rxjs';
-import { User } from 'src/app/shared/models';
+import { IPostmonApiResponse, User } from 'src/app/shared/models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthHttpService {
   private authUrl: string = `${environment.apiBaseUrl}/auth/login`;
+  private addressUrl: string = environment.addressUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -17,5 +18,11 @@ export class AuthHttpService {
       first(),
       catchError((err) => err.message)
     );
+  }
+
+  getAddress(zipCode: string): Observable<IPostmonApiResponse> {
+    return this.http
+      .get<IPostmonApiResponse>(`${this.addressUrl}/${zipCode}`)
+      .pipe(first());
   }
 }

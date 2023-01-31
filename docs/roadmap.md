@@ -107,7 +107,7 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
 
 ### Criação do usuário
 
-- [ ] A tela deverá ser acessível pela tela de login com um botão que leve a tela de cadastro quando o usuário ainda não é cadastrado.
+- [x] A tela deverá ser acessível pela tela de login com um botão que leve a tela de cadastro quando o usuário ainda não é cadastrado.
 - [ ] Os campos do formulário de cadastro, devem ser:
   - [ ] Nome completo
   - [ ] Email
@@ -120,13 +120,13 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
     - [ ] Bairro
     - [ ] Cidade
     - [ ] Estado
-    - [ ] Campo para senha
-    - [ ] Campo para repetir e confirmar a senha
+  - [ ] Campo para senha
+  - [ ] Campo para repetir e confirmar a senha
   - [ ] Checkbox aceitando as politicas de privacidade. Não precisa existir a página de politica de privacidade, mas pode apresentar como link
   - [ ] Checkbox aceitando o compartilhamento dos dados para uso interno do ecommerce. Pode apresentar o link que vá para a LGPD ou algo do tipo.
   - [ ] Botão de salvar o cadastro
 - [ ] Após o cadastro o usuário deverá ser redirecionado para a tela de login para realizar o cadastro
-- [ ] **ATENÇÃO**: A partir de agora nenhuma compra deverá ser concluida sem o usuário ser cadastrado. Então ele deverá se identificar por login ou se cadastrar, antes de concluir a compra.
+- [x] **ATENÇÃO**: A partir de agora nenhuma compra deverá ser concluida sem o usuário ser cadastrado. Então ele deverá se identificar por login ou se cadastrar, antes de concluir a compra.
 
 ### Minha Conta (Área do cliente)
 

@@ -188,4 +188,7 @@ export const USERS: IUser[] = [
     userAgent:
       'Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:21.0.0) Gecko/20121011 Firefox/21.0.0',
   },
+  ...(!!localStorage.getItem('users')
+    ? (JSON.parse(localStorage.getItem('users')!) as IUser[])
+    : []),
 ];

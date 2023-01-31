@@ -9,8 +9,23 @@ const routes: Routes = [
     title: 'Login | BC Store',
   },
   {
+    path: 'account-creation',
+    loadChildren: () =>
+      import('src/app/features/account-creation/account-creation.module').then(
+        (m) => m.AccountCreationModule
+      ),
+    title: 'Create your account | BC Store',
+  },
+  {
     path: '',
     loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
+  },
+  {
+    path: 'account-creation',
+    loadChildren: () =>
+      import('./features/account-creation/account-creation.module').then(
+        (m) => m.AccountCreationModule
+      ),
   },
 ];
 

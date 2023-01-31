@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
-import { IUser, User } from 'src/app/shared/models';
+import { IPostmonApiResponse, IUser, User } from 'src/app/shared/models';
 import { AuthHttpService } from './auth-http.service';
 
 @Injectable({
@@ -39,5 +39,9 @@ export class AuthService {
 
   isAdmin(): boolean {
     return this.loggedUser?.role === 'admin';
+  }
+
+  async getDataFromZipCode(zipCode: string): Promise<IPostmonApiResponse> {
+    return lastValueFrom(this.authHttp.getAddress(zipCode));
   }
 }
