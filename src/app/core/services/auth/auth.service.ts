@@ -81,4 +81,10 @@ export class AuthService {
 
     return createdUser;
   }
+
+  hasLoggedUser(): boolean {
+    const token = localStorage.getItem('userToken');
+    const loggedUser = localStorage.getItem('loggedUser');
+    return !!token && !!loggedUser;
+  }
 }

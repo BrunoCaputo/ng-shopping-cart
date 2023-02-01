@@ -9,10 +9,9 @@ export class MainComponent {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    // Check if the user is logged
-    const token = localStorage.getItem('userToken');
-    const loggedUser = localStorage.getItem('loggedUser');
-    if (!!token && !!loggedUser) {
+    // Check if has a logged user
+    if (this.authService.hasLoggedUser()) {
+      const loggedUser = localStorage.getItem('loggedUser')!;
       this.authService.setUser(JSON.parse(loggedUser));
       this.authService.setLoggedIn(true);
     } else {

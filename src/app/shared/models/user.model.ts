@@ -69,6 +69,7 @@ export class User {
   private _name: string;
   private _role?: 'admin' | undefined;
   private _username: string;
+  private _userInterface: IUser;
 
   constructor(user: IUser) {
     this._email = user.email;
@@ -76,6 +77,7 @@ export class User {
     this._name = user.firstName;
     this._role = user.role;
     this._username = user.username;
+    this._userInterface = user;
   }
 
   // GETTERS AND SETTERS
@@ -109,5 +111,9 @@ export class User {
   }
   public set role(value: 'admin' | undefined) {
     this._role = value;
+  }
+
+  public get userInterface(): IUser {
+    return this._userInterface;
   }
 }
