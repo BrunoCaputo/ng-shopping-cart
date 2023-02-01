@@ -20,10 +20,6 @@ describe('HeaderComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have category menu', () => {
     const categoryMenu = (fixture.nativeElement as HTMLElement).querySelector(
       '.categories-menu mat-menu'

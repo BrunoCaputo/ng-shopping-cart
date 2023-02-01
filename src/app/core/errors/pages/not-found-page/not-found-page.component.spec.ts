@@ -16,10 +16,6 @@ describe('NotFoundPageComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have error code', () => {
     const errorCode = (fixture.nativeElement as HTMLElement).querySelector(
       '.not-found h1'

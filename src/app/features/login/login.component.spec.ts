@@ -33,10 +33,6 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have email field', () => {
     const emailField = (fixture.nativeElement as HTMLElement).querySelector(
       '.login-container .fields #email-field'

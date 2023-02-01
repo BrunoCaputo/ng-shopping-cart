@@ -27,10 +27,6 @@ describe('ResumeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should show empty message if cart is empty', () => {
     const emptyTemplate = (fixture.nativeElement as HTMLElement).querySelector(
       'div.empty-cart'

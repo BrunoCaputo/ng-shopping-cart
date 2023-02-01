@@ -16,10 +16,6 @@ describe('FooterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have made by span', () => {
     const madeBy = (fixture.nativeElement as HTMLElement).querySelector(
       'span.made-by'

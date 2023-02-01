@@ -36,10 +36,6 @@ describe('CheckoutComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have a payment method field', () => {
     const paymentMethodField = (
       fixture.nativeElement as HTMLElement
