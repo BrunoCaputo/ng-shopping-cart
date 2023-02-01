@@ -1,6 +1,6 @@
 <form
   [formGroup]="newAccountForm"
-  class="form"
+  class="creation-form"
   role="form"
   (ngSubmit)="createAccount()"
 >
@@ -206,7 +206,6 @@
               matInput
               formControlName="neighborhood"
               placeholder="Enter your neighborhood"
-              mask="00000-000"
             />
             <mat-error
               *ngIf="
@@ -289,13 +288,28 @@
           </mat-error>
         </mat-form-field>
       </div>
+
+      <div class="agreements">
+        <mat-checkbox formControlName="privacyPolicy" color="primary">
+          Privacy Policy Agreement - <a>Click here</a>
+        </mat-checkbox>
+        <mat-checkbox formControlName="dataSharing" color="primary">
+          I agree with the data sharing policy -
+          <a
+            href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"
+            target="_blank"
+          >
+            LGPD document
+          </a>
+        </mat-checkbox>
+      </div>
     </div>
 
     <button
       mat-flat-button
       color="primary"
       type="submit"
-      [disabled]="newAccountForm.invalid"
+      [disabled]="newAccountForm.invalid || !agreementAccepted()"
     >
       Create Account
     </button>

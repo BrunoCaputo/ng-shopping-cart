@@ -54,23 +54,18 @@ export class LoginComponent {
       return;
     }
 
-    try {
-      const fromRoute = this.route.snapshot.queryParamMap.get('from');
-      await this.authService.login(user);
-      let navigationRoute = fromRoute ?? '/';
-      if (fromRoute?.includes('admin') && user.role !== 'admin') {
-        navigationRoute = '/';
-        this.alert.createWarningDialog(
-          'You are not an administrator',
-          'You cannot access this page!'
-        );
-      }
-
-      this.router.navigate([navigationRoute]);
-    } catch (error) {
-      this.alert.createErrorDialog('Something went wrong', '');
-    } finally {
-      this.spinner.hide();
+    const fromRoute = this.route.snapshot.queryParamMap.get('from');
+    await this.authService.login(user);
+    let navigationRoute = fromRoute ?? '/';
+    if (fromRoute?.includes('admin') && user.role !== 'admin') {
+      navigationRoute = '/';
+      this.alert.createWarningDialog(
+        'You are not an administrator',
+        'You cannot access this page!'
+      );
     }
+
+    this.router.navigate([navigationRoute]);
+    this.spinner.hide();
   }
 }

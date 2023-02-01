@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const COMPONENTS: any[] = [
   MatToolbarModule,
@@ -19,6 +20,7 @@ const COMPONENTS: any[] = [
   MatSelectModule,
   MatMenuModule,
   MatDividerModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({

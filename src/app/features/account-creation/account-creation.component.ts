@@ -5,7 +5,7 @@ import { AuthService, AlertService } from 'src/app/core/services';
 import { LoadingSpinnerService } from 'src/app/core/services/spinner/loading-spinner.service';
 import { USERS } from 'src/app/shared/constants';
 import { States } from 'src/app/shared/constants/states.constants';
-import { IPostmonApiResponse, IState } from 'src/app/shared/models';
+import { IPostmonApiResponse, IState, IUser } from 'src/app/shared/models';
 
 @Component({
   templateUrl: './account-creation.component.html',
@@ -70,8 +70,15 @@ export class AccountCreationComponent {
     }
   }
 
+  agreementAccepted() {
+    const formValue = this.newAccountForm.getRawValue();
+    const privacyPolicy: boolean = formValue['privacyPolicy'];
+    const dataSharing: boolean = formValue['dataSharing'];
+
+    return privacyPolicy && dataSharing;
+  }
+
   private fillAddress(address: IPostmonApiResponse) {
-    console.log(address);
     const addressGroupControl = this.newAccountForm.controls['address'];
 
     addressGroupControl.get('city')?.setValue(address.cidade);
@@ -80,46 +87,83 @@ export class AccountCreationComponent {
     addressGroupControl.get('street')?.setValue(address.logradouro);
   }
 
-  async createAccount() {
-    this.spinner.show();
+  private getNewUser(): IUser {
     const formValues = this.newAccountForm.getRawValue();
     const email = formValues['email'];
+    const username = email.split('@')[0];
     const password = formValues['password'];
+    const name = formValues['name'];
+    const lastName = formValues['lastName'];
+    const phone = formValues['phone'];
 
-    const user = USERS.find((u) => u.email === email);
+    const addressValue = this.newAccountForm.controls['address'].getRawValue();
+    const zipCode = addressValue['zipCode'];
+    const street = addressValue['street'];
+    const complement = addressValue['complement'];
+    const neighborhood = addressValue['neighborhood'];
+    const city = addressValue['city'];
+    const state = addressValue['state'];
 
-    if (!user) {
+    return {
+      id: USERS.length + 1,
+      email,
+      firstName: name,
+      maidenName: '',
+      lastName,
+      password,
+      username,
+      address: {
+        city,
+        postalCode: zipCode,
+        state,
+        address: `${street}, ${complement} - ${neighborhood}`,
+      },
+      phone,
+    };
+  }
+
+  async createAccount() {
+    this.spinner.show();
+
+    const newUser: IUser = this.getNewUser();
+
+    const user = USERS.find(
+      (u) => u.email === newUser.email || u.username === newUser.username
+    );
+
+    if (user) {
       this.alert.createErrorDialog(
-        'Account does not exist',
-        'Check your email'
+        'Account already exists',
+        'An account with this email already exists'
       );
       this.spinner.hide();
       return;
     }
 
-    if (user.password !== password) {
-      this.newAccountForm.get('password')!.setErrors({
-        incorrectPassword: true,
+    const confirmPassword =
+      this.newAccountForm.getRawValue()['confirmPassword'];
+
+    if (newUser.password !== confirmPassword) {
+      this.newAccountForm.controls['confirmPassword'].setErrors({
+        differentPassword: true,
       });
       this.spinner.hide();
       return;
     }
 
     try {
-      const fromRoute = this.route.snapshot.queryParamMap.get('from');
-      await this.authService.login(user);
-      let navigationRoute = fromRoute ?? '/';
-      if (fromRoute?.includes('admin') && user.role !== 'admin') {
-        navigationRoute = '/';
-        this.alert.createWarningDialog(
-          'You are not an administrator',
-          'You cannot access this page!'
+      if (this.newAccountForm.valid) {
+        await this.authService.createNewAccount(newUser);
+        this.alert.createSuccessDialogWithAction(
+          'Account created!',
+          'Your account was created successfully',
+          () => {
+            this.router.navigate(['/login']);
+          }
         );
       }
-
-      this.router.navigate([navigationRoute]);
-    } catch (error) {
-      this.alert.createErrorDialog('Something went wrong', '');
+    } catch (err) {
+      this.alert.createErrorDialog('Error!', 'Something went wrong');
     } finally {
       this.spinner.hide();
     }

@@ -105,46 +105,49 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
 
 ## FINAL WEEK
 
-### Criação do usuário
+### Criação do usuário :white_check_mark:
 
 - [x] A tela deverá ser acessível pela tela de login com um botão que leve a tela de cadastro quando o usuário ainda não é cadastrado.
-- [ ] Os campos do formulário de cadastro, devem ser:
-  - [ ] Nome completo
-  - [ ] Email
-  - [ ] Telefone
-  - [ ] Endereço:
-    - [ ] CEP (Com consulta a uma API de sua escolha para preencher os dados do endereço do cliente, conforme o CEP consultado)
-    - [ ] Rua, Avenida, travessa, etc. (logradouro)
-    - [ ] Número. Precisa ter alguma indicação do que preencher quando não tiver número
-    - [ ] Complemento
-    - [ ] Bairro
-    - [ ] Cidade
-    - [ ] Estado
-  - [ ] Campo para senha
-  - [ ] Campo para repetir e confirmar a senha
-  - [ ] Checkbox aceitando as politicas de privacidade. Não precisa existir a página de politica de privacidade, mas pode apresentar como link
-  - [ ] Checkbox aceitando o compartilhamento dos dados para uso interno do ecommerce. Pode apresentar o link que vá para a LGPD ou algo do tipo.
-  - [ ] Botão de salvar o cadastro
-- [ ] Após o cadastro o usuário deverá ser redirecionado para a tela de login para realizar o cadastro
+- [x] Os campos do formulário de cadastro, devem ser:
+  - [x] Nome completo
+  - [x] Email
+  - [x] Telefone
+  - [x] Endereço:
+    - [x] CEP (Com consulta a uma API de sua escolha para preencher os dados do endereço do cliente, conforme o CEP consultado)
+    - [x] Rua, Avenida, travessa, etc. (logradouro)
+    - [x] Número. Precisa ter alguma indicação do que preencher quando não tiver número
+    - [x] Complemento
+    - [x] Bairro
+    - [x] Cidade
+    - [x] Estado
+  - [x] Campo para senha
+  - [x] Campo para repetir e confirmar a senha
+  - [x] Checkbox aceitando as politicas de privacidade. Não precisa existir a página de politica de privacidade, mas pode apresentar como link
+  - [x] Checkbox aceitando o compartilhamento dos dados para uso interno do ecommerce. Pode apresentar o link que vá para a LGPD ou algo do tipo.
+  - [x] Botão de salvar o cadastro
+- [x] Após o cadastro o usuário deverá ser redirecionado para a tela de login para realizar o cadastro
 - [x] **ATENÇÃO**: A partir de agora nenhuma compra deverá ser concluida sem o usuário ser cadastrado. Então ele deverá se identificar por login ou se cadastrar, antes de concluir a compra.
+
+**_OBS_**. Caso queira adicionar um cadastro de produtos pode fazer também que contará como pontos extras e você mesmo pode fazer do seu jeito, contanto que faça sentido com o cadastro de produtos.
 
 ### Minha Conta (Área do cliente)
 
-- [ ] Deverá ser protegida e somente acessar quando estiver logado.
-- [ ] No header o ícone/botão para a conta deverá mudar para o nome do usuário logado.
+- [x] Deverá ser protegida e somente acessar quando estiver logado.
+- [x] No header o ícone/botão para a conta deverá mudar para o nome do usuário logado.
 - [ ] O conteúdo desta tela deverá ser os dados do cliente e devem permitir que sejam editados pelo mesmo:
   - [ ] Nome completo
   - [ ] Email
   - [ ] Endereço. Nessa parte deverá ter um botão que permita que este cadastre um novo endereço além de poder editar o já existente.
   - [ ] Telefone
   - [ ] Um checkbox que aceita assinar a newsletter do site
-- [ ] Botão para logout do site
+- [x] Botão para logout do site
+- [x] Os dados do login do usuário poderá ser persistidos no `localStorage` do browser
 
 ### Admin
 
-- [ ] Deverá ser protegida e somente acessar quando estiver logado.
-- [ ] Este usuário deve ser identificado como admin para ter acesso.
-- [ ] O acesso deverá ser dado somente através da rota `/admin` e caso o usuário não esteja logado, seja redirecionado para a tela de login
+- [x] Deverá ser protegida e somente acessar quando estiver logado.
+- [x] Este usuário deve ser identificado como admin para ter acesso.
+- [x] O acesso deverá ser dado somente através da rota `/admin` e caso o usuário não esteja logado, seja redirecionado para a tela de login
 - [ ] esta tela terá duas opções em forma de botão:
   - [ ] Lista de produtos cadastrado e cadastro de produtos
   - [ ] Lista de usuários, onde permita editar marcando algum usuário como admin também.
