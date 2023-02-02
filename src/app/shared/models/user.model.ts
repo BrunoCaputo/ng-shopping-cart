@@ -1,5 +1,3 @@
-import { AuthService } from 'src/app/core/services';
-
 export interface IUser {
   id: number;
   firstName: string;
@@ -23,16 +21,7 @@ export interface IUser {
   };
   domain?: string;
   ip?: string;
-  address?: {
-    address: string;
-    city: string;
-    coordinates?: {
-      lat: number;
-      lng: number;
-    };
-    postalCode: string;
-    state: string;
-  };
+  addresses?: IUserAddress[];
   macAddress?: string;
   university?: string;
   bank?: {
@@ -61,6 +50,17 @@ export interface IUser {
   ssn?: string;
   userAgent?: string;
   role?: 'admin' | undefined;
+}
+
+export interface IUserAddress {
+  address: string;
+  city: string;
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
+  postalCode: string;
+  state: string;
 }
 
 export class User {

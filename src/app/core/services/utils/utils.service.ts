@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
+import { IPostmonApiResponse } from 'src/app/shared/models';
+import { UtilsHttpService } from './utils-http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UtilsService {
-  constructor() {}
+  constructor(private utilsHttp: UtilsHttpService) {}
 
   captalizeFirstLetter(str: string): string {
     let result: string = '';
@@ -39,5 +42,9 @@ export class UtilsService {
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15);
     return randomString;
+  }
+
+  async getDataFromZipCode(zipCode: string): Promise<IPostmonApiResponse> {
+    return lastValueFrom(this.utilsHttp.getAddress(zipCode));
   }
 }

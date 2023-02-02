@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService, AlertService } from 'src/app/core/services';
+import { AuthService, AlertService, UtilsService } from 'src/app/core/services';
 import { LoadingSpinnerService } from 'src/app/core/services/spinner/loading-spinner.service';
 import { USERS } from 'src/app/shared/constants';
 import { States } from 'src/app/shared/constants/states.constants';
@@ -19,8 +19,8 @@ export class AccountCreationComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private utils: UtilsService,
     private router: Router,
-    private route: ActivatedRoute,
     private alert: AlertService,
     private spinner: LoadingSpinnerService
   ) {}
@@ -52,7 +52,7 @@ export class AccountCreationComponent {
   }
 
   async getAddressFromZipCode(zipCode: string) {
-    if (zipCode === '') {
+    if (zipCode.trim() === '') {
       this.newAccountForm.controls['address'].get('zipCode')?.setErrors({
         required: true,
       });
@@ -60,8 +60,9 @@ export class AccountCreationComponent {
 
     try {
       zipCode = zipCode.replace('-', '').trim();
-      const address: IPostmonApiResponse =
-        await this.authService.getDataFromZipCode(zipCode);
+      const address: IPostmonApiResponse = await this.utils.getDataFromZipCode(
+        zipCode
+      );
       this.fillAddress(address);
     } catch (err) {
       this.newAccountForm.controls['address'].get('zipCode')?.setErrors({
@@ -112,12 +113,14 @@ export class AccountCreationComponent {
       lastName,
       password,
       username,
-      address: {
-        city,
-        postalCode: zipCode,
-        state,
-        address: `${street}, ${complement} - ${neighborhood}`,
-      },
+      addresses: [
+        {
+          city,
+          postalCode: zipCode,
+          state,
+          address: `${street} - ${complement} - ${neighborhood}`,
+        },
+      ],
       phone,
     };
   }

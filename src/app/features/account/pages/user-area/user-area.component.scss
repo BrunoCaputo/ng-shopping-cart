@@ -1,0 +1,77 @@
+::ng-deep .user-container {
+  width: 100%;
+  min-height: calc(100vh - 64px - 100px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  form {
+    width: 45% !important;
+
+    .user-data-container,
+    .user-addresses {
+      position: relative;
+      width: 100%;
+      min-height: 500px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+
+      h1 {
+        font-weight: 800;
+      }
+      .submit-button {
+        margin-top: auto;
+        align-self: center;
+      }
+    }
+    .user-data-container {
+      .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 20px;
+
+        mat-form-field {
+          width: 45% !important;
+        }
+      }
+      mat-form-field {
+        width: 100%;
+
+        &#phone-field .mat-mdc-form-field-text-prefix {
+          padding-right: 10px !important;
+        }
+      }
+    }
+    .user-addresses {
+      max-height: 700px;
+
+      .title {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .address-list {
+        width: 100%;
+        max-height: 600px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 5px 10px;
+        gap: 0.5rem;
+
+        &::-webkit-scrollbar {
+          display: hidden;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<div class="address-tile-container">
+  <div class="address-data">
+    <span> {{ address }} </span>
+    <span> CEP {{ zipCode }} </span>
+    <span> {{ city }}, {{ state }} </span>
+  </div>
+  <div class="actions">
+    <button mat-icon-button color="primary" (click)="openAddressDialog()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

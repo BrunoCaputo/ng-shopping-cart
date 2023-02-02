@@ -135,11 +135,11 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
 - [x] Deverá ser protegida e somente acessar quando estiver logado.
 - [x] No header o ícone/botão para a conta deverá mudar para o nome do usuário logado.
 - [ ] O conteúdo desta tela deverá ser os dados do cliente e devem permitir que sejam editados pelo mesmo:
-  - [ ] Nome completo
-  - [ ] Email
+  - [x] Nome completo
+  - [x] Email
   - [ ] Endereço. Nessa parte deverá ter um botão que permita que este cadastre um novo endereço além de poder editar o já existente.
-  - [ ] Telefone
-  - [ ] Um checkbox que aceita assinar a newsletter do site
+  - [x] Telefone
+  - [x] Um checkbox que aceita assinar a newsletter do site
 - [x] Botão para logout do site
 - [x] Os dados do login do usuário poderá ser persistidos no `localStorage` do browser
 

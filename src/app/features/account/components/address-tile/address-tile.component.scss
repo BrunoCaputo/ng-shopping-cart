@@ -1,0 +1,22 @@
+.address-tile-container {
+  width: 100%;
+  border: 1px solid #cccccc;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+
+  .address-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}

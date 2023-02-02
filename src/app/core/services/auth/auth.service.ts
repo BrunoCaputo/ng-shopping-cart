@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { USERS } from 'src/app/shared/constants';
-import { IPostmonApiResponse, IUser, User } from 'src/app/shared/models';
+import { IUser, User } from 'src/app/shared/models';
 import { UtilsService } from '../utils/utils.service';
 import { AuthHttpService } from './auth-http.service';
 
@@ -59,24 +59,24 @@ export class AuthService {
     return this.loggedUser?.role === 'admin';
   }
 
-  async getDataFromZipCode(zipCode: string): Promise<IPostmonApiResponse> {
-    return lastValueFrom(this.authHttp.getAddress(zipCode));
-  }
-
   async createNewAccount(newAccount: IUser): Promise<IUser> {
     const createdUser: IUser = await lastValueFrom(
       this.authHttp.createAccount(newAccount)
     );
 
+    const createdUserWithAddressArray: IUser = {
+      ...createdUser,
+      addresses: newAccount.addresses,
+    };
     const localStorageUsers = localStorage.getItem('users');
     let users: IUser[] = [];
     if (!!localStorageUsers) {
       users = JSON.parse(localStorageUsers);
-      users.push(createdUser);
+      users.push(createdUserWithAddressArray);
     } else {
-      users = [createdUser];
+      users = [createdUserWithAddressArray];
     }
-    USERS.push(createdUser);
+    USERS.push(createdUserWithAddressArray);
     localStorage.setItem('users', JSON.stringify(users));
 
     return createdUser;
