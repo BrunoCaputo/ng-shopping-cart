@@ -21,13 +21,6 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
   },
-  {
-    path: 'account-creation',
-    loadChildren: () =>
-      import('./features/account-creation/account-creation.module').then(
-        (m) => m.AccountCreationModule
-      ),
-  },
 ];
 
 @NgModule({

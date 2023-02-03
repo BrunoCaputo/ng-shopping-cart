@@ -149,9 +149,9 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
 - [x] Este usuário deve ser identificado como admin para ter acesso.
 - [x] O acesso deverá ser dado somente através da rota `/admin` e caso o usuário não esteja logado, seja redirecionado para a tela de login
 - [ ] esta tela terá duas opções em forma de botão:
-  - [ ] Lista de produtos cadastrado e cadastro de produtos
+  - [x] Lista de produtos cadastrado e cadastro de produtos
   - [ ] Lista de usuários, onde permita editar marcando algum usuário como admin também.
-- [ ] Um dos dois cadastros deverão existir e se conseguir realizar os dois será adicionado pontuação extra para a nota.
+- [x] Um dos dois cadastros deverão existir e se conseguir realizar os dois será adicionado pontuação extra para a nota.
 
 ### Testes
 

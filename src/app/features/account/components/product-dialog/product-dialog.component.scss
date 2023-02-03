@@ -1,0 +1,33 @@
+.mat-mdc-dialog-content {
+  width: 100%;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+
+    mat-form-field {
+      width: 45% !important;
+    }
+  }
+  mat-form-field {
+    width: 100%;
+
+    &#price-field input {
+      text-align: right;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        appearance: none;
+        margin: 0;
+      }
+    }
+    &#description-field {
+      min-height: 64px;
+      max-height: 200px;
+    }
+  }
+}

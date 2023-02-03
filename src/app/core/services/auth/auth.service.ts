@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { USERS } from 'src/app/shared/constants';
 import { IUser, IUserAddress, User } from 'src/app/shared/models';
-import { UtilsService } from '../utils/utils.service';
+import { AlertService, UtilsService } from '..';
 import { AuthHttpService } from './auth-http.service';
 
 @Injectable({
@@ -12,7 +13,12 @@ export class AuthService {
   private loggedIn: boolean = false;
   private loggedUser: User | null = null;
 
-  constructor(private authHttp: AuthHttpService, private utils: UtilsService) {}
+  constructor(
+    private authHttp: AuthHttpService,
+    private utils: UtilsService,
+    private alert: AlertService,
+    private router: Router
+  ) {}
 
   getUser(): User | null {
     return this.loggedUser;
@@ -56,6 +62,17 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
+    if (!this.loggedUser) {
+      const localLoggedUser = localStorage.getItem('loggedUser');
+      if (!!localLoggedUser) {
+        this.loggedUser = new User(JSON.parse(localLoggedUser));
+      } else {
+        this.alert.createErrorDialog('Something went wrong!', '');
+        this.router.navigate(['/']);
+        return false;
+      }
+    }
+
     return this.loggedUser?.role === 'admin';
   }
 

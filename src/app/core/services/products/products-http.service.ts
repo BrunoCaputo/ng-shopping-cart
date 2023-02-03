@@ -55,4 +55,18 @@ export class ProductsHttpService {
         map((data: IProductsData) => data.products)
       );
   }
+
+  updateProduct(product: IProduct): Observable<IProduct> {
+    const { id, ...prod } = product;
+    return this.http
+      .put<IProduct>(`${this.url}/${id.toString()}`, prod)
+      .pipe(first());
+  }
+
+  addNewProduct(product: IProduct): Observable<IProduct> {
+    return this.http.post<IProduct>(`${this.url}/add`, product).pipe(
+      first(),
+      map((data: IProduct) => ({ ...data, id: product.id }))
+    );
+  }
 }

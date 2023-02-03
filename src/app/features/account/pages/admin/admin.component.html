@@ -1,1 +1,91 @@
-<p>admin works!</p>
+<div class="admin-container">
+  <mat-tab-group mat-stretch-tabs="true" mat-align-tabs="center">
+    <mat-tab label="Products">
+      <div class="admin-products-container">
+        <button mat-raised-button color="accent" (click)="openProductDialog()">
+          Add new Product
+        </button>
+
+        <mat-form-field>
+          <mat-label>Search Product</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. iPhone"
+            #input
+          />
+        </mat-form-field>
+
+        <div class="table-container mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+              <td mat-cell *matCellDef="let product">{{ product.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let product">{{ product.title }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef>Category</th>
+              <td mat-cell *matCellDef="let product">{{ product.category }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="stock">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock</th>
+              <td mat-cell *matCellDef="let product">{{ product.stock }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef>Price</th>
+              <td mat-cell *matCellDef="let product">
+                {{ product.price | currency : "USD" : "symbol" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let product">
+                <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="openProductDialog(product.id)"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumns; sticky: true"
+            ></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td
+                class="mat-cell"
+                [colSpan]="displayedColumns.length"
+                align="center"
+              >
+                No product found
+              </td>
+            </tr>
+          </table>
+
+          <mat-paginator
+            class="mat-paginator-sticky"
+            [pageSizeOptions]="[5, 10, 25, 100]"
+          ></mat-paginator>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Users">Content 2</mat-tab>
+  </mat-tab-group>
+</div>
