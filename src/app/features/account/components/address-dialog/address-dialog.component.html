@@ -107,7 +107,7 @@
     mat-stroked-button
     color="primary"
     (click)="apply()"
-    [disabled]="addressForm.invalid"
+    [disabled]="addressForm.invalid || !addressForm.dirty"
   >
     {{ addressData !== null ? "Edit" : "Add" }}
   </button>

@@ -100,8 +100,9 @@
       </div>
       <div class="address-list">
         <address-tile
-          *ngFor="let address of addressesData.controls"
+          *ngFor="let address of addressesData.controls; let i = index"
           [addressData]="address"
+          (onEditAddress)="onEditAddress($event, i)"
         ></address-tile>
       </div>
     </div>

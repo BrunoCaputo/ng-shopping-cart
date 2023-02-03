@@ -8,30 +8,9 @@
     .mat-mdc-form-field {
       width: 100%;
       height: 5rem;
-
-      .mdc-text-field:not(.mdc-text-field--disabled):not(
-          .mdc-text-field--focused
-        )
-        .mdc-floating-label {
-        color: black;
-      }
-
-      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-        background-color: rgb(235, 235, 235);
-
-        .mat-mdc-select-value,
-        .mat-mdc-select-arrow,
-        input,
-        input::placeholder {
-          color: black;
-        }
-      }
     }
   }
   .coupon-field {
     width: 300px;
-  }
-  .mdc-button.mdc-button--raised:disabled {
-    color: rgb(104, 104, 104);
   }
 }

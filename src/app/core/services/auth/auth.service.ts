@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { USERS } from 'src/app/shared/constants';
-import { IUser, User } from 'src/app/shared/models';
+import { IUser, IUserAddress, User } from 'src/app/shared/models';
 import { UtilsService } from '../utils/utils.service';
 import { AuthHttpService } from './auth-http.service';
 
@@ -66,6 +66,7 @@ export class AuthService {
 
     const createdUserWithAddressArray: IUser = {
       ...createdUser,
+      id: newAccount.id,
       addresses: newAccount.addresses,
     };
     const localStorageUsers = localStorage.getItem('users');
@@ -86,5 +87,47 @@ export class AuthService {
     const token = localStorage.getItem('userToken');
     const loggedUser = localStorage.getItem('loggedUser');
     return !!token && !!loggedUser;
+  }
+
+  updateUserData(user: IUser) {
+    this.loggedUser?.updateData(user);
+    localStorage.setItem(
+      'loggedUser',
+      JSON.stringify(this.loggedUser?.userInterface)
+    );
+    const savedUserIndex = USERS.findIndex((u) => u.id === user.id);
+    if (savedUserIndex) {
+      USERS[savedUserIndex] = { ...user };
+      const localUsers = localStorage.getItem('users');
+      if (!!localUsers) {
+        const users: IUser[] = JSON.parse(localUsers);
+        const localUserIndex = users.findIndex((u) => u.id === user.id);
+        users[localUserIndex] = { ...user };
+        localStorage.setItem('users', JSON.stringify(users));
+      }
+    }
+  }
+
+  updateAddresses(addresses: IUserAddress[]) {
+    if (this.loggedUser) {
+      this.loggedUser.addresses = addresses;
+      localStorage.setItem(
+        'loggedUser',
+        JSON.stringify(this.loggedUser.userInterface)
+      );
+      const savedUser = USERS.find((u) => u.id === this.loggedUser!.id);
+      if (savedUser) {
+        savedUser.addresses = addresses;
+        const localUsers = localStorage.getItem('users');
+        if (!!localUsers) {
+          const users: IUser[] = JSON.parse(localUsers);
+          const localUserIndex = users.findIndex(
+            (u) => u.id === this.loggedUser!.id
+          );
+          users[localUserIndex].addresses = addresses;
+          localStorage.setItem('users', JSON.stringify(users));
+        }
+      }
+    }
   }
 }

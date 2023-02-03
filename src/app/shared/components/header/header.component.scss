@@ -62,10 +62,6 @@ mat-toolbar {
 :host ::ng-deep .mat-form-field-prefix,
 :host ::ng-deep .mat-form-field-suffix {
   margin: auto 0;
-  color: rgba(0, 0, 0, 0.3) !important;
-}
-:host ::ng-deep .mat-input-element::placeholder {
-  color: rgb(102, 102, 102) !important;
 }
 :host
   ::ng-deep

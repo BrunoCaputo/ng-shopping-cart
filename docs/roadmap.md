@@ -130,14 +130,14 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
 
 **_OBS_**. Caso queira adicionar um cadastro de produtos pode fazer também que contará como pontos extras e você mesmo pode fazer do seu jeito, contanto que faça sentido com o cadastro de produtos.
 
-### Minha Conta (Área do cliente)
+### Minha Conta (Área do cliente) :white_check_mark:
 
 - [x] Deverá ser protegida e somente acessar quando estiver logado.
 - [x] No header o ícone/botão para a conta deverá mudar para o nome do usuário logado.
-- [ ] O conteúdo desta tela deverá ser os dados do cliente e devem permitir que sejam editados pelo mesmo:
+- [x] O conteúdo desta tela deverá ser os dados do cliente e devem permitir que sejam editados pelo mesmo:
   - [x] Nome completo
   - [x] Email
-  - [ ] Endereço. Nessa parte deverá ter um botão que permita que este cadastre um novo endereço além de poder editar o já existente.
+  - [x] Endereço. Nessa parte deverá ter um botão que permita que este cadastre um novo endereço além de poder editar o já existente.
   - [x] Telefone
   - [x] Um checkbox que aceita assinar a newsletter do site
 - [x] Botão para logout do site
