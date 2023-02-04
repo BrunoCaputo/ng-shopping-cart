@@ -15,24 +15,6 @@
     .mat-mdc-form-field {
       width: 100%;
       height: 5rem;
-
-      .mdc-text-field:not(.mdc-text-field--disabled):not(
-          .mdc-text-field--focused
-        )
-        .mdc-floating-label {
-        color: black;
-      }
-
-      .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-        background-color: rgb(235, 235, 235);
-
-        .mat-mdc-select-value,
-        .mat-mdc-select-arrow,
-        input,
-        input::placeholder {
-          color: black;
-        }
-      }
     }
   }
   .confirm {
@@ -47,11 +29,6 @@
     }
     button.mdc-button {
       width: 200px;
-
-      &:disabled {
-        background-color: rgb(173, 173, 173);
-        color: rgb(95, 95, 95);
-      }
     }
   }
 }

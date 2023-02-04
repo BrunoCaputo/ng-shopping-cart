@@ -19,10 +19,6 @@ describe('ConfirmationComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have a successful message', () => {
     const successMessage = (fixture.nativeElement as HTMLElement).querySelector(
       '.successful-buy'

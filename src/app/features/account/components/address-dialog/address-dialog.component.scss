@@ -1,0 +1,16 @@
+.mat-mdc-dialog-content {
+  width: 100%;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+
+    mat-form-field {
+      width: 45%;
+    }
+  }
+}

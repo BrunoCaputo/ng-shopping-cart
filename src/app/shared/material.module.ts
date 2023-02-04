@@ -8,6 +8,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 const COMPONENTS: any[] = [
   MatToolbarModule,
@@ -19,6 +25,12 @@ const COMPONENTS: any[] = [
   MatSelectModule,
   MatMenuModule,
   MatDividerModule,
+  MatCheckboxModule,
+  MatTabsModule,
+  MatDialogModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule,
 ];
 
 @NgModule({

@@ -24,16 +24,18 @@ export const USERS: IUser[] = [
     },
     domain: 'slashdot.org',
     ip: '117.29.86.254',
-    address: {
-      address: '1745 T Street Southeast',
-      city: 'Washington',
-      coordinates: {
-        lat: 38.867033,
-        lng: -76.979235,
+    addresses: [
+      {
+        address: '1745 T Street Southeast',
+        city: 'Washington',
+        coordinates: {
+          lat: 38.867033,
+          lng: -76.979235,
+        },
+        postalCode: '20020',
+        state: 'DC',
       },
-      postalCode: '20020',
-      state: 'DC',
-    },
+    ],
     macAddress: '13:69:BA:56:A3:74',
     university: 'Capitol University',
     bank: {
@@ -87,16 +89,18 @@ export const USERS: IUser[] = [
     },
     domain: '51.la',
     ip: '253.240.20.181',
-    address: {
-      address: '6007 Applegate Lane',
-      city: 'Louisville',
-      coordinates: {
-        lat: 38.1343013,
-        lng: -85.6498512,
+    addresses: [
+      {
+        address: '6007 Applegate Lane',
+        city: 'Louisville',
+        coordinates: {
+          lat: 38.1343013,
+          lng: -85.6498512,
+        },
+        postalCode: '40219',
+        state: 'KY',
       },
-      postalCode: '40219',
-      state: 'KY',
-    },
+    ],
     macAddress: '13:F1:00:DA:A4:12',
     university: 'Stavropol State Technical University',
     bank: {
@@ -149,16 +153,18 @@ export const USERS: IUser[] = [
     },
     domain: 'earthlink.net',
     ip: '205.226.160.3',
-    address: {
-      address: '560 Penstock Drive',
-      city: 'Grass Valley',
-      coordinates: {
-        lat: 39.213076,
-        lng: -121.077583,
+    addresses: [
+      {
+        address: '560 Penstock Drive',
+        city: 'Grass Valley',
+        coordinates: {
+          lat: 39.213076,
+          lng: -121.077583,
+        },
+        postalCode: '95945',
+        state: 'CA',
       },
-      postalCode: '95945',
-      state: 'CA',
-    },
+    ],
     macAddress: 'F2:88:58:64:F7:76',
     university: 'University of Cagayan Valley',
     bank: {
@@ -188,4 +194,7 @@ export const USERS: IUser[] = [
     userAgent:
       'Mozilla/5.0 (Windows NT 6.2; Win64; x64; rv:21.0.0) Gecko/20121011 Firefox/21.0.0',
   },
+  ...(!!localStorage.getItem('users')
+    ? (JSON.parse(localStorage.getItem('users')!) as IUser[])
+    : []),
 ];

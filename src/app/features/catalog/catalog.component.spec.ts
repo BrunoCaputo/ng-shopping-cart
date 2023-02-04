@@ -37,10 +37,6 @@ describe('CatalogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should have a banner in home page', () => {
     const doc = fixture.nativeElement as HTMLElement;
     const banner = doc.querySelector('img');

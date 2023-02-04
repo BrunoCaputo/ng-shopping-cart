@@ -1,0 +1,114 @@
+<h1 mat-dialog-title>
+  {{ id ? "Edit Product" : "New Product" }}
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="productForm" role="form">
+    <mat-form-field id="title-field">
+      <mat-label>Title</mat-label>
+      <input
+        cdkFocusInitial
+        type="text"
+        matInput
+        formControlName="title"
+        placeholder="Enter the product title"
+      />
+      <mat-error *ngIf="productForm.get('title')!.hasError('required')">
+        Title is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <div class="row">
+      <mat-form-field id="category-field">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category">
+          <mat-option
+            *ngFor="let category of categories"
+            [value]="category | lowercase"
+          >
+            {{ category }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="productForm.get('category')!.hasError('required')">
+          Category is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field id="brand-field">
+        <mat-label>Brand</mat-label>
+        <input
+          cdkFocusInitial
+          type="text"
+          matInput
+          formControlName="brand"
+          placeholder="Enter the product brand"
+        />
+        <mat-error *ngIf="productForm.get('brand')!.hasError('required')">
+          Brand is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field id="stock-field">
+        <mat-label>Stock</mat-label>
+        <input
+          type="number"
+          matInput
+          formControlName="stock"
+          min="0"
+          placeholder="Enter the product stock"
+        />
+        <mat-error *ngIf="productForm.get('stock')!.hasError('required')">
+          Stock is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="productForm.get('stock')!.hasError('min')">
+          Stock can't be negative
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field id="price-field">
+        <mat-label>Price</mat-label>
+        <input
+          type="number"
+          matInput
+          formControlName="price"
+          min="0"
+          placeholder="Enter the product price"
+        />
+        <span matTextPrefix>$&nbsp;</span>
+        <span matTextSuffix>.00</span>
+        <mat-error *ngIf="productForm.get('price')!.hasError('required')">
+          Price is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="productForm.get('price')!.hasError('min')">
+          Price can't be negative
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field id="description-field">
+      <mat-label>Description</mat-label>
+      <textarea
+        type="text"
+        matInput
+        formControlName="description"
+        placeholder="Enter the product description"
+        maxlength="250"
+      ></textarea>
+      <mat-error *ngIf="productForm.get('description')!.hasError('required')">
+        Description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="apply()"
+    [disabled]="productForm.invalid || !productForm.dirty"
+  >
+    {{ id ? "Edit" : "Add" }}
+  </button>
+</div>

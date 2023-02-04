@@ -1,1 +1,110 @@
-<p>user-area works!</p>
+<div class="user-container">
+  <form
+    [formGroup]="personalInfoForm"
+    role="form"
+    (ngSubmit)="updateUserInfo()"
+  >
+    <div class="user-data-container mat-elevation-z5">
+      <h1>Personal Information</h1>
+
+      <div class="row">
+        <mat-form-field id="name-field">
+          <mat-label>Name</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="name"
+            placeholder="Enter your name"
+          />
+          <mat-error *ngIf="personalInfoForm.get('name')!.hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field id="lastname-field">
+          <mat-label>Last Name</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="lastName"
+            placeholder="Enter your last name"
+          />
+          <mat-error
+            *ngIf="personalInfoForm.get('lastName')!.hasError('required')"
+          >
+            Last name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field id="email-field">
+        <mat-label>Email</mat-label>
+        <input
+          type="email"
+          matInput
+          formControlName="email"
+          placeholder="Enter your email"
+        />
+        <mat-error
+          *ngIf="
+            personalInfoForm.get('email')!.hasError('email') &&
+            !personalInfoForm.get('email')!.hasError('required')
+          "
+        >
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="personalInfoForm.get('email')!.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field id="phone-field">
+        <mat-label>Phone</mat-label>
+        <span matTextPrefix>+55</span>
+        <input
+          type="tel"
+          matInput
+          formControlName="phone"
+          placeholder="Enter your phone"
+          mask="(00) 00000-0000||(00) 0000-0000"
+        />
+        <mat-error *ngIf="personalInfoForm.get('phone')!.hasError('required')">
+          Phone is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-checkbox formControlName="newsLetter" color="primary">
+        I want to receive a newsletter into my email
+      </mat-checkbox>
+
+      <div class="submit-button">
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="personalInfoForm.invalid || !personalInfoForm.dirty"
+        >
+          Update my info
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <form [formGroup]="addressesForm" role="form">
+    <div class="user-addresses mat-elevation-z5">
+      <div class="title">
+        <h1>Addresses</h1>
+        <button mat-mini-fab color="primary" (click)="addNewAddress()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <div class="address-list">
+        <address-tile
+          *ngFor="let address of addressesData.controls; let i = index"
+          [addressData]="address"
+          (onEditAddress)="onEditAddress($event, i)"
+        ></address-tile>
+      </div>
+    </div>
+  </form>
+</div>

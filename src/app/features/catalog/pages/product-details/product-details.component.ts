@@ -30,7 +30,6 @@ export class ProductDetailsComponent {
 
   async getProductData(id: string) {
     this.product = await this.productsService.getProductById(id);
-    console.log(this.product);
     this.stock = this.product.stock;
     this.title.setTitle(`${this.product.title} | BC Store`);
   }

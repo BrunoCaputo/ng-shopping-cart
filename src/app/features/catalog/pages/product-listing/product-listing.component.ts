@@ -39,13 +39,11 @@ export class ProductListingComponent {
 
   async getProductsFromSearch() {
     this.products = await this.productsService.searchProducts(this.filter);
-    console.log(this.products);
   }
 
   async productsByCategory() {
     this.products = await this.productsService.getProductByCategory(
       this.category
     );
-    console.log(this.products);
   }
 }

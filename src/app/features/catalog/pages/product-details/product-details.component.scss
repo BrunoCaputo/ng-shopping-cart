@@ -27,7 +27,7 @@
       background-color: rgb(190, 190, 190);
       border-radius: 10px;
       padding: 10px 20px;
-      z-index: 9999;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -70,24 +70,6 @@
         .mat-mdc-form-field {
           width: 100px;
           height: 75px;
-
-          .mdc-text-field:not(.mdc-text-field--disabled):not(
-              .mdc-text-field--focused
-            )
-            .mdc-floating-label {
-            color: black;
-          }
-
-          .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-            background-color: rgb(235, 235, 235);
-
-            .mat-mdc-select-value,
-            .mat-mdc-select-arrow,
-            input,
-            input::placeholder {
-              color: black;
-            }
-          }
         }
       }
     }

@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from 'src/app/shared/shared.module';
 
@@ -10,7 +11,7 @@ describe('CategoryContainerComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CategoryContainerComponent],
-      imports: [SharedModule],
+      imports: [SharedModule, HttpClientTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CategoryContainerComponent);

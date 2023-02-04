@@ -1,1 +1,175 @@
-<p>admin works!</p>
+<div class="admin-container">
+  <mat-tab-group mat-stretch-tabs="true" mat-align-tabs="center">
+    <mat-tab label="Products">
+      <div class="admin-products-container">
+        <button mat-raised-button color="accent" (click)="openProductDialog()">
+          Add new Product
+        </button>
+
+        <mat-form-field>
+          <mat-label>Search Product</mat-label>
+          <input
+            matInput
+            (keyup)="applyProductsFilter($event)"
+            placeholder="Enter the product name or category"
+            #input
+          />
+        </mat-form-field>
+
+        <div class="table-container mat-elevation-z8">
+          <table
+            mat-table
+            [dataSource]="productsDataSource"
+            matSort
+            #productsSort
+          >
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+              <td mat-cell *matCellDef="let product">{{ product.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let product">{{ product.title }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="category">
+              <th mat-header-cell *matHeaderCellDef>Category</th>
+              <td mat-cell *matCellDef="let product">{{ product.category }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="stock">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock</th>
+              <td mat-cell *matCellDef="let product">{{ product.stock }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef>Price</th>
+              <td mat-cell *matCellDef="let product">
+                {{ product.price | currency : "USD" : "symbol" }}
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let product">
+                <button
+                  mat-icon-button
+                  color="primary"
+                  (click)="openProductDialog(product.id)"
+                >
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="productsDisplayedColumns; sticky: true"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: productsDisplayedColumns"
+            ></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td
+                class="mat-cell"
+                [colSpan]="productsDisplayedColumns.length"
+                align="center"
+              >
+                No product found
+              </td>
+            </tr>
+          </table>
+
+          <mat-paginator
+            #productsPaginator
+            class="mat-paginator-sticky"
+            [pageSizeOptions]="[5, 10, 25, 100]"
+          ></mat-paginator>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Users">
+      <div class="admin-users-container">
+        <mat-form-field>
+          <mat-label>Search User</mat-label>
+          <input
+            matInput
+            (keyup)="applyUserFilter($event)"
+            placeholder="Enter the user name, email or username"
+            #input
+          />
+        </mat-form-field>
+
+        <div class="table-container mat-elevation-z8">
+          <table mat-table [dataSource]="usersDataSource" matSort #usersSort>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+              <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+              <td mat-cell *matCellDef="let user">{{ user.firstName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef>Email</th>
+              <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="username">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Username
+              </th>
+              <td mat-cell *matCellDef="let user">{{ user.username }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let user">
+                <mat-checkbox
+                  color="primary"
+                  (change)="markUserAsAdmin(user, $event)"
+                >
+                  Change to Admin
+                </mat-checkbox>
+              </td>
+            </ng-container>
+
+            <tr
+              mat-header-row
+              *matHeaderRowDef="usersDisplayedColumns; sticky: true"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: usersDisplayedColumns"
+            ></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+              <td
+                class="mat-cell"
+                [colSpan]="usersDisplayedColumns.length"
+                align="center"
+              >
+                No user found
+              </td>
+            </tr>
+          </table>
+
+          <mat-paginator
+            #usersPaginator
+            class="mat-paginator-sticky"
+            [pageSizeOptions]="[5, 10, 25, 100]"
+          ></mat-paginator>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

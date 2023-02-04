@@ -12,9 +12,9 @@ Rode `ng serve` para executar o projeto em desenvolvimento. Use a url `http://lo
 
 ## API
 
-Foi utilizado dados baseados na [Fake Store API](https://fakestoreapi.com/) para geração de produtos aleatórios.
+Foram utilizados os dados do [Dummy JSON](https://dummyjson.com/) tanto para os produtos, quanto para os usuários.
 
-Os dados foram acessados pelo [Insomnia](https://insomnia.rest/).
+Os acessos para buscar os dados foram feitos por HTTP.
 
 ### CUPONS
 
@@ -35,3 +35,9 @@ Esses são alguns usuários criados para teste dentro da plataforma. Todos os us
 | atuny0@sohu.com       | 9uQFF1Lh   | Admin |
 | hbingley1@plala.or.jp | CQutx25i8r | User  |
 | rshawe2@51.la         | OWsTbMUgFc | User  |
+
+Também é possível criar seu próprio usuário acessando a rota `/account-creation`.
+
+## ROADMAP
+
+Para visualizar todos os objetivos e features do projeto, acesse o documento de [ROADMAP](/docs/roadmap.md).

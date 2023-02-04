@@ -60,13 +60,17 @@
       </mat-form-field>
     </div>
 
-    <button
-      mat-flat-button
-      color="primary"
-      (click)="login()"
-      [disabled]="loginForm.invalid"
-    >
-      Login
-    </button>
+    <div class="action-buttons">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="login()"
+        [disabled]="loginForm.invalid"
+      >
+        Login
+      </button>
+      <a routerLink="/account-creation"> Haven't an account? Create now! </a>
+      <a> Forgot my password </a>
+    </div>
   </div>
 </form>

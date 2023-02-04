@@ -1,0 +1,114 @@
+<h1 mat-dialog-title>
+  {{ addressData !== null ? "Edit Address" : "New Address" }}
+</h1>
+<div mat-dialog-content>
+  <form [formGroup]="addressForm" role="form">
+    <div class="row">
+      <mat-form-field id="zipCode-field">
+        <mat-label>ZIP Code</mat-label>
+        <input
+          cdkFocusInitial
+          type="text"
+          matInput
+          formControlName="zipCode"
+          placeholder="Enter your ZIP Code"
+          mask="00000-000"
+        />
+        <button
+          matSuffix
+          mat-icon-button
+          type="button"
+          (click)="getAddressFromZipCode(addressForm.get('zipCode')!.value)"
+        >
+          <mat-icon> search </mat-icon>
+        </button>
+        <mat-error *ngIf="addressForm.get('zipCode')!.hasError('required')">
+          ZIP Code is <strong>required</strong>
+        </mat-error>
+        <mat-error
+          *ngIf="addressForm.get('zipCode')!.hasError('invalidZipCode')"
+        >
+          Please enter a valid ZIP Code
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field id="state-field">
+        <mat-label>State</mat-label>
+        <mat-select formControlName="state">
+          <mat-option *ngFor="let opt of stateOpts" [value]="opt.uf">
+            {{ opt.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="addressForm.get('state')!.hasError('required')">
+          State is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field id="street-field">
+        <mat-label>Street</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="street"
+          placeholder="Enter your street"
+        />
+        <mat-error *ngIf="addressForm.get('street')!.hasError('required')">
+          Street is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field id="complement-field">
+        <mat-label>Complement</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="complement"
+          placeholder="Enter your complement"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field id="city-field">
+        <mat-label>City</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="city"
+          placeholder="Enter your city"
+        />
+        <mat-error *ngIf="addressForm.get('city')!.hasError('required')">
+          City name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field id="neighborhood-field">
+        <mat-label>Neighborhood</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="neighborhood"
+          placeholder="Enter your neighborhood"
+        />
+        <mat-error
+          *ngIf="addressForm.get('neighborhood')!.hasError('required')"
+        >
+          Neighborhood is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-stroked-button mat-dialog-close>Cancel</button>
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="apply()"
+    [disabled]="addressForm.invalid || !addressForm.dirty"
+  >
+    {{ addressData !== null ? "Edit" : "Add" }}
+  </button>
+</div>

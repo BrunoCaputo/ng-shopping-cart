@@ -1,5 +1,3 @@
-import { AuthService } from 'src/app/core/services';
-
 export interface IUser {
   id: number;
   firstName: string;
@@ -8,6 +6,7 @@ export interface IUser {
   email: string;
   username: string;
   password: string;
+  addresses: IUserAddress[];
   age?: number;
   gender?: 'male' | 'female' | 'other';
   phone?: string;
@@ -23,16 +22,6 @@ export interface IUser {
   };
   domain?: string;
   ip?: string;
-  address?: {
-    address: string;
-    city: string;
-    coordinates?: {
-      lat: number;
-      lng: number;
-    };
-    postalCode: string;
-    state: string;
-  };
   macAddress?: string;
   university?: string;
   bank?: {
@@ -63,22 +52,49 @@ export interface IUser {
   role?: 'admin' | undefined;
 }
 
+export interface IUserAddress {
+  address: string;
+  city: string;
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
+  postalCode: string;
+  state: string;
+}
+
 export class User {
+  private _id: number;
   private _email: string;
   private _password: string;
   private _name: string;
   private _role?: 'admin' | undefined;
   private _username: string;
+  private _userInterface: IUser;
+  private _addresses: IUserAddress[];
 
   constructor(user: IUser) {
+    this._id = user.id;
     this._email = user.email;
     this._password = user.password;
     this._name = user.firstName;
     this._role = user.role;
     this._username = user.username;
+    this._addresses = user.addresses;
+    this._userInterface = user;
+  }
+
+  updateData(user: IUser): void {
+    this._email = user.email;
+    this._name = user.firstName;
+    this._userInterface = { ...user, addresses: this._addresses };
   }
 
   // GETTERS AND SETTERS
+  public get id(): number {
+    return this._id;
+  }
+
   public get email(): string {
     return this._email;
   }
@@ -109,5 +125,16 @@ export class User {
   }
   public set role(value: 'admin' | undefined) {
     this._role = value;
+  }
+
+  public get addresses(): IUserAddress[] {
+    return this._addresses;
+  }
+  public set addresses(value: IUserAddress[]) {
+    this._addresses = value;
+  }
+
+  public get userInterface(): IUser {
+    return this._userInterface;
   }
 }

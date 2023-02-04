@@ -1,0 +1,43 @@
+:host ::ng-deep .admin-container {
+  width: 100%;
+  min-height: calc(100vh - 64px - 100px);
+
+  .admin-products-container {
+    display: flex;
+    padding: 20px 10px;
+    flex-direction: column;
+    gap: 20px;
+
+    .mat-mdc-raised-button {
+      width: max-content;
+      align-self: flex-start;
+    }
+  }
+  .admin-users-container {
+    display: flex;
+    padding: 20px 10px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .table-container {
+    width: 100%;
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .mat-paginator-sticky {
+      bottom: 0px;
+      position: sticky;
+      z-index: 10;
+    }
+    .mat-row.mat-mdc-no-data-row {
+      height: 5rem;
+
+      td {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
