@@ -1,4 +1,10 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  QueryList,
+  ViewChild,
+} from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -9,7 +15,7 @@ import {
   ProductsService,
 } from 'src/app/core/services';
 import { LoadingSpinnerService } from 'src/app/core/services/spinner/loading-spinner.service';
-import { IProduct } from 'src/app/shared/models';
+import { IProduct, IUser } from 'src/app/shared/models';
 import { ProductDialogComponent } from '../../components/product-dialog/product-dialog.component';
 
 @Component({
@@ -17,7 +23,7 @@ import { ProductDialogComponent } from '../../components/product-dialog/product-
   styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent {
-  displayedColumns: string[] = [
+  productsDisplayedColumns: string[] = [
     'id',
     'title',
     'category',
@@ -25,10 +31,25 @@ export class AdminComponent {
     'price',
     'actions',
   ];
-  dataSource!: MatTableDataSource<IProduct>;
+  usersDisplayedColumns: string[] = [
+    'id',
+    'name',
+    'email',
+    'username',
+    'actions',
+  ];
+  productsDataSource!: MatTableDataSource<IProduct>;
+  usersDataSource!: MatTableDataSource<IUser>;
 
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // table paginators
+  @ViewChild('productsPaginator', { read: MatPaginator })
+  productsPaginator!: MatPaginator;
+  @ViewChild('usersPaginator', { read: MatPaginator })
+  usersPaginator!: MatPaginator;
+
+  // table sorts
+  @ViewChild('productsSort', { read: MatSort }) productsSort!: MatSort;
+  @ViewChild('usersSort', { read: MatSort }) usersSort!: MatSort;
 
   constructor(
     private productsService: ProductsService,
@@ -41,19 +62,40 @@ export class AdminComponent {
 
   ngOnInit() {
     this.productsService.getProducts().then((products) => {
-      this.dataSource = new MatTableDataSource(products);
+      this.productsDataSource = new MatTableDataSource(products);
 
-      this.dataSource.filterPredicate = this.filterPredicate;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.productsDataSource.filterPredicate = this.productFilterPredicate;
+      this.productsDataSource.paginator = this.productsPaginator;
+      this.productsDataSource.sort = this.productsSort;
     });
   }
 
-  private filterPredicate(data: IProduct, filter: string): boolean {
+  ngAfterViewInit(): void {
+    const nonAdminUsers: IUser[] = this.authService
+      .getPlatformUsers()
+      .filter((user) => user.role !== 'admin');
+    this.usersDataSource = new MatTableDataSource(nonAdminUsers);
+    this.cdr.detectChanges();
+
+    this.usersDataSource.filterPredicate = this.userFilterPredicate;
+    this.usersDataSource.paginator = this.usersPaginator;
+    this.usersDataSource.sort = this.usersSort;
+  }
+
+  private productFilterPredicate(data: IProduct, filter: string): boolean {
     const lowerCaseFilter = filter.toLowerCase();
     return (
       data.title.toLowerCase().includes(lowerCaseFilter) ||
       data.category.toLowerCase().includes(lowerCaseFilter)
+    );
+  }
+
+  private userFilterPredicate(data: IUser, filter: string): boolean {
+    const lowerCaseFilter = filter.toLowerCase();
+    return (
+      data.firstName.toLowerCase().includes(lowerCaseFilter) ||
+      data.email.toLowerCase().includes(lowerCaseFilter) ||
+      data.username.toLowerCase().includes(lowerCaseFilter)
     );
   }
 
@@ -69,7 +111,7 @@ export class AdminComponent {
           try {
             this.spinner.show();
             const products = await this.productsService.updateProduct(result);
-            this.dataSource.data = products;
+            this.productsDataSource.data = products;
             this.cdr.detectChanges();
           } catch (error) {
             console.log(error);
@@ -81,7 +123,7 @@ export class AdminComponent {
           try {
             this.spinner.show();
             const products = await this.productsService.addNewProduct(result);
-            this.dataSource.data = products;
+            this.productsDataSource.data = products;
             this.cdr.detectChanges();
           } catch (error) {
             console.log(error);
@@ -94,12 +136,38 @@ export class AdminComponent {
     });
   }
 
-  applyFilter(event: KeyboardEvent) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  markUserAsAdmin(user: IUser, ev: MatCheckboxChange) {
+    const checked = ev.checked;
+    if (checked) {
+      this.alert.createConfirmDenyDialog(
+        'Change to Admin',
+        `Do you want to turn ${user.firstName} to an administrator?`,
+        async () => {
+          this.usersDataSource.data = this.authService.changeUserToAdmin(user);
+          this.cdr.detectChanges();
+        },
+        () => {
+          ev.source.checked = false;
+        }
+      );
+    }
+  }
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+  applyProductsFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.productsDataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.productsDataSource.paginator) {
+      this.productsDataSource.paginator.firstPage();
+    }
+  }
+
+  applyUserFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.usersDataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.usersDataSource.paginator) {
+      this.usersDataSource.paginator.firstPage();
     }
   }
 }

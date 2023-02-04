@@ -143,14 +143,14 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
 - [x] Botão para logout do site
 - [x] Os dados do login do usuário poderá ser persistidos no `localStorage` do browser
 
-### Admin
+### Admin :white_check_mark:
 
 - [x] Deverá ser protegida e somente acessar quando estiver logado.
 - [x] Este usuário deve ser identificado como admin para ter acesso.
 - [x] O acesso deverá ser dado somente através da rota `/admin` e caso o usuário não esteja logado, seja redirecionado para a tela de login
-- [ ] esta tela terá duas opções em forma de botão:
+- [x] esta tela terá duas opções em forma de botão:
   - [x] Lista de produtos cadastrado e cadastro de produtos
-  - [ ] Lista de usuários, onde permita editar marcando algum usuário como admin também.
+  - [x] Lista de usuários, onde permita editar marcando algum usuário como admin também.
 - [x] Um dos dois cadastros deverão existir e se conseguir realizar os dois será adicionado pontuação extra para a nota.
 
 ### Testes

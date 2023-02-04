@@ -147,4 +147,28 @@ export class AuthService {
       }
     }
   }
+
+  changeUserToAdmin(user: IUser): IUser[] {
+    const userIndex: number = USERS.indexOf(user);
+    USERS[userIndex].role = 'admin';
+
+    // Check if user contains in localStorage
+    if (!!localStorage.getItem('users')) {
+      const localUsers: IUser[] = JSON.parse(localStorage.getItem('users')!);
+      const localIndex: number = localUsers.findIndex(
+        (lUser) => lUser.id === user.id
+      );
+
+      if (localIndex !== -1) {
+        localUsers[localIndex].role = 'admin';
+        localStorage.setItem('users', JSON.stringify(localUsers));
+      }
+    }
+
+    return this.getPlatformUsers().filter((user) => user.role !== 'admin');
+  }
+
+  getPlatformUsers(): IUser[] {
+    return USERS;
+  }
 }
