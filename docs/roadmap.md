@@ -153,6 +153,6 @@ Escreva testes em sua aplicação, 2 por cada componente abaixo:
   - [x] Lista de usuários, onde permita editar marcando algum usuário como admin também.
 - [x] Um dos dois cadastros deverão existir e se conseguir realizar os dois será adicionado pontuação extra para a nota.
 
-### Testes
+### Testes :white_check_mark:
 
-- [ ] É necessario que os testes cubram uma margem de 40% de linhas e funcões em seu código. Devem sintetizar com a aplicação e os testes existentes quando os componentes/recursos forem criados serão ignorados.
+- [x] É necessario que os testes cubram uma margem de 40% de linhas e funcões em seu código. Devem sintetizar com a aplicação e os testes existentes quando os componentes/recursos forem criados serão ignorados.
