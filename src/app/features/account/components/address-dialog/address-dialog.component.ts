@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UtilsService } from 'src/app/core/services';
@@ -21,8 +21,6 @@ export class AddressDialogComponent {
   ) {}
 
   ngOnInit() {
-    console.log(this.addressData);
-
     this.stateOpts = Object.keys(States).map((st) => ({
       uf: st,
       name: States[st].name,

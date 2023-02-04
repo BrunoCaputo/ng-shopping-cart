@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 import { UserAreaComponent } from './user-area.component';
 
@@ -9,6 +11,7 @@ describe('UserAreaComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UserAreaComponent],
+      imports: [HttpClientTestingModule, SharedModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(UserAreaComponent);
